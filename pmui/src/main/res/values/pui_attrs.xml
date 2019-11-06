@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--TextView Comm Attrs-->
+    <declare-styleable name="PUITextViewCommAttr">
+        <attr name="android:textColor" />
+        <attr name="android:textSize" />
+        <attr name="android:background" />
+        <attr name="android:gravity" />
+        <attr name="android:paddingTop" />
+        <attr name="android:paddingLeft" />
+        <attr name="android:paddingRight" />
+        <attr name="android:paddingBottom" />
+        <attr name="android:singleLine" />
+        <attr name="android:ellipsize" />
+        <attr name="android:maxLines" />
+        <attr name="android:lineSpacingExtra" />
+        <attr name="android:drawablePadding" />
+        <attr name="android:textColorHint" />
+        <attr name="android:textStyle" />
+    </declare-styleable>
+
+    <!--layout comm attr-->
+    <!--圆角-->
+    <attr name="pui_radius" format="dimension" />
+    <attr name="pui_hideRadiusSide" format="enum">
+        <enum name="none" value="0" />
+        <enum name="top" value="1" />
+        <enum name="right" value="2" />
+        <enum name="bottom" value="3" />
+        <enum name="left" value="4" />
+    </attr>
+    <!--底部分割线-->
+    <attr name="pui_bottomDividerHeight" format="dimension" />
+    <attr name="pui_bottomDividerColor" format="color|reference" />
+    <attr name="pui_bottomDividerInsetLeft" format="dimension" />
+    <attr name="pui_bottomDividerInsetRight" format="dimension" />
+    <!--顶部分割线-->
+    <attr name="pui_topDividerHeight" format="dimension" />
+    <attr name="pui_topDividerColor" format="color|reference" />
+    <attr name="pui_topDividerInsetLeft" format="dimension" />
+    <attr name="pui_topDividerInsetRight" format="dimension" />
+    <!--左边分割线-->
+    <attr name="pui_leftDividerWidth" format="dimension" />
+    <attr name="pui_leftDividerColor" format="color|reference" />
+    <attr name="pui_leftDividerInsetTop" format="dimension" />
+    <attr name="pui_leftDividerInsetBottom" format="dimension" />
+    <!--右边分割线-->
+    <attr name="pui_rightDividerWidth" format="dimension" />
+    <attr name="pui_rightDividerColor" format="color|reference" />
+    <attr name="pui_rightDividerInsetTop" format="dimension" />
+    <attr name="pui_rightDividerInsetBottom" format="dimension" />
+    <!--边线-->
+    <attr name="pui_borderColor" format="color" />
+    <attr name="pui_borderWidth" format="dimension" />
+    <attr name="pui_outerNormalColor" format="color|reference" />
+    <!--阴影-->
+    <attr name="pui_showBorderOnlyBeforeL" format="boolean" />
+    <attr name="pui_shadowElevation" format="dimension" />
+    <attr name="pui_useThemeGeneralShadowElevation" format="boolean" />
+    <attr name="pui_shadowAlpha" format="float" />
+    <attr name="pui_outlineInsetTop" format="dimension" />
+    <attr name="pui_outlineInsetLeft" format="dimension" />
+    <attr name="pui_outlineInsetRight" format="dimension" />
+    <attr name="pui_outlineInsetBottom" format="dimension" />
+    <attr name="pui_outlineExcludePadding" format="boolean" />
+
+    <!--layout FrameLayout-->
+    <declare-styleable name="PUIFrameLayout">
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
+        <attr name="android:minWidth" />
+        <attr name="android:minHeight" />
+        <attr name="pui_bottomDividerHeight" />
+        <attr name="pui_bottomDividerColor" />
+        <attr name="pui_bottomDividerInsetLeft" />
+        <attr name="pui_bottomDividerInsetRight" />
+        <attr name="pui_topDividerHeight" />
+        <attr name="pui_topDividerColor" />
+        <attr name="pui_topDividerInsetLeft" />
+        <attr name="pui_topDividerInsetRight" />
+        <attr name="pui_leftDividerWidth" />
+        <attr name="pui_leftDividerColor" />
+        <attr name="pui_leftDividerInsetTop" />
+        <attr name="pui_leftDividerInsetBottom" />
+        <attr name="pui_rightDividerWidth" />
+        <attr name="pui_rightDividerColor" />
+        <attr name="pui_rightDividerInsetTop" />
+        <attr name="pui_rightDividerInsetBottom" />
+        <attr name="pui_radius" />
+        <attr name="pui_borderColor" />
+        <attr name="pui_borderWidth" />
+        <attr name="pui_outerNormalColor" />
+        <attr name="pui_hideRadiusSide" />
+        <attr name="pui_showBorderOnlyBeforeL" />
+        <attr name="pui_shadowElevation" />
+        <attr name="pui_useThemeGeneralShadowElevation" />
+        <attr name="pui_shadowAlpha" />
+        <attr name="pui_outlineInsetTop" />
+        <attr name="pui_outlineInsetLeft" />
+        <attr name="pui_outlineInsetRight" />
+        <attr name="pui_outlineInsetBottom" />
+        <attr name="pui_outlineExcludePadding" />
+    </declare-styleable>
+
+    <!--layout LinearLayout-->
+    <declare-styleable name="PUILinearLayout">
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
+        <attr name="android:minWidth" />
+        <attr name="android:minHeight" />
+        <attr name="pui_bottomDividerHeight" />
+        <attr name="pui_bottomDividerColor" />
+        <attr name="pui_bottomDividerInsetLeft" />
+        <attr name="pui_bottomDividerInsetRight" />
+        <attr name="pui_topDividerHeight" />
+        <attr name="pui_topDividerColor" />
+        <attr name="pui_topDividerInsetLeft" />
+        <attr name="pui_topDividerInsetRight" />
+        <attr name="pui_leftDividerWidth" />
+        <attr name="pui_leftDividerColor" />
+        <attr name="pui_leftDividerInsetTop" />
+        <attr name="pui_leftDividerInsetBottom" />
+        <attr name="pui_rightDividerWidth" />
+        <attr name="pui_rightDividerColor" />
+        <attr name="pui_rightDividerInsetTop" />
+        <attr name="pui_rightDividerInsetBottom" />
+        <attr name="pui_radius" />
+        <attr name="pui_borderColor" />
+        <attr name="pui_borderWidth" />
+        <attr name="pui_outerNormalColor" />
+        <attr name="pui_hideRadiusSide" />
+        <attr name="pui_showBorderOnlyBeforeL" />
+        <attr name="pui_shadowElevation" />
+        <attr name="pui_useThemeGeneralShadowElevation" />
+        <attr name="pui_shadowAlpha" />
+        <attr name="pui_outlineInsetTop" />
+        <attr name="pui_outlineInsetLeft" />
+        <attr name="pui_outlineInsetRight" />
+        <attr name="pui_outlineInsetBottom" />
+        <attr name="pui_outlineExcludePadding" />
+    </declare-styleable>
+
+    <!--layout LinearLayout-->
+    <declare-styleable name="PUIRelativeLayout">
+        <attr name="android:maxWidth" />
+        <attr name="android:maxHeight" />
+        <attr name="android:minWidth" />
+        <attr name="android:minHeight" />
+        <attr name="pui_bottomDividerHeight" />
+        <attr name="pui_bottomDividerColor" />
+        <attr name="pui_bottomDividerInsetLeft" />
+        <attr name="pui_bottomDividerInsetRight" />
+        <attr name="pui_topDividerHeight" />
+        <attr name="pui_topDividerColor" />
+        <attr name="pui_topDividerInsetLeft" />
+        <attr name="pui_topDividerInsetRight" />
+        <attr name="pui_leftDividerWidth" />
+        <attr name="pui_leftDividerColor" />
+        <attr name="pui_leftDividerInsetTop" />
+        <attr name="pui_leftDividerInsetBottom" />
+        <attr name="pui_rightDividerWidth" />
+        <attr name="pui_rightDividerColor" />
+        <attr name="pui_rightDividerInsetTop" />
+        <attr name="pui_rightDividerInsetBottom" />
+        <attr name="pui_radius" />
+        <attr name="pui_borderColor" />
+        <attr name="pui_borderWidth" />
+        <attr name="pui_outerNormalColor" />
+        <attr name="pui_hideRadiusSide" />
+        <attr name="pui_showBorderOnlyBeforeL" />
+        <attr name="pui_shadowElevation" />
+        <attr name="pui_useThemeGeneralShadowElevation" />
+        <attr name="pui_shadowAlpha" />
+        <attr name="pui_outlineInsetTop" />
+        <attr name="pui_outlineInsetLeft" />
+        <attr name="pui_outlineInsetRight" />
+        <attr name="pui_outlineInsetBottom" />
+        <attr name="pui_outlineExcludePadding" />
+    </declare-styleable>
+
+    <!--round widget comm attr-->
+    <attr name="pui_backgroundColor" format="color" />
+    <attr name="pui_radiusTopLeft" format="dimension" />
+    <attr name="pui_radiusTopRight" format="dimension" />
+    <attr name="pui_radiusBottomLeft" format="dimension" />
+    <attr name="pui_radiusBottomRight" format="dimension" />
+    <attr name="pui_isRadiusAdjustBounds" format="boolean" />
+    <attr name="pui_gradientOrientation" format="enum">
+        <enum name="topToBottom" value="1" />
+        <enum name="bottomToTop" value="2" />
+        <enum name="leftToRight" value="3" />
+        <enum name="rightToLeft" value="4" />
+    </attr>
+    <attr name="pui_gradientStartColor" format="color" />
+    <attr name="pui_gradientEndColor" format="color" />
+
+    <!-- round widget -->
+    <declare-styleable name="PUIRoundTextView">
+        <attr name="pui_backgroundColor" />
+        <attr name="pui_borderColor" />
+        <attr name="pui_borderWidth" />
+        <attr name="pui_isRadiusAdjustBounds" />
+        <attr name="pui_radius" />
+        <attr name="pui_radiusTopLeft" />
+        <attr name="pui_radiusTopRight" />
+        <attr name="pui_radiusBottomLeft" />
+        <attr name="pui_radiusBottomRight" />
+        <attr name="pui_gradientOrientation" />
+        <attr name="pui_gradientStartColor" />
+        <attr name="pui_gradientEndColor" />
+    </declare-styleable>
+
+    <declare-styleable name="PUIRoundButton">
+        <attr name="pui_backgroundColor" />
+        <attr name="pui_borderColor" />
+        <attr name="pui_borderWidth" />
+        <attr name="pui_isRadiusAdjustBounds" />
+        <attr name="pui_radius" />
+        <attr name="pui_radiusTopLeft" />
+        <attr name="pui_radiusTopRight" />
+        <attr name="pui_radiusBottomLeft" />
+        <attr name="pui_radiusBottomRight" />
+        <attr name="pui_gradientOrientation" />
+        <attr name="pui_gradientStartColor" />
+        <attr name="pui_gradientEndColor" />
+    </declare-styleable>
+
+    <declare-styleable name="PUIRoundFrameLayout">
+        <attr name="pui_backgroundColor" />
+        <attr name="pui_borderColor" />
+        <attr name="pui_borderWidth" />
+        <attr name="pui_isRadiusAdjustBounds" />
+        <attr name="pui_radius" />
+        <attr name="pui_radiusTopLeft" />
+        <attr name="pui_radiusTopRight" />
+        <attr name="pui_radiusBottomLeft" />
+        <attr name="pui_radiusBottomRight" />
+        <attr name="pui_gradientOrientation" />
+        <attr name="pui_gradientStartColor" />
+        <attr name="pui_gradientEndColor" />
+    </declare-styleable>
+
+    <declare-styleable name="PUIRoundLinearLayout">
+        <attr name="pui_backgroundColor" />
+        <attr name="pui_borderColor" />
+        <attr name="pui_borderWidth" />
+        <attr name="pui_isRadiusAdjustBounds" />
+        <attr name="pui_radius" />
+        <attr name="pui_radiusTopLeft" />
+        <attr name="pui_radiusTopRight" />
+        <attr name="pui_radiusBottomLeft" />
+        <attr name="pui_radiusBottomRight" />
+        <attr name="pui_gradientOrientation" />
+        <attr name="pui_gradientStartColor" />
+        <attr name="pui_gradientEndColor" />
+    </declare-styleable>
+
+    <declare-styleable name="PUIRoundRelativeLayout">
+        <attr name="pui_backgroundColor" />
+        <attr name="pui_borderColor" />
+        <attr name="pui_borderWidth" />
+        <attr name="pui_isRadiusAdjustBounds" />
+        <attr name="pui_radius" />
+        <attr name="pui_radiusTopLeft" />
+        <attr name="pui_radiusTopRight" />
+        <attr name="pui_radiusBottomLeft" />
+        <attr name="pui_radiusBottomRight" />
+        <attr name="pui_gradientOrientation" />
+        <attr name="pui_gradientStartColor" />
+        <attr name="pui_gradientEndColor" />
+    </declare-styleable>
+
+</resources>

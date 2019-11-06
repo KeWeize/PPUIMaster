@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="MUITextAppearance" parent="TextAppearanceBase">
+        <item name="android:textColor">?attr/pui_config_color_black</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="MUITextAppearance.Title"/>
+    <style name="MUITextAppearance.Title.Gray">
+        <item name="android:textColor">?attr/pui_config_color_gray_3</item>
+    </style>
+    <style name="MUITextAppearance.Title.Large">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="MUITextAppearance.ListItem">
+        <item name="android:textColor">@color/pui_s_list_item_text_color</item>
+    </style>
+
+    <style name="MUITextAppearance.GridItem"/>
+    <style name="MUITextAppearance.GridItem.Small">
+        <item name="android:textColor">@color/pui_config_color_gray_3</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+</resources>

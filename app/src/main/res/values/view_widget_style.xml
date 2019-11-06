@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- layout -->
+    <style name="BtmLineContainerStyle">
+
+    </style>
+
+    <!-- round widget -->
+    <style name="commSubmitBottomStyle">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="gradientSubmitStyle" parent="commSubmitBottomStyle">
+        <item name="pui_gradientStartColor">#990F2B</item>
+        <item name="pui_gradientEndColor">#E44B00</item>
+        <item name="pui_gradientOrientation">leftToRight</item>
+    </style>
+
+</resources>

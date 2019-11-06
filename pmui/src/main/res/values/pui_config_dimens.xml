@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--**********************************************
+    *           List - List Item                 *
+    **********************************************-->
+    <dimen name="pui_list_divider_height">1px</dimen>
+
+</resources>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundLinearLayout
+                style="@style/gradientSubmitStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="25dp">
+
+                <ImageView
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_wechat" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="微信登陆"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp" />
+
+            </com.pilaipiwang.pui.widget.roundwidget.PUIRoundLinearLayout>
+
+            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton
+                style="@style/gradientSubmitStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="25dp"
+                android:text="确定" />
+
+            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton
+                style="@style/commSubmitBottomStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="25dp"
+                android:text="已有账号，手机登陆"
+                android:textColor="#666666"
+                app:pui_borderColor="#666666"
+                app:pui_borderWidth="1dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="25dp"
+                android:orientation="horizontal">
+
+                <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="12dp"
+                    android:text="取消订单"
+                    android:textColor="#666666"
+                    app:pui_borderColor="#666666"
+                    app:pui_borderWidth="1dp" />
+
+                <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="12dp"
+                    android:text="立即付款"
+                    android:textColor="#FF0000"
+                    app:pui_borderColor="#FF0000"
+                    app:pui_borderWidth="1dp" />
+
+                <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:padding="12dp"
+                    android:text="权益说明"
+                    android:textColor="#FFD99B"
+                    app:pui_backgroundColor="#333333"
+                    app:pui_borderColor="#FFD99B"
+                    app:pui_borderWidth="1dp" />
+
+            </LinearLayout>
+
+            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundFrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="25dp"
+                app:pui_backgroundColor="#333333"
+                app:pui_isRadiusAdjustBounds="false"
+                app:pui_radius="10dp">
+
+                <com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:drawableLeft="@drawable/ic_setting"
+                    android:drawablePadding="8dp"
+                    android:paddingLeft="12dp"
+                    android:paddingTop="5dp"
+                    android:paddingRight="12dp"
+                    android:paddingBottom="5dp"
+                    android:textSize="18sp"
+                    android:text="设置"
+                    android:textColor="#FFFFFF"
+                    app:pui_backgroundColor="#505050"
+                    app:pui_radiusBottomLeft="10dp"
+                    app:pui_radiusTopRight="10dp" />
+
+            </com.pilaipiwang.pui.widget.roundwidget.PUIRoundFrameLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

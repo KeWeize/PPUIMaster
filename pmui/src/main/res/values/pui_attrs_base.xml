@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--base common color-->
+    <attr name="pui_config_color_blue" format="color" />
+    <attr name="pui_config_color_red" format="color" />
+    <attr name="pui_config_color_separator" format="color" />
+    <attr name="pui_config_color_separator_darken" format="color" />
+    <attr name="pui_config_color_background" format="color" />
+    <attr name="pui_config_color_background_pressed" format="color" />
+    <attr name="pui_config_color_link" format="color" />
+    <attr name="pui_config_color_pressed" format="color" />
+    <attr name="pui_config_color_black" format="color" />
+
+    <!--base gray color-->
+    <attr name="pui_config_color_gray_1" format="color" />
+    <attr name="pui_config_color_gray_2" format="color" />
+    <attr name="pui_config_color_gray_3" format="color" />
+    <attr name="pui_config_color_gray_4" format="color" />
+    <attr name="pui_config_color_gray_5" format="color" />
+    <attr name="pui_config_color_gray_6" format="color" />
+    <attr name="pui_config_color_gray_7" format="color" />
+    <attr name="pui_config_color_gray_8" format="color" />
+    <attr name="pui_config_color_gray_9" format="color" />
+
+    <!--alpha-->
+    <attr name="pui_alpha_pressed" format="float" />
+    <attr name="pui_alpha_disabled" format="float" />
+    <!--layout-->
+    <attr name="pui_general_shadow_elevation" format="dimension" />
+    <attr name="pui_general_shadow_alpha" format="float" />
+
+    <!-- 重写 Button 设置的默认样式 -->
+    <attr name="PUIButtonStyle" format="reference" />
+
+</resources>
