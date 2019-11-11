@@ -32,4 +32,15 @@
         <attr name="pui_topbar_side_textview_padding_hor" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="PUIDefaultMultiStatesLayout">
+        <attr name="pui_default_multistates_empty_resId" format="reference" />
+        <attr name="pui_default_multistates_netoff_resId" format="reference" />
+        <attr name="pui_default_multistates_error_resId" format="reference" />
+        <attr name="pui_default_multistates_empty_text" format="string" />
+        <attr name="pui_default_multistates_netoff_text" format="string" />
+        <attr name="pui_default_multistates_error_text" format="string" />
+        <attr name="pui_default_multistates_action_text" format="string" />
+        <attr name="pui_default_multistates_is_action_show" format="boolean" />
+    </declare-styleable>
+
 </resources>

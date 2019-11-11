@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="pui_default_multi_states_empty_text">暂无相关数据内容</string>
+    <string name="pui_default_multi_states_error_text">服务器错误，请稍后重试</string>
+    <string name="pui_default_multi_states_netoff_text">网络错误，请检查网络后重试</string>
+
+</resources>
