@@ -30,6 +30,10 @@
     <attr name="pui_general_shadow_elevation" format="dimension" />
     <attr name="pui_general_shadow_alpha" format="float" />
 
+    <!--topbar-->
+    <attr name="pui_topbar_height" format="dimension" />
+    <attr name="PUITopBarStyle" format="reference" />
+
     <!-- 重写 Button 设置的默认样式 -->
     <attr name="PUIButtonStyle" format="reference" />
 

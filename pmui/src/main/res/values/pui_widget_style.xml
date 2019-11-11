@@ -15,7 +15,6 @@
         <item name="android:gravity">center</item>
         <item name="android:ellipsize">end</item>
         <item name="pui_isRadiusAdjustBounds">true</item>
-        <item name="pui_backgroundColor">@color/pui_config_color_transparent</item>
     </style>
 
 </resources>

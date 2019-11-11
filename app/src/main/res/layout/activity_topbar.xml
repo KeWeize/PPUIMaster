@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.pilaipiwang.pui.widget.topbar.PUITopBar
+                android:id="@+id/topbar"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                app:pui_topbar_bg_color="#CCCCCC"
+                app:pui_topbar_need_separator="true"
+                app:pui_topbar_separator_color="#CCCCCC"
+                app:pui_topbar_separator_height="1dp"
+                app:pui_topbar_side_textview_text_color="#ff0000"
+                app:pui_topbar_title_container_padding_hor="15dp"
+                app:pui_topbar_title_text_color="#333333"
+                app:pui_topbar_title_text_size="18sp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

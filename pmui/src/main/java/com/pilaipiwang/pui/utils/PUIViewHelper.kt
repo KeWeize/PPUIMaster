@@ -4,12 +4,21 @@ import android.annotation.TargetApi
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.view.View
+import androidx.annotation.ColorInt
 
 /**
  * @author: vitar
  * @date:   2019/11/5
  */
 object PUIViewHelper {
+
+    @JvmStatic
+    fun setBackgroundColorKeepPadding(view: View, @ColorInt color: Int) {
+        val padding =
+            intArrayOf(view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom)
+        view.setBackgroundColor(color)
+        view.setPadding(padding[0], padding[1], padding[2], padding[3])
+    }
 
     @JvmStatic
     fun setBackgroundKeepingPadding(view: View, drawable: Drawable) {

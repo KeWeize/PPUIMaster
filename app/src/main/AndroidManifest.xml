@@ -17,8 +17,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".widget.PUIRoundWidgetActivity"/>
-        <activity android:name=".widget.LayoutActivity"/>
+        <activity android:name=".widget.PUIRoundWidgetActivity" />
+        <activity android:name=".widget.LayoutActivity" />
+        <activity android:name=".widget.PUITopBarActivity" />
 
     </application>
 

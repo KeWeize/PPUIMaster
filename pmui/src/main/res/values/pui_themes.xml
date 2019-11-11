@@ -64,6 +64,8 @@
         <!-- layout -->
         <item name="pui_general_shadow_elevation">14dp</item>
         <item name="pui_general_shadow_alpha">0.25</item>
+        <!-- topbar -->
+        <item name="pui_topbar_height">44dp</item>
 
         <item name="PUIButtonStyle">@style/PUI.RoundButton</item>
 

@@ -15,8 +15,10 @@
     </style>
 
     <style name="gradientSubmitStyle" parent="commSubmitBottomStyle">
-        <item name="pui_gradientStartColor">#990F2B</item>
-        <item name="pui_gradientEndColor">#E44B00</item>
+        <item name="pui_primaryColor">#AA1B00</item>
+        <item name="pui_pressedAlpha">0.85</item>
+        <item name="pui_secondaryColor">#E44B00</item>
+        <item name="pui_disableColor">#AAAAAA</item>
         <item name="pui_gradientOrientation">leftToRight</item>
     </style>
 

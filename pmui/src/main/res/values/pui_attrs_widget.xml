@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- PUITopBar -->
+    <declare-styleable name="PUITopBar">
+        <attr name="pui_topbar_title_gravity" format="enum">
+            <enum name="left_center" value="19" />
+            <enum name="center" value="17" />
+        </attr>
+        <attr name="layout_height" format="dimension" />
+        <attr name="pui_topbar_need_separator" format="boolean" />
+        <attr name="pui_topbar_separator_color" format="color" />
+        <attr name="pui_topbar_separator_height" format="dimension" />
+        <attr name="pui_topbar_bg_color" format="color" />
+        <!--titile-->
+        <attr name="pui_topbar_title_container_padding_hor" format="dimension" />
+        <attr name="pui_topbar_title_text_size" format="dimension" />
+        <attr name="pui_topbar_title_with_subtitle_text_size" format="dimension" />
+        <attr name="pui_topbar_title_text_color" format="color" />
+        <attr name="pui_topbar_subtitle_text_size" format="dimension" />
+        <attr name="pui_topbar_subtitle_text_color" format="color" />
+        <!-- side -->
+        <!--side-->
+        <attr name="pui_topbar_left_back_drawable_id" format="reference" />
+        <attr name="pui_topbar_side_container_padding_hor" format="dimension" />
+        <attr name="pui_topbar_side_imagebutton_width" format="dimension" />
+        <attr name="pui_topbar_side_imagebutton_height" format="dimension" />
+        <attr name="pui_topbar_side_imagebutton_padding_hor" format="dimension" />
+        <attr name="pui_topbar_side_imagebutton_margin_hor" format="dimension" />
+        <attr name="pui_topbar_side_textview_text_size" format="dimension" />
+        <attr name="pui_topbar_side_textview_text_color" format="color" />
+        <attr name="pui_topbar_side_textview_padding_hor" format="dimension" />
+    </declare-styleable>
+
+</resources>

@@ -180,7 +180,6 @@
     </declare-styleable>
 
     <!--round widget comm attr-->
-    <attr name="pui_backgroundColor" format="color" />
     <attr name="pui_radiusTopLeft" format="dimension" />
     <attr name="pui_radiusTopRight" format="dimension" />
     <attr name="pui_radiusBottomLeft" format="dimension" />
@@ -192,12 +191,13 @@
         <enum name="leftToRight" value="3" />
         <enum name="rightToLeft" value="4" />
     </attr>
-    <attr name="pui_gradientStartColor" format="color" />
-    <attr name="pui_gradientEndColor" format="color" />
+    <attr name="pui_primaryColor" format="color" />
+    <attr name="pui_secondaryColor" format="color" />
+    <attr name="pui_disableColor" format="color" />
+    <attr name="pui_pressedAlpha" format="float" />
 
     <!-- round widget -->
-    <declare-styleable name="PUIRoundTextView">
-        <attr name="pui_backgroundColor" />
+    <declare-styleable name="PUIRoundButton">
         <attr name="pui_borderColor" />
         <attr name="pui_borderWidth" />
         <attr name="pui_isRadiusAdjustBounds" />
@@ -207,12 +207,13 @@
         <attr name="pui_radiusBottomLeft" />
         <attr name="pui_radiusBottomRight" />
         <attr name="pui_gradientOrientation" />
-        <attr name="pui_gradientStartColor" />
-        <attr name="pui_gradientEndColor" />
+        <attr name="pui_primaryColor" />
+        <attr name="pui_secondaryColor" />
+        <attr name="pui_disableColor" />
+        <attr name="pui_pressedAlpha" />
     </declare-styleable>
 
-    <declare-styleable name="PUIRoundButton">
-        <attr name="pui_backgroundColor" />
+    <declare-styleable name="PUIRoundTextView">
         <attr name="pui_borderColor" />
         <attr name="pui_borderWidth" />
         <attr name="pui_isRadiusAdjustBounds" />
@@ -222,12 +223,13 @@
         <attr name="pui_radiusBottomLeft" />
         <attr name="pui_radiusBottomRight" />
         <attr name="pui_gradientOrientation" />
-        <attr name="pui_gradientStartColor" />
-        <attr name="pui_gradientEndColor" />
+        <attr name="pui_primaryColor" />
+        <attr name="pui_secondaryColor" />
+        <attr name="pui_disableColor" />
+        <attr name="pui_pressedAlpha" />
     </declare-styleable>
 
     <declare-styleable name="PUIRoundFrameLayout">
-        <attr name="pui_backgroundColor" />
         <attr name="pui_borderColor" />
         <attr name="pui_borderWidth" />
         <attr name="pui_isRadiusAdjustBounds" />
@@ -237,12 +239,13 @@
         <attr name="pui_radiusBottomLeft" />
         <attr name="pui_radiusBottomRight" />
         <attr name="pui_gradientOrientation" />
-        <attr name="pui_gradientStartColor" />
-        <attr name="pui_gradientEndColor" />
+        <attr name="pui_primaryColor" />
+        <attr name="pui_secondaryColor" />
+        <attr name="pui_disableColor" />
+        <attr name="pui_pressedAlpha" />
     </declare-styleable>
 
     <declare-styleable name="PUIRoundLinearLayout">
-        <attr name="pui_backgroundColor" />
         <attr name="pui_borderColor" />
         <attr name="pui_borderWidth" />
         <attr name="pui_isRadiusAdjustBounds" />
@@ -252,12 +255,13 @@
         <attr name="pui_radiusBottomLeft" />
         <attr name="pui_radiusBottomRight" />
         <attr name="pui_gradientOrientation" />
-        <attr name="pui_gradientStartColor" />
-        <attr name="pui_gradientEndColor" />
+        <attr name="pui_primaryColor" />
+        <attr name="pui_secondaryColor" />
+        <attr name="pui_disableColor" />
+        <attr name="pui_pressedAlpha" />
     </declare-styleable>
 
     <declare-styleable name="PUIRoundRelativeLayout">
-        <attr name="pui_backgroundColor" />
         <attr name="pui_borderColor" />
         <attr name="pui_borderWidth" />
         <attr name="pui_isRadiusAdjustBounds" />
@@ -267,8 +271,10 @@
         <attr name="pui_radiusBottomLeft" />
         <attr name="pui_radiusBottomRight" />
         <attr name="pui_gradientOrientation" />
-        <attr name="pui_gradientStartColor" />
-        <attr name="pui_gradientEndColor" />
+        <attr name="pui_primaryColor" />
+        <attr name="pui_secondaryColor" />
+        <attr name="pui_disableColor" />
+        <attr name="pui_pressedAlpha" />
     </declare-styleable>
 
 </resources>
