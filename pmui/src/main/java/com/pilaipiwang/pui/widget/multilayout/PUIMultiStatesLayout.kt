@@ -24,23 +24,27 @@ open class PUIMultiStatesLayout : FrameLayout {
         /**
          * 内容布局状态
          */
-        protected const val STATES_CONTENT = 0x01
+        internal const val STATES_CONTENT = 0x01
         /**
          * 加载中状态
          */
-        protected const val STATES_LOADING = 0x02
+        internal const val STATES_LOADING = 0x02
         /**
          * 空状态
          */
-        protected const val STATES_EMPTY = 0x03
+        internal const val STATES_EMPTY = 0x03
         /**
          * 网络异常
          */
-        protected const val STATES_NETOFF = 0x04
+        internal const val STATES_NETOFF = 0x04
         /**
          * 错误状态
          */
-        protected const val STATES_ERROR = 0x05
+        internal const val STATES_ERROR = 0x05
+        /**
+         * 其他自定义状态
+         */
+        internal const val STATES_CUSTOM_EXCEPTION = 0x06
     }
 
     /**
@@ -63,8 +67,12 @@ open class PUIMultiStatesLayout : FrameLayout {
      * 错误视图
      */
     protected var mErrorView: View? = null
+    /**
+     * 自定义异常视图
+     */
+    protected var mCustomExceptionView: View? = null
 
-    private var mCurStates = -1
+    protected var mCurStates = -1
     private val DEFAULT_LAYOUT_PARAMS =
         LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
 
@@ -90,10 +98,12 @@ open class PUIMultiStatesLayout : FrameLayout {
         mEmptyView = mPUIMultiStatesViewProvider!!.attachedEmptyLayout(context)
         mNetOffView = mPUIMultiStatesViewProvider!!.attachedNetOffLayout(context)
         mErrorView = mPUIMultiStatesViewProvider!!.attachedErrorLayout(context)
+        mCustomExceptionView = mPUIMultiStatesViewProvider!!.attachedExceptionLayout(context)
         addViewByCheckLegal(mLoadingView)
         addViewByCheckLegal(mEmptyView)
         addViewByCheckLegal(mNetOffView)
         addViewByCheckLegal(mErrorView)
+        addViewByCheckLegal(mCustomExceptionView)
 
         // 初始化显示内容视图
         showContentLayout()
@@ -161,6 +171,15 @@ open class PUIMultiStatesLayout : FrameLayout {
         }
         if (showGoalView(mErrorView)) {
             mCurStates = STATES_ERROR
+        }
+    }
+
+    open fun showCustomExceptionLayout() {
+        if (mCurStates == STATES_CUSTOM_EXCEPTION) {
+            return
+        }
+        if (showGoalView(mCustomExceptionView)) {
+            mCurStates = STATES_CUSTOM_EXCEPTION
         }
     }
 

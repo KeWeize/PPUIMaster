@@ -29,4 +29,9 @@ interface PUIMultiStatesViewProvider {
      */
     fun attachedErrorLayout(context: Context): View?
 
+    /**
+     * 自定义异常状态视图
+     */
+    fun attachedExceptionLayout(context: Context): View?
+
 }

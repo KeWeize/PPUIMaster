@@ -32,6 +32,11 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
         override fun attachedErrorLayout(context: Context): View? {
             return makeSureExceptionView(context)
         }
+
+        override fun attachedExceptionLayout(context: Context): View? {
+            return makeSureExceptionView(context)
+        }
+
     }
 
     private var mCommExceptionView: View? = null
@@ -51,6 +56,11 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
     private var mActionBtnText = ""
     private var mIsActionBtnShow = false
 
+    /**
+     * 底部行为按钮点击回调
+     */
+    private var mOnMultiStatesActionListener: OnDefaultMultiStatesActionListener? = null
+
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
@@ -59,6 +69,7 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
         defStyleAttr
     ) {
         setMultiStatesViewProvider(mMultiStateViewProvider)
+        initAttrs(context, attrs, defStyleAttr)
     }
 
     private fun initAttrs(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
@@ -77,39 +88,88 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
             R.styleable.PUIDefaultMultiStatesLayout_pui_default_multistates_error_resId,
             R.drawable.pui_default_ic_multi_states_error
         )
-//        mEmptyText =
-//            ta.getString(R.styleable.PUIDefaultMultiStatesLayout_pui_default_multistates_error_text)
-//                ?: context.getString(R.string.default_multistatus_empty_text)
-//        mErrorText =
-//            ta.getString(R.styleable.PUIMultiStatusLayout_pp_multistatus_default_error_text)
-//                ?: context.getString(R.string.default_multistatus_error_text)
-//        mNetOffText =
-//            ta.getString(R.styleable.PUIMultiStatusLayout_pp_multistatus_default_netoff_text)
-//                ?: context.getString(R.string.default_multistatus_netoff_text)
-//        mActionBtnText =
-//            ta.getString(R.styleable.PUIMultiStatusLayout_pp_multistatus_default_action_text)
-//                ?: context.getString(R.string.default_multistatus_action_text)
-//        mIsActionBtnShow =
-//            ta.getBoolean(
-//                R.styleable.PUIMultiStatusLayout_pp_multistatus_default_action_show,
-//                false
-//            )
+        mEmptyText =
+            ta.getString(R.styleable.PUIDefaultMultiStatesLayout_pui_default_multistates_empty_text)
+                ?: context.getString(R.string.pui_default_multi_states_empty_text)
+        mErrorText =
+            ta.getString(R.styleable.PUIDefaultMultiStatesLayout_pui_default_multistates_error_text)
+                ?: context.getString(R.string.pui_default_multi_states_error_text)
+        mNetOffText =
+            ta.getString(R.styleable.PUIDefaultMultiStatesLayout_pui_default_multistates_netoff_text)
+                ?: context.getString(R.string.pui_default_multi_states_netoff_text)
+        mActionBtnText =
+            ta.getString(R.styleable.PUIDefaultMultiStatesLayout_pui_default_multistates_action_text)
+                ?: context.getString(R.string.pui_default_multi_states_action_text)
+        mIsActionBtnShow =
+            ta.getBoolean(
+                R.styleable.PUIDefaultMultiStatesLayout_pui_default_multistates_is_action_show,
+                false
+            )
         ta.recycle()
     }
 
     override fun showEmptyLayout() {
-        mExceptionTextTv?.text = "暂无相关数据"
+        showExceptionLayout(mEmptyResId, mEmptyText, mActionBtnText, mIsActionBtnShow)
         super.showEmptyLayout()
     }
 
     override fun showNetOffLayout() {
-        mExceptionTextTv?.text = "网络异常，请重试"
+        showExceptionLayout(mNetOffResId, mNetOffText, mActionBtnText, mIsActionBtnShow)
         super.showNetOffLayout()
     }
 
     override fun showErrorLayout() {
-        mExceptionTextTv?.text = "服务器错误，请重试"
+        showExceptionLayout(mErrorResId, mErrorText, mActionBtnText, mIsActionBtnShow)
         super.showErrorLayout()
+    }
+
+    override fun showCustomExceptionLayout() {
+        super.showCustomExceptionLayout()
+    }
+
+    /**
+     * 显示异常界面
+     */
+    private fun showExceptionLayout(
+        resId: Int, charSequence: CharSequence,
+        actionText: CharSequence, showActionBtn: Boolean
+    ) {
+        resetAllExceptionViews()
+        resetAllExceptionViews()
+        mExceptionIconIv?.setImageResource(resId)
+        mExceptionTextTv?.text = charSequence
+        mExceptionActionBtn?.text = actionText
+        mExceptionActionBtn?.visibility = if (showActionBtn) View.VISIBLE else GONE
+        mExceptionActionBtn?.setOnClickListener {
+            when (mCurStates) {
+                STATES_EMPTY -> mOnMultiStatesActionListener?.onClick(
+                    it,
+                    MultiStatesType.STATES_EMPTY
+                )
+                STATES_ERROR -> mOnMultiStatesActionListener?.onClick(
+                    it,
+                    MultiStatesType.STATES_ERROR
+                )
+                STATES_NETOFF -> mOnMultiStatesActionListener?.onClick(
+                    it,
+                    MultiStatesType.STATES_NETOFF
+                )
+                STATES_CUSTOM_EXCEPTION -> mOnMultiStatesActionListener?.onClick(
+                    it,
+                    MultiStatesType.STATES_CUSTOM
+                )
+            }
+        }
+    }
+
+    /**
+     * 重置异常布局控件
+     */
+    private fun resetAllExceptionViews() {
+        mExceptionIconIv?.setImageBitmap(null)
+        mExceptionTextTv?.text = ""
+        mExceptionActionBtn?.text = ""
+        mExceptionActionBtn?.visibility = GONE
     }
 
     /**
@@ -135,6 +195,27 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
                 .inflate(R.layout.pui_include_default_multistatus_loading_layout, null)
         }
         return mLoadingView!!
+    }
+
+    /**
+     * 设置行为按钮回调。目前所有类型异常都会使用同一个回调
+     */
+    fun setDefaultMultiStatesActionListener(listener: OnDefaultMultiStatesActionListener?) {
+        this.mOnMultiStatesActionListener = listener
+    }
+
+    /**
+     * 底部行为按钮点击回调
+     */
+    interface OnDefaultMultiStatesActionListener {
+        fun onClick(view: View, type: MultiStatesType)
+    }
+
+    /**
+     * 枚举类型，用于点击回调时返回当前的异常类型
+     */
+    enum class MultiStatesType {
+        STATES_EMPTY, STATES_ERROR, STATES_NETOFF, STATES_CUSTOM
     }
 
 }
