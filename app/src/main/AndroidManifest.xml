@@ -21,6 +21,7 @@
         <activity android:name=".widget.LayoutActivity" />
         <activity android:name=".widget.PUITopBarActivity" />
         <activity android:name=".widget.PUIMultiStatesLayoutActivity" />
+        <activity android:name=".widget.DialogActivity"/>
 
     </application>
 

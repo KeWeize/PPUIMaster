@@ -156,13 +156,14 @@
                         app:pui_borderWidth="1dp"
                         app:pui_pressedAlpha="0.5" />
 
-                    <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton
+                    <com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView
                         style="@style/commSubmitBottomStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="25dp"
                         android:paddingLeft="18dp"
                         android:paddingRight="18dp"
+                        android:clickable="true"
                         android:text="立即付款"
                         android:textColor="#FF0000"
                         app:pui_borderColor="#FF0000"

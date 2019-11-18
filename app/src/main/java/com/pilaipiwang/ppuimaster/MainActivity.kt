@@ -7,10 +7,8 @@ import butterknife.BindView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.pilaipiwang.ppuimaster.base.BaseActivity
-import com.pilaipiwang.ppuimaster.widget.PUIRoundWidgetActivity
-import com.pilaipiwang.ppuimaster.widget.LayoutActivity
-import com.pilaipiwang.ppuimaster.widget.PUIMultiStatesLayoutActivity
-import com.pilaipiwang.ppuimaster.widget.PUITopBarActivity
+import com.pilaipiwang.ppuimaster.widget.*
+import com.pilaipiwang.pui.widget.dialog.PUIDialog
 import com.pilaipiwang.pui.widget.topbar.PUITopBar
 
 class MainActivity : BaseActivity() {
@@ -19,7 +17,8 @@ class MainActivity : BaseActivity() {
     lateinit var mRecyclerView: RecyclerView
 
     private val mAdapter = MainAdapter()
-    private val mDataList = arrayListOf("Layout", "Round Widget", "PUITopBar", "PUIMultiStateLayout")
+    private val mDataList =
+        arrayListOf("Layout", "Round Widget", "PUITopBar", "PUIMultiStateLayout", "PUIDialog")
 
     override fun attrLayoutId(): Int = R.layout.activity_main
 
@@ -36,7 +35,19 @@ class MainActivity : BaseActivity() {
                 "PUITopBar" ->
                     startActivity(Intent(this@MainActivity, PUITopBarActivity::class.java))
                 "PUIMultiStateLayout" ->
-                    startActivity(Intent(this@MainActivity, PUIMultiStatesLayoutActivity::class.java))
+                    startActivity(
+                        Intent(
+                            this@MainActivity,
+                            PUIMultiStatesLayoutActivity::class.java
+                        )
+                    )
+                "PUIDialog" ->
+                    startActivity(
+                        Intent(
+                            this@MainActivity,
+                            DialogActivity::class.java
+                        )
+                    )
             }
         }
         mAdapter.setNewData(mDataList)

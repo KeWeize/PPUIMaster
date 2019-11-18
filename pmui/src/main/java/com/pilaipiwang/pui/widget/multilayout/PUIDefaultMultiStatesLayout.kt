@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import com.pilaipiwang.pui.R
 
 /**
@@ -108,29 +109,69 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
         ta.recycle()
     }
 
-    override fun showEmptyLayout() {
-        showExceptionLayout(mEmptyResId, mEmptyText, mActionBtnText, mIsActionBtnShow)
+    /**
+     * 显示空状态布局
+     */
+    fun showEmptyLayout(isShowActionBtn: Boolean) {
+        updateExceptionLayout(mEmptyResId, mEmptyText, mActionBtnText, isShowActionBtn)
         super.showEmptyLayout()
     }
 
-    override fun showNetOffLayout() {
-        showExceptionLayout(mNetOffResId, mNetOffText, mActionBtnText, mIsActionBtnShow)
+    /**
+     * 显示空状态布局
+     */
+    override fun showEmptyLayout() {
+        updateExceptionLayout(mEmptyResId, mEmptyText, mActionBtnText, mIsActionBtnShow)
+        super.showEmptyLayout()
+    }
+
+    /**
+     * 显示网络异常布局
+     */
+    fun showNetOffLayout(isShowActionBtn: Boolean) {
+        updateExceptionLayout(mNetOffResId, mNetOffText, mActionBtnText, isShowActionBtn)
         super.showNetOffLayout()
     }
 
-    override fun showErrorLayout() {
-        showExceptionLayout(mErrorResId, mErrorText, mActionBtnText, mIsActionBtnShow)
+    /**
+     * 显示网络异常布局
+     */
+    override fun showNetOffLayout() {
+        updateExceptionLayout(mNetOffResId, mNetOffText, mActionBtnText, mIsActionBtnShow)
+        super.showNetOffLayout()
+    }
+
+    /**
+     * 显示服务器错误布局
+     */
+    fun showErrorLayout(isShowActionBtn: Boolean) {
+        updateExceptionLayout(mErrorResId, mErrorText, mActionBtnText, isShowActionBtn)
         super.showErrorLayout()
     }
 
-    override fun showCustomExceptionLayout() {
+    /**
+     * 显示服务器错误布局
+     */
+    override fun showErrorLayout() {
+        updateExceptionLayout(mErrorResId, mErrorText, mActionBtnText, mIsActionBtnShow)
+        super.showErrorLayout()
+    }
+
+    /**
+     * 显示自定义异常布局
+     */
+    fun showCustomExceptionLayout(
+        @DrawableRes resId: Int, exceptionText: CharSequence,
+        actionText: CharSequence, isShowActionBtn: Boolean
+    ) {
+        updateExceptionLayout(resId, exceptionText, actionText, isShowActionBtn)
         super.showCustomExceptionLayout()
     }
 
     /**
      * 显示异常界面
      */
-    private fun showExceptionLayout(
+    private fun updateExceptionLayout(
         resId: Int, charSequence: CharSequence,
         actionText: CharSequence, showActionBtn: Boolean
     ) {
@@ -178,7 +219,7 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
     private fun makeSureExceptionView(context: Context): View {
         if (mCommExceptionView == null) {
             mCommExceptionView = LayoutInflater.from(context)
-                .inflate(R.layout.pui_include_default_multistatus_exception_layout, null)
+                .inflate(R.layout.pui_include_default_multistates_exception_layout, null)
             mExceptionIconIv = mCommExceptionView!!.findViewById(R.id.iv_exception_icon)
             mExceptionTextTv = mCommExceptionView!!.findViewById(R.id.tv_exception_text)
             mExceptionActionBtn = mCommExceptionView!!.findViewById(R.id.btn_exception_action)
@@ -192,7 +233,7 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
     private fun makeSureLoadingView(context: Context): View {
         if (mLoadingView == null) {
             mLoadingView = LayoutInflater.from(context)
-                .inflate(R.layout.pui_include_default_multistatus_loading_layout, null)
+                .inflate(R.layout.pui_include_default_multistates_loading_layout, null)
         }
         return mLoadingView!!
     }

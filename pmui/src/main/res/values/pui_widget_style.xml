@@ -17,4 +17,61 @@
         <item name="pui_isRadiusAdjustBounds">true</item>
     </style>
 
+    <style name="PUI.Dialog" parent="android:Theme.Dialog">
+        <item name="android:backgroundDimAmount">?attr/pui_dialog_background_dim_amount</item>
+        <item name="android:windowBackground">@color/pui_config_color_transparent</item>
+        <item name="android:windowNoTitle">true</item><!-- 不用window title，使用自己的layout来做title -->
+        <!-- <item name="android:windowTitleStyle">@style/dialog_title</item> --><!-- 不用设置windowStyleStyle，因为windowNoTitle=true -->
+        <item name="android:windowIsFloating">true</item><!-- 在中间弹框、背后有遮罩的效果 -->
+    </style>
+
+    <style name="PUI.Dialog.Title">
+        <item name="android:textColor">@color/pui_config_color_black</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">24dp</item>
+        <item name="pui_paddingBottomWhenNotContent">27dp</item>
+    </style>
+
+    <style name="PUI.Dialog.MessageContent">
+        <item name="android:textColor">@color/pui_config_color_gray_4</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">24dp</item>
+        <item name="android:paddingBottom">28dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="pui_paddingTopWhenNotTitle">27dp</item>
+    </style>
+
+    <style name="PUI.Dialog.ActionContainer">
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="pui_dialog_action_container_justify_content">end</item>
+        <item name="pui_dialog_action_height">36dp</item>
+        <item name="pui_dialog_action_space">8dp</item>
+    </style>
+
+    <style name="PUI.Dialog.Action">
+        <item name="android:textColor">@color/pui_config_color_blue</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">right|center_vertical</item>
+        <item name="android:minWidth">64dp</item>
+        <item name="android:background">@null</item>
+        <item name="pui_dialog_action_button_padding_horizontal">12dp</item>
+        <item name="pui_dialog_action_icon_space">6dp</item>
+        <item name="pui_dialog_positive_action_text_color">@color/pui_config_color_blue</item>
+        <item name="pui_dialog_negative_action_text_color">@color/pui_config_color_red</item>
+    </style>
+
 </resources>

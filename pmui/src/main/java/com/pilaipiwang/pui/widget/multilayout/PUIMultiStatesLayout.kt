@@ -208,8 +208,8 @@ open class PUIMultiStatesLayout : FrameLayout {
      * 执行View动画
      */
     private fun showDisplayAnimation(inView: View?) {
-        if (mCurStates == STATES_LOADING) {
-            // 过滤调 LoadingContainer 的进场动画，避免加载时间过短，导致进场动画还没开始执行就被切掉
+        if (inView == mLoadingView) {
+            // 过滤 LoadingView 的进场动画，避免加载时间过短，导致进场动画还没开始执行就被切换掉
             return
         }
         val alpha = AlphaAnimation(0f, 1f)

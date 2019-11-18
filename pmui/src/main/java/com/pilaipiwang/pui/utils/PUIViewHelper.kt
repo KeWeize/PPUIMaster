@@ -21,7 +21,7 @@ object PUIViewHelper {
     }
 
     @JvmStatic
-    fun setBackgroundKeepingPadding(view: View, drawable: Drawable) {
+    fun setBackgroundKeepingPadding(view: View, drawable: Drawable?) {
         val padding =
             intArrayOf(view.paddingLeft, view.paddingTop, view.paddingRight, view.paddingBottom)
         setBackground(view, drawable)
@@ -30,7 +30,7 @@ object PUIViewHelper {
 
     @JvmStatic
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    fun setBackground(view: View, drawable: Drawable) {
+    fun setBackground(view: View, drawable: Drawable?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             view.background = drawable
         } else {
