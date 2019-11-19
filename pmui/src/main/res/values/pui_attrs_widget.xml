@@ -66,20 +66,6 @@
         <attr name="pui_dialog_action_space" format="dimension"/>
     </declare-styleable>
 
-    <!-- Dialog Action attr -->
-    <declare-styleable name="PUIDialogActionStyleDef">
-        <attr name="android:textColor" />
-        <attr name="android:textSize" />
-        <attr name="android:background" />
-        <attr name="android:gravity" />
-        <attr name="android:minWidth" />
-        <attr name="android:textStyle" />
-        <attr name="pui_dialog_action_button_padding_horizontal" format="dimension" />
-        <attr name="pui_dialog_action_icon_space" format="dimension" />
-        <attr name="pui_dialog_positive_action_text_color" format="color|reference" />
-        <attr name="pui_dialog_negative_action_text_color" format="color|reference" />
-    </declare-styleable>
-
     <!-- loading widget -->
     <declare-styleable name="PUILoadingView">
         <attr name="pui_loading_view_size" format="dimension" />

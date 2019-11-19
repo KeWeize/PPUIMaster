@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- layout -->
-    <style name="BtmLineContainerStyle">
-
+    <!-- topbar -->
+    <style name="USelectTopBar.Gradient">
+        <item name="pui_topbar_need_separator">false</item>
+        <item name="pui_topbar_bg_color">@android:color/transparent</item>
+        <item name="pui_topbar_title_text_color">#FFFFFF</item>
+        <item name="pui_topbar_side_textview_text_color">#FFFFFF</item>
     </style>
 
     <!-- round widget -->

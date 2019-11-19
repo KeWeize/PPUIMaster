@@ -1,14 +1,9 @@
 package com.pilaipiwang.pui.widget.dialog
 
 import android.content.Context
-import android.content.res.ColorStateList
-import android.util.TypedValue
 import androidx.annotation.IntDef
 import com.pilaipiwang.pui.R
-import com.pilaipiwang.pui.alpha.PUIAlphaButton
-import com.pilaipiwang.pui.alpha.PUIAlphaTextView
-import com.pilaipiwang.pui.utils.PUIViewHelper
-import com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton
+import com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView
 
 /**
  * @author  vitar
@@ -32,7 +27,7 @@ class PUIDialogAction {
     private var mActionLevel: Int? = null
 
     private var mOnClickListener: ActionListener? = null
-    private var mActionView: PUIAlphaTextView? = null
+    private var mActionView: PUIRoundTextView? = null
     private var mIsEnable: Boolean = true
 
     constructor(context: Context?, iconResId: Int, onClickListener: ActionListener?)
@@ -81,7 +76,7 @@ class PUIDialogAction {
     /**
      * 生成行为按钮 PUIAlphaTextView
      */
-    fun buildActionView(dialog: PUIDialog, index: Int): PUIAlphaTextView {
+    fun buildActionView(dialog: PUIDialog, index: Int): PUIRoundTextView {
         mActionView = generateActionButton(dialog.context, mActionText, mIconResId)
         mActionView?.setOnClickListener {
             mOnClickListener?.onClick(dialog, index)
@@ -93,67 +88,22 @@ class PUIDialogAction {
      * 生成对话框底部行为按钮
      */
     private fun generateActionButton(context: Context, charSequence: CharSequence?, iconRes: Int)
-            : PUIAlphaTextView {
-        val textView = PUIAlphaTextView(context)
-        PUIViewHelper.setBackground(textView, null)
+            : PUIRoundTextView {
+        val textView = when (mActionLevel) {
+            ACTION_LEVEL_POSITIVE ->
+                PUIRoundTextView(context, null, R.attr.pui_dialog_action_position_style)
+            ACTION_LEVEL_NEGATIVE ->
+                PUIRoundTextView(context, null, R.attr.pui_dialog_action_nevative_style)
+            else ->
+                PUIRoundTextView(context, null, R.attr.pui_dialog_action_style)
+        }
         textView.minHeight = 0
         textView.minimumHeight = 0
         textView.setChangeAlphaWhenDisable(true)
         textView.setChangeAlphaWhenPress(true)
-
-        val ta = context.obtainStyledAttributes(
-            null, R.styleable.PUIDialogActionStyleDef,
-            R.attr.pui_dialog_action_style, 0
-        )
-        var paddingHor = 0
-        var iconSpace = 0
-        var positiveTextColor: ColorStateList? = null
-        var negativeTextColor: ColorStateList? = null
-        for (i in 0 until ta.indexCount) {
-            when (val attr = ta.getIndex(i)) {
-                R.styleable.PUIDialogActionStyleDef_android_gravity ->
-                    textView.gravity = ta.getInt(attr, -1)
-                R.styleable.PUIDialogActionStyleDef_android_textColor ->
-                    textView.setTextColor(ta.getColorStateList(attr))
-                R.styleable.PUIDialogActionStyleDef_android_textSize ->
-                    textView.setTextSize(
-                        TypedValue.COMPLEX_UNIT_PX,
-                        ta.getDimensionPixelSize(attr, 0).toFloat()
-                    )
-                R.styleable.PUIDialogActionStyleDef_pui_dialog_action_button_padding_horizontal ->
-                    paddingHor = ta.getDimensionPixelSize(attr, 0)
-                R.styleable.PUIDialogActionStyleDef_pui_dialog_action_icon_space ->
-                    iconSpace = ta.getDimensionPixelSize(attr, 0)
-                R.styleable.PUIDialogActionStyleDef_android_background ->
-                    PUIViewHelper.setBackground(textView, ta.getDrawable(attr))
-                R.styleable.PUIDialogActionStyleDef_android_minWidth -> {
-                    val minWidth = ta.getDimensionPixelSize(attr, 0)
-                    textView.minWidth = minWidth
-                    textView.minimumWidth = minWidth
-                }
-                R.styleable.PUIDialogActionStyleDef_pui_dialog_positive_action_text_color ->
-                    positiveTextColor = ta.getColorStateList(attr)
-                R.styleable.PUIDialogActionStyleDef_pui_dialog_negative_action_text_color ->
-                    negativeTextColor = ta.getColorStateList(attr)
-                R.styleable.PUIDialogActionStyleDef_android_textStyle ->
-                    textView.setTypeface(null, ta.getInt(attr, -1))
-            }
-        }
-        ta.recycle()
-        textView.setPadding(paddingHor, 0, paddingHor, 0)
-        if (iconRes <= 0) {
-            textView.text = charSequence
-        } else {
-            // todo 生成带 icon 的按钮
-        }
         textView.isClickable = true
         textView.isEnabled = mIsEnable
-
-        if (mActionLevel == ACTION_LEVEL_NEGATIVE) {
-            textView.setTextColor(negativeTextColor)
-        } else if (mActionLevel == ACTION_LEVEL_POSITIVE) {
-            textView.setTextColor(positiveTextColor)
-        }
+        textView.text = charSequence
         return textView
     }
 

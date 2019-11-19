@@ -38,10 +38,12 @@
     <attr name="pui_dialog_message_content_style" format="reference" />
     <attr name="pui_dialog_action_container_style" format="reference"/>
     <attr name="pui_dialog_action_style" format="reference" />
+    <attr name="pui_dialog_action_position_style" format="reference" />
+    <attr name="pui_dialog_action_nevative_style" format="reference" />
 
     <!--topbar-->
     <attr name="pui_topbar_height" format="dimension" />
-    <attr name="PUITopBarStyle" format="reference" />
+    <attr name="pui_topbar_style" format="reference" />
 
     <!-- 重写 Button 设置的默认样式 -->
     <attr name="PUIButtonStyle" format="reference" />

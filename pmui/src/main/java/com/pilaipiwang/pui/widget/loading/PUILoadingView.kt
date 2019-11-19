@@ -87,7 +87,7 @@ class PUILoadingView : View {
         requestLayout()
     }
 
-    private fun start() {
+    fun start() {
         if (mAnimator == null) {
             mAnimator = ValueAnimator.ofInt(0, LINE_COUNT - 1)
             mAnimator!!.addUpdateListener(mUpdateListener)
@@ -101,7 +101,7 @@ class PUILoadingView : View {
         }
     }
 
-    private fun stop() {
+    fun stop() {
         if (mAnimator != null) {
             mAnimator!!.removeUpdateListener(mUpdateListener)
             mAnimator!!.removeAllUpdateListeners()

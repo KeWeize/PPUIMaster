@@ -17,6 +17,33 @@
         <item name="pui_isRadiusAdjustBounds">true</item>
     </style>
 
+    <!--********************* TopBar *********************-->
+    <style name="PUI.TopBar">
+        <item name="pui_topbar_need_separator">false</item>
+        <item name="pui_topbar_separator_color">@android:color/transparent</item>
+        <item name="pui_topbar_separator_height">0dp</item>
+        <item name="pui_topbar_bg_color">@color/pui_config_color_white</item>
+        <!--titile-->
+        <item name="pui_topbar_title_container_padding_hor">15dp</item>
+        <item name="pui_topbar_title_text_size">38sp</item>
+        <item name="pui_topbar_title_with_subtitle_text_size">15sp</item>
+        <item name="pui_topbar_title_text_color">@color/pui_config_color_gray_2</item>
+        <item name="pui_topbar_subtitle_text_size">13sp</item>
+        <item name="pui_topbar_subtitle_text_color">@color/pui_config_color_gray_3</item>
+        <!--side-->
+        <item name="pui_topbar_left_back_drawable_id">@drawable/pui_default_left_back_drawable
+        </item>
+        <item name="pui_topbar_side_container_padding_hor">10dp</item>
+        <item name="pui_topbar_side_imagebutton_width">32dp</item>
+        <item name="pui_topbar_side_imagebutton_height">32dp</item>
+        <item name="pui_topbar_side_imagebutton_padding_hor">5dp</item>
+        <item name="pui_topbar_side_imagebutton_margin_hor">10dp</item>
+        <item name="pui_topbar_side_textview_text_size">16sp</item>
+        <item name="pui_topbar_side_textview_text_color">@color/pui_config_color_gray_4</item>
+        <item name="pui_topbar_side_textview_padding_hor">5dp</item>
+    </style>
+
+
     <style name="PUI.Dialog" parent="android:Theme.Dialog">
         <item name="android:backgroundDimAmount">?attr/pui_dialog_background_dim_amount</item>
         <item name="android:windowBackground">@color/pui_config_color_transparent</item>
@@ -53,8 +80,8 @@
     </style>
 
     <style name="PUI.Dialog.ActionContainer">
-        <item name="android:paddingLeft">12dp</item>
-        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingLeft">18dp</item>
+        <item name="android:paddingRight">18dp</item>
         <item name="android:paddingTop">0dp</item>
         <item name="android:paddingBottom">12dp</item>
         <item name="pui_dialog_action_container_justify_content">end</item>
@@ -68,10 +95,12 @@
         <item name="android:gravity">right|center_vertical</item>
         <item name="android:minWidth">64dp</item>
         <item name="android:background">@null</item>
-        <item name="pui_dialog_action_button_padding_horizontal">12dp</item>
-        <item name="pui_dialog_action_icon_space">6dp</item>
-        <item name="pui_dialog_positive_action_text_color">@color/pui_config_color_blue</item>
-        <item name="pui_dialog_negative_action_text_color">@color/pui_config_color_red</item>
+    </style>
+
+    <style name="PUI.Dialog.Action.Positive" />
+
+    <style name="PUI.Dialog.Action.Negative">
+        <item name="android:textColor">@color/pui_config_color_red</item>
     </style>
 
 </resources>

@@ -21,17 +21,22 @@
             <com.pilaipiwang.pui.widget.topbar.PUITopBar
                 android:id="@+id/topbar"
                 android:layout_width="match_parent"
+                android:layout_height="48dp" />
+
+            <com.pilaipiwang.pui.widget.topbar.PUITopBar
+                android:id="@+id/topbar2"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="15dp" />
+
+            <com.pilaipiwang.pui.widget.topbar.PUITopBar
+                android:id="@+id/topbar3"
+                style="@style/USelectTopBar.Gradient"
+                android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginBottom="15dp"
-                app:pui_topbar_bg_color="#CCCCCC"
-                app:pui_topbar_need_separator="true"
-                app:pui_topbar_separator_color="#CCCCCC"
-                app:pui_topbar_separator_height="1dp"
-                app:pui_topbar_side_textview_text_color="#ff0000"
-                app:pui_topbar_title_container_padding_hor="15dp"
-                app:pui_topbar_title_text_color="#333333"
-                app:pui_topbar_title_text_size="18sp" />
+                android:background="@drawable/shape_gradient_ff530a_to_ef0f2b"
+                app:pui_topbar_left_back_drawable_id="@drawable/ic_back_white" />
 
         </LinearLayout>
 

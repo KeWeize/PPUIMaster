@@ -187,7 +187,7 @@ open class PUIMultiStatesLayout : FrameLayout {
      * 显示当前层级下指定的子 View，并且隐藏其他子 View
      * @return 切换显示是否成功，如果目标 view 为 null，或者目标 view 不存在与当前视图中返回 false
      */
-    private fun showGoalView(view: View?): Boolean {
+    protected open fun showGoalView(view: View?): Boolean {
         if (view == null || !checkIsInContainer(view)) {
             return false
         }

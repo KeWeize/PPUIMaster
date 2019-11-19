@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import com.pilaipiwang.pui.R
+import com.pilaipiwang.pui.widget.loading.PUILoadingView
 
 /**
  * @author: vitar
@@ -168,6 +169,16 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
         super.showCustomExceptionLayout()
     }
 
+    override fun showGoalView(view: View?): Boolean {
+        val result = super.showGoalView(view)
+        if (result && view == mLoadingView) {
+            mLoadingAnimView.start()
+        } else {
+            mLoadingAnimView.stop()
+        }
+        return result
+    }
+
     /**
      * 显示异常界面
      */
@@ -227,6 +238,8 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
         return mCommExceptionView!!
     }
 
+    private lateinit var mLoadingAnimView: PUILoadingView
+
     /**
      * 返回加载视图
      */
@@ -234,6 +247,8 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
         if (mLoadingView == null) {
             mLoadingView = LayoutInflater.from(context)
                 .inflate(R.layout.pui_include_default_multistates_loading_layout, null)
+            mLoadingAnimView =
+                mLoadingView!!.findViewById(R.id.v_pui_default_multistates_loading_view)
         }
         return mLoadingView!!
     }

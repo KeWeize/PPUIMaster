@@ -3,12 +3,9 @@ package com.pilaipiwang.pui.widget.dialog
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
-import android.os.Message
-import android.view.Gravity
-import android.view.ViewGroup
-import android.view.WindowManager
-import android.widget.ScrollView
+import android.view.*
 import android.widget.TextView
+import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import com.pilaipiwang.pui.R
 import com.pilaipiwang.pui.utils.PUIAttrsHelper
@@ -134,6 +131,42 @@ class PUIDialog : Dialog {
             }
         }
 
+    }
+
+    /**
+     * 自定义对话框内容区域
+     */
+    class CustomDialogBuilder : PUIDialogBuilder<CustomDialogBuilder> {
+
+        @LayoutRes
+        private val mLayoutRes: Int
+
+        private var listener: OnCustomViewInflateListener? = null
+
+        private constructor(context: Context) : this(context, 0)
+
+        constructor(context: Context, mLayoutRes: Int) : super(context) {
+            this.mLayoutRes = mLayoutRes
+        }
+
+        override fun onCreateContent(dialog: PUIDialog, parent: ViewGroup, context: Context) {
+            val vlp = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            val customView = LayoutInflater.from(context).inflate(mLayoutRes, parent, false)
+            parent.addView(customView, vlp)
+            listener?.onInflate(customView)
+        }
+
+        fun setOnCustomViewInflateListener(listener: OnCustomViewInflateListener): CustomDialogBuilder {
+            this.listener = listener
+            return this
+        }
+
+        interface OnCustomViewInflateListener {
+            fun onInflate(view: View)
+        }
     }
 
     companion object {

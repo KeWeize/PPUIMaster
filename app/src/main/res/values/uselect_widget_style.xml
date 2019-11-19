@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?><!-- 定制化 UI 样式 -->
 <resources>
 
+    <!--############# TopBar start #############-->
+    <style name="USelectTopBar">
+        <item name="pui_topbar_need_separator">false</item>
+        <item name="pui_topbar_separator_color">@android:color/transparent</item>
+        <item name="pui_topbar_separator_height">0dp</item>
+        <item name="pui_topbar_bg_color">@color/pui_config_color_white</item>
+        <!--titile-->
+        <item name="pui_topbar_title_container_padding_hor">10dp</item>
+        <item name="pui_topbar_title_text_size">18sp</item>
+        <item name="pui_topbar_title_with_subtitle_text_size">15sp</item>
+        <item name="pui_topbar_title_text_color">#333333</item>
+        <item name="pui_topbar_subtitle_text_size">13sp</item>
+        <item name="pui_topbar_subtitle_text_color">@color/pui_config_color_gray_3</item>
+        <!--side-->
+        <item name="pui_topbar_left_back_drawable_id">@drawable/pui_default_left_back_drawable
+        </item>
+        <item name="pui_topbar_side_container_padding_hor">8dp</item>
+        <item name="pui_topbar_side_imagebutton_width">32dp</item>
+        <item name="pui_topbar_side_imagebutton_height">32dp</item>
+        <item name="pui_topbar_side_imagebutton_padding_hor">5dp</item>
+        <item name="pui_topbar_side_imagebutton_margin_hor">10dp</item>
+        <item name="pui_topbar_side_textview_text_size">16sp</item>
+        <item name="pui_topbar_side_textview_text_color">@color/pui_config_color_gray_3</item>
+        <item name="pui_topbar_side_textview_padding_hor">10dp</item>
+    </style>
+    <!--#############  TopBar end #############-->
+
     <!--############# Dialog start #############-->
     <style name="USelectDialog" parent="android:Theme.Dialog">
         <item name="android:backgroundDimAmount">0.6</item>
-        <item name="android:windowBackground">#00000000</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsFloating">true</item><!-- 在中间弹框、背后有遮罩的效果 -->
     </style>
@@ -37,25 +64,35 @@
     </style>
 
     <style name="USelectDialog.ActionContainer">
-        <item name="android:paddingLeft">12dp</item>
-        <item name="android:paddingRight">12dp</item>
-        <item name="android:paddingTop">0dp</item>
-        <item name="android:paddingBottom">12dp</item>
+        <item name="android:padding">10dp</item>
         <item name="pui_dialog_action_container_justify_content">stretch</item>
-        <item name="pui_dialog_action_height">36dp</item>
-        <item name="pui_dialog_action_space">18dp</item>
+        <item name="pui_dialog_action_height">44dp</item>
+        <item name="pui_dialog_action_space">20dp</item>
     </style>
 
     <style name="USelectDialog.Action">
         <item name="android:textColor">@color/pui_config_color_blue</item>
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">center</item>
+        <item name="android:minHeight">42dp</item>
         <item name="android:minWidth">64dp</item>
-        <item name="android:background">@drawable/shape_gradient_ff530a_to_ef0f2b</item>
-        <item name="pui_dialog_action_button_padding_horizontal">12dp</item>
-        <item name="pui_dialog_action_icon_space">6dp</item>
-        <item name="pui_dialog_positive_action_text_color">@color/pui_config_color_blue</item>
-        <item name="pui_dialog_negative_action_text_color">@color/pui_config_color_red</item>
+        <item name="pui_pressedAlpha">0.85</item>
     </style>
+
+    <style name="USelectDialog.Action.Positive">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="pui_primaryColor">#ff530a</item>
+        <item name="pui_secondaryColor">#ef0f2b</item>
+        <item name="pui_disableColor">#CCCCCC</item>
+        <item name="pui_gradientOrientation">leftToRight</item>
+    </style>
+
+    <style name="USelectDialog.Action.Negative">
+        <item name="android:textColor">#FF0000</item>
+        <item name="pui_borderColor">#FF0000</item>
+        <item name="pui_borderWidth">1dp</item>
+        <item name="pui_pressedAlpha">0.5</item>
+    </style>
+    <!--############# Dialog end #############-->
 
 </resources>

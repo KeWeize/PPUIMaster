@@ -102,6 +102,24 @@ abstract class PUIDialogBuilder<T : PUIDialogBuilder<T>> {
         return this as T
     }
 
+    /**
+     * 添加正向按钮
+     */
+    fun addPositionAction(charSequence: CharSequence, listener: PUIDialogAction.ActionListener): T {
+        return addAction(charSequence, PUIDialogAction.ACTION_LEVEL_POSITIVE, listener)
+    }
+
+    /**
+     * 添加负向按钮
+     */
+    fun addNegativeAction(charSequence: CharSequence, listener: PUIDialogAction.ActionListener): T {
+        return addAction(charSequence, PUIDialogAction.ACTION_LEVEL_NEGATIVE, listener)
+    }
+
+    fun addAction(charSequence: CharSequence, listener: PUIDialogAction.ActionListener): T {
+        return addAction(charSequence, PUIDialogAction.ACTION_LEVEL_NEGATIVE, listener)
+    }
+
     fun addAction(
         charSequence: CharSequence, @PUIDialogAction.Level level: Int,
         listener: PUIDialogAction.ActionListener
@@ -234,15 +252,14 @@ abstract class PUIDialogBuilder<T : PUIDialogBuilder<T>> {
                 }
             }
             ta.recycle()
-            var spaceInsertPos = -1
-            if (mActionContainerOrientation == VERTICAL) {
-                spaceInsertPos = -1
-            } else if (justifyContent == 0) {
-                spaceInsertPos = size
+            val spaceInsertPos = if (justifyContent == 0) {
+                size
             } else if (justifyContent == 1) {
-                spaceInsertPos = 0
+                0
             } else if (justifyContent == 3) {
-                spaceInsertPos = spaceCustomIndex
+                spaceCustomIndex
+            } else {
+                -1
             }
 
             mActionContainer =
@@ -275,6 +292,9 @@ abstract class PUIDialogBuilder<T : PUIDialogBuilder<T>> {
                         } else {
                             actionLp.rightMargin = actionSpace
                         }
+                    } else {
+                        actionLp.leftMargin = actionSpace / 2
+                        actionLp.rightMargin = actionSpace / 2
                     }
                     if (justifyContent == 2) {
                         actionLp.weight = 1f

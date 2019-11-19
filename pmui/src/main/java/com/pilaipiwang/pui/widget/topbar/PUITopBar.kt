@@ -1,7 +1,6 @@
 package com.pilaipiwang.pui.widget.topbar
 
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.text.TextUtils
@@ -10,13 +9,18 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.annotation.DrawableRes
+import androidx.annotation.IntDef
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.pilaipiwang.pui.R
 import com.pilaipiwang.pui.alpha.PUIAlphaImageButton
 import com.pilaipiwang.pui.alpha.PUIAlphaTextView
+import com.pilaipiwang.pui.layout.PUIRelativeLayout
 import com.pilaipiwang.pui.utils.PUIAttrsHelper
 import com.pilaipiwang.pui.utils.PUIDisplayHelper
 import com.pilaipiwang.pui.utils.PUIDrawableHelper
@@ -26,7 +30,15 @@ import com.pilaipiwang.pui.utils.PUIViewHelper
  * @author: vitar
  * @date:   2019/11/7
  */
-class PUITopBar : RelativeLayout {
+class PUITopBar : PUIRelativeLayout {
+
+    companion object {
+        const val SIDE_LEFT = 0
+        const val SIDE_RIGHT = 1
+    }
+
+    @IntDef(SIDE_LEFT, SIDE_RIGHT)
+    annotation class SideFlag
 
     private var mTopBarSeparatorColor: Int = Color.TRANSPARENT
     private var mTopBarBgColor: Int = Color.TRANSPARENT
@@ -78,12 +90,14 @@ class PUITopBar : RelativeLayout {
     constructor(context: Context?) : this(context, null)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
-        context,
+        context!!,
         attrs,
         defStyleAttr
     ) {
-        initAttrs(context!!, attrs, defStyleAttr)
-        setBackgroundDividerEnable(mTopBarNeedSeparator)
+        initAttrs(context!!, attrs, R.attr.pui_topbar_style)
+        if (mTopBarBgColor != Color.TRANSPARENT || mTopBarNeedSeparator) {
+            setBackgroundDividerEnable(mTopBarNeedSeparator)
+        }
     }
 
     private fun initAttrs(context: Context, attrs: AttributeSet?, defStyleAttrs: Int) {
@@ -312,7 +326,7 @@ class PUITopBar : RelativeLayout {
      */
     fun addLeftBackImageButton(): ImageButton {
         if (mLeftBackIb == null) {
-            mLeftBackIb = generateSideImageButton(mLeftBackDrawableId)
+            mLeftBackIb = generateSideImageButton(mLeftBackDrawableId, SIDE_LEFT)
         }
         addLeftView(mLeftBackIb!!)
         return mLeftBackIb!!
@@ -322,7 +336,7 @@ class PUITopBar : RelativeLayout {
      * 向左侧添加 ImageButton
      */
     fun addLeftImageButton(@DrawableRes resId: Int): ImageButton {
-        val mImageButton = generateSideImageButton(resId)
+        val mImageButton = generateSideImageButton(resId, SIDE_LEFT)
         addLeftView(mImageButton)
         return mImageButton
     }
@@ -367,7 +381,7 @@ class PUITopBar : RelativeLayout {
      * 向右边添加 ImageButton
      */
     fun addRightImageButton(@DrawableRes resId: Int): ImageButton {
-        val mImageButton = generateSideImageButton(resId)
+        val mImageButton = generateSideImageButton(resId, SIDE_RIGHT)
         addRightView(mImageButton)
         return mImageButton
     }
@@ -425,14 +439,17 @@ class PUITopBar : RelativeLayout {
     /**
      * 生成两侧 ImageButton
      */
-    private fun generateSideImageButton(@DrawableRes resId: Int): ImageButton {
+    private fun generateSideImageButton(@DrawableRes resId: Int, @SideFlag side: Int): ImageButton {
         val mImageButton = PUIAlphaImageButton(context)
         mImageButton.setBackgroundColor(Color.TRANSPARENT)
         mImageButton.setImageResource(resId)
         mImageButton.scaleType = ImageView.ScaleType.FIT_CENTER
         val llp = LinearLayout.LayoutParams(mSideImageButtonWidth, mSideImageButtonHeight)
-        llp.leftMargin = mSideImageButtonMarginHor
-        llp.rightMargin = mSideImageButtonMarginHor
+        if (side == SIDE_LEFT) {
+            llp.rightMargin = mSideImageButtonMarginHor
+        } else {
+            llp.leftMargin = mSideImageButtonMarginHor
+        }
         mImageButton.layoutParams = llp
         mImageButton.setPadding(mSideImageButtonPaddingHor, 0, mSideImageButtonPaddingHor, 0)
         return mImageButton

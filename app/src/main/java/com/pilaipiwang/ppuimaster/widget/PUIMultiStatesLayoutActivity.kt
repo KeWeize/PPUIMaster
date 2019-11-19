@@ -18,6 +18,7 @@ class PUIMultiStatesLayoutActivity : BaseActivity() {
     lateinit var mStatesLayout: PUIDefaultMultiStatesLayout
 
     override fun initView() {
+
         mStatesLayout.setDefaultMultiStatesActionListener(object :
             PUIDefaultMultiStatesLayout.OnDefaultMultiStatesActionListener {
             override fun onClick(view: View, type: PUIDefaultMultiStatesLayout.MultiStatesType) {
@@ -55,7 +56,14 @@ class PUIMultiStatesLayoutActivity : BaseActivity() {
 
     override fun attrLayoutId(): Int = R.layout.activity_multistates
 
-    @OnClick(R.id.btn_loading, R.id.btn_content, R.id.btn_empty, R.id.btn_netoff, R.id.btn_error, R.id.btn_custom)
+    @OnClick(
+        R.id.btn_loading,
+        R.id.btn_content,
+        R.id.btn_empty,
+        R.id.btn_netoff,
+        R.id.btn_error,
+        R.id.btn_custom
+    )
     fun onViewClick(view: View) {
         when (view.id) {
             R.id.btn_loading ->
@@ -69,7 +77,12 @@ class PUIMultiStatesLayoutActivity : BaseActivity() {
             R.id.btn_error ->
                 mStatesLayout.showErrorLayout()
             R.id.btn_custom ->
-                mStatesLayout.showCustomExceptionLayout()
+                mStatesLayout.showCustomExceptionLayout(
+                    R.drawable.pui_default_ic_multi_states_empty,
+                    "自定义异常",
+                    "返回",
+                    true
+                )
         }
     }
 
