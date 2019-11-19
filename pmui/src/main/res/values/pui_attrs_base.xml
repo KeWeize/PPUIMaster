@@ -36,8 +36,8 @@
     <attr name="pui_dialog_max_width" format="dimension" />
     <attr name="pui_dialog_title_style" format="reference" />
     <attr name="pui_dialog_message_content_style" format="reference" />
-    <attr name="pui_dialog_action_style" format="reference" />
     <attr name="pui_dialog_action_container_style" format="reference"/>
+    <attr name="pui_dialog_action_style" format="reference" />
 
     <!--topbar-->
     <attr name="pui_topbar_height" format="dimension" />

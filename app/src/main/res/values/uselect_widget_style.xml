@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 定制化 UI 样式 -->
+<resources>
+
+    <!--############# Dialog start #############-->
+    <style name="USelectDialog" parent="android:Theme.Dialog">
+        <item name="android:backgroundDimAmount">0.6</item>
+        <item name="android:windowBackground">#00000000</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item><!-- 在中间弹框、背后有遮罩的效果 -->
+    </style>
+
+    <style name="USelectDialog.Title">
+        <item name="android:textColor">#222222</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">24dp</item>
+        <item name="pui_paddingBottomWhenNotContent">27dp</item>
+    </style>
+
+    <style name="USelectDialog.MessageContent">
+        <item name="android:textColor">#666666</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">left</item>
+        <item name="android:paddingTop">14dp</item>
+        <item name="android:paddingLeft">24dp</item>
+        <item name="android:paddingRight">24dp</item>
+        <item name="android:paddingBottom">28dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:lineSpacingExtra">3dp</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="pui_paddingTopWhenNotTitle">27dp</item>
+    </style>
+
+    <style name="USelectDialog.ActionContainer">
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">0dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="pui_dialog_action_container_justify_content">stretch</item>
+        <item name="pui_dialog_action_height">36dp</item>
+        <item name="pui_dialog_action_space">18dp</item>
+    </style>
+
+    <style name="USelectDialog.Action">
+        <item name="android:textColor">@color/pui_config_color_blue</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minWidth">64dp</item>
+        <item name="android:background">@drawable/shape_gradient_ff530a_to_ef0f2b</item>
+        <item name="pui_dialog_action_button_padding_horizontal">12dp</item>
+        <item name="pui_dialog_action_icon_space">6dp</item>
+        <item name="pui_dialog_positive_action_text_color">@color/pui_config_color_blue</item>
+        <item name="pui_dialog_negative_action_text_color">@color/pui_config_color_red</item>
+    </style>
+
+</resources>

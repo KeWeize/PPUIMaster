@@ -11,6 +11,7 @@ import androidx.annotation.IntDef
 import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
 import com.pilaipiwang.pui.R
+import com.pilaipiwang.pui.alpha.PUIAlphaTextView
 import com.pilaipiwang.pui.layout.PUILinearLayout
 import com.pilaipiwang.pui.utils.PUIAttrsHelper
 import com.pilaipiwang.pui.utils.PUIDisplayHelper
@@ -97,6 +98,21 @@ abstract class PUIDialogBuilder<T : PUIDialogBuilder<T>> {
     fun setTitle(title: String?): T {
         if (!title.isNullOrEmpty()) {
             this.mTitle = title
+        }
+        return this as T
+    }
+
+    fun addAction(
+        charSequence: CharSequence, @PUIDialogAction.Level level: Int,
+        listener: PUIDialogAction.ActionListener
+    ): T {
+        val action = PUIDialogAction(mContext, charSequence, level, listener)
+        return addAction(action)
+    }
+
+    fun addAction(action: PUIDialogAction?): T {
+        if (action != null) {
+            mActions.add(action)
         }
         return this as T
     }
@@ -245,30 +261,52 @@ abstract class PUIDialogBuilder<T : PUIDialogBuilder<T>> {
                 if (spaceInsertPos == i) {
                     mActionContainer?.addView(createActionContainerSpace(context))
                 }
+                val action = mActions[i]
+                val actionLp: LinearLayout.LayoutParams
+                if (mActionContainerOrientation == VERTICAL) {
+                    actionLp =
+                        LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, actionHeight)
+                } else {
+                    actionLp =
+                        LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, actionHeight)
+                    if (spaceInsertPos >= 0) {
+                        if (i >= spaceInsertPos) {
+                            actionLp.leftMargin = actionSpace
+                        } else {
+                            actionLp.rightMargin = actionSpace
+                        }
+                    }
+                    if (justifyContent == 2) {
+                        actionLp.weight = 1f
+                    }
+                }
+                val mActionView = action.buildActionView(mDialog, i)
+                mActionView.setChangeAlphaWhenDisable(true)
+                mActionView.setChangeAlphaWhenPress(true)
+                mActionContainer!!.addView(mActionView, actionLp)
+            }
 
-                if (mActionContainerOrientation == HORIZONTAL) {
-                    mActionContainer?.addOnLayoutChangeListener(View.OnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
-                        val width = right - left
-                        val childCount = mActionContainer!!.childCount
-                        if (childCount > 0) {
-                            val lastChild = mActionContainer!!.getChildAt(childCount - 1)
-                            // 如果ActionButton的宽度过宽，则减小padding
-                            if (lastChild!!.right > width) {
-                                val childPaddingHor = Math.max(
-                                    0,
-                                    lastChild!!.paddingLeft - PUIDisplayHelper.dp2px(mContext, 3)
-                                )
-                                for (i in 0 until childCount) {
-                                    mActionContainer!!.getChildAt(i)
-                                        .setPadding(childPaddingHor, 0, childPaddingHor, 0)
-                                }
+            if (mActionContainerOrientation == HORIZONTAL) {
+                mActionContainer!!.addOnLayoutChangeListener(View.OnLayoutChangeListener { v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom ->
+                    val width = right - left
+                    val childCount = mActionContainer!!.childCount
+                    if (childCount > 0) {
+                        val lastChild = mActionContainer!!.getChildAt(childCount - 1)
+                        // 如果ActionButton的宽度过宽，则减小padding
+                        if (lastChild!!.right > width) {
+                            val childPaddingHor = Math.max(
+                                0,
+                                lastChild!!.paddingLeft - PUIDisplayHelper.dp2px(mContext, 3)
+                            )
+                            for (i in 0 until childCount) {
+                                mActionContainer!!.getChildAt(i)
+                                    .setPadding(childPaddingHor, 0, childPaddingHor, 0)
                             }
                         }
-                    })
-                }
-                parent.addView(mActionContainer)
-
+                    }
+                })
             }
+            parent.addView(mActionContainer)
 
         }
     }

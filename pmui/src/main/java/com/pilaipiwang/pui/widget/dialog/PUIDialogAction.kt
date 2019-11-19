@@ -8,6 +8,7 @@ import com.pilaipiwang.pui.R
 import com.pilaipiwang.pui.alpha.PUIAlphaButton
 import com.pilaipiwang.pui.alpha.PUIAlphaTextView
 import com.pilaipiwang.pui.utils.PUIViewHelper
+import com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton
 
 /**
  * @author  vitar
@@ -80,11 +81,12 @@ class PUIDialogAction {
     /**
      * 生成行为按钮 PUIAlphaTextView
      */
-    fun buildActionView(dialog: PUIDialog, index: Int) {
+    fun buildActionView(dialog: PUIDialog, index: Int): PUIAlphaTextView {
         mActionView = generateActionButton(dialog.context, mActionText, mIconResId)
         mActionView?.setOnClickListener {
             mOnClickListener?.onClick(dialog, index)
         }
+        return mActionView!!
     }
 
     /**

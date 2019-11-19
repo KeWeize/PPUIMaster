@@ -7,8 +7,16 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <!-- alpha widget 全局属性 -->
         <item name="pui_alpha_pressed">0.8</item>
         <item name="pui_alpha_disabled">0.8</item>
+
+        <!-- 定制 dialog 样式 -->
+        <item name="pui_dialog_title_style">@style/USelectDialog.Title</item>
+        <item name="pui_dialog_message_content_style">@style/USelectDialog.MessageContent</item>
+        <item name="pui_dialog_action_style">@style/USelectDialog.Action</item>
+        <item name="pui_dialog_action_container_style">@style/USelectDialog.ActionContainer</item>
+
     </style>
 
 </resources>
