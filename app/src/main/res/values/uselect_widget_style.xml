@@ -25,6 +25,7 @@
         <item name="pui_topbar_side_textview_text_size">16sp</item>
         <item name="pui_topbar_side_textview_text_color">@color/pui_config_color_gray_3</item>
         <item name="pui_topbar_side_textview_padding_hor">10dp</item>
+        <item name="pui_topbar_side_textview_padding_hor">10dp</item>
     </style>
     <!--#############  TopBar end #############-->
 

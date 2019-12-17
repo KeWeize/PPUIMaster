@@ -1,5 +1,6 @@
 package com.pilaipiwang.ppuimaster.widget
 
+import android.os.Handler
 import android.view.View
 import android.widget.Toast
 import butterknife.BindView
@@ -52,6 +53,9 @@ class PUIMultiStatesLayoutActivity : BaseActivity() {
                 }
             }
         })
+
+        mStatesLayout.showLoadingLayout()
+
     }
 
     override fun attrLayoutId(): Int = R.layout.activity_multistates

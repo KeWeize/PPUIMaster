@@ -23,14 +23,6 @@
 
     <!-- 默认5.0+属性， 可复写覆盖 -->
     <style name="AppConfigTheme" parent="AppBaseTheme">
-        <item name="colorPrimary">?attr/pui_config_color_blue</item>
-        <item name="colorPrimaryDark">?attr/pui_config_color_blue</item>
-        <item name="colorAccent">?attr/pui_config_color_blue</item>
-        <item name="colorControlNormal">@color/pui_config_color_white</item>
-        <item name="android:textColorPrimary">?attr/pui_config_color_blue</item>
-        <item name="android:textColorSecondary">?attr/pui_config_color_blue</item>
-        <item name="android:windowBackground">@color/pui_config_color_white</item>
-        <item name="android:editTextColor">?attr/pui_config_color_black</item>
     </style>
 
     <style name="PUI" parent="AppConfigTheme">
@@ -124,8 +116,8 @@
     <style name="EditTextBase.Compat" parent="@style/Widget.AppCompat.EditText" />
 
     <style name="EditText.Compat" parent="EditTextBase.Compat">
-        <item name="android:textColor">?attr/pui_config_color_gray_1</item>
-        <item name="android:textColorHint">?attr/pui_config_color_gray_4</item>
+        <item name="android:textColor">@color/pui_config_color_gray_1</item>
+        <item name="android:textColorHint">@color/pui_config_color_gray_5</item>
         <!-- 光标颜色与textColor一致，若要自定义，应该用ShapeDrawable，不能简单指定一个color -->
         <item name="android:textCursorDrawable">@null</item>
     </style>
@@ -139,8 +131,8 @@
     <style name="AutoCompleteTextViewBase.Compat" parent="@style/Widget.AppCompat.AutoCompleteTextView" />
 
     <style name="AutoCompleteTextView.Compat" parent="AutoCompleteTextViewBase.Compat">
-        <item name="android:textColor">?attr/pui_config_color_gray_1</item>
-        <item name="android:textColorHint">?attr/pui_config_color_gray_4</item>
+        <item name="android:textColor">@color/pui_config_color_gray_1</item>
+        <item name="android:textColorHint">@color/pui_config_color_gray_5</item>
         <!-- 光标颜色与textColor一致，若要自定义，应该用ShapeDrawable，不能简单指定一个color -->
         <item name="android:textCursorDrawable">@null</item>
     </style>

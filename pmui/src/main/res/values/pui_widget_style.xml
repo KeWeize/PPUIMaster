@@ -43,7 +43,6 @@
         <item name="pui_topbar_side_textview_padding_hor">5dp</item>
     </style>
 
-
     <style name="PUI.Dialog" parent="android:Theme.Dialog">
         <item name="android:backgroundDimAmount">?attr/pui_dialog_background_dim_amount</item>
         <item name="android:windowBackground">@color/pui_config_color_transparent</item>
@@ -55,9 +54,9 @@
     <style name="PUI.Dialog.Title">
         <item name="android:textColor">@color/pui_config_color_black</item>
         <item name="android:textSize">17sp</item>
-        <item name="android:gravity">left</item>
+        <item name="android:gravity">center</item>
         <item name="android:paddingTop">24dp</item>
-        <item name="android:paddingBottom">0dp</item>
+        <item name="android:paddingBottom">5dp</item>
         <item name="android:ellipsize">end</item>
         <item name="android:lineSpacingExtra">2dp</item>
         <item name="android:paddingLeft">24dp</item>
@@ -66,8 +65,8 @@
     </style>
 
     <style name="PUI.Dialog.MessageContent">
-        <item name="android:textColor">@color/pui_config_color_gray_4</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#666666</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:gravity">left</item>
         <item name="android:paddingTop">14dp</item>
         <item name="android:paddingLeft">24dp</item>
@@ -80,27 +79,34 @@
     </style>
 
     <style name="PUI.Dialog.ActionContainer">
-        <item name="android:paddingLeft">18dp</item>
-        <item name="android:paddingRight">18dp</item>
-        <item name="android:paddingTop">0dp</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="pui_dialog_action_container_justify_content">end</item>
-        <item name="pui_dialog_action_height">36dp</item>
-        <item name="pui_dialog_action_space">8dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="pui_dialog_action_container_justify_content">stretch</item>
+        <item name="pui_dialog_action_height">44dp</item>
+        <item name="pui_dialog_action_space">20dp</item>
     </style>
 
     <style name="PUI.Dialog.Action">
         <item name="android:textColor">@color/pui_config_color_blue</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:gravity">right|center_vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minHeight">42dp</item>
         <item name="android:minWidth">64dp</item>
-        <item name="android:background">@null</item>
+        <item name="pui_pressedAlpha">0.85</item>
     </style>
 
-    <style name="PUI.Dialog.Action.Positive" />
+    <style name="PUI.Dialog.Action.Positive">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="pui_primaryColor">#FF4800</item>
+        <item name="pui_secondaryColor">#FF6301</item>
+        <item name="pui_disableColor">#CCCCCC</item>
+        <item name="pui_gradientOrientation">leftToRight</item>
+    </style>
 
     <style name="PUI.Dialog.Action.Negative">
-        <item name="android:textColor">@color/pui_config_color_red</item>
+        <item name="android:textColor">#FF0000</item>
+        <item name="pui_borderColor">#FF0000</item>
+        <item name="pui_borderWidth">1dp</item>
+        <item name="pui_pressedAlpha">0.5</item>
     </style>
 
 </resources>
