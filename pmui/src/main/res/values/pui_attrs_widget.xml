@@ -7,29 +7,31 @@
             <enum name="left_center" value="19" />
             <enum name="center" value="17" />
         </attr>
-        <attr name="layout_height" format="dimension" />
-        <attr name="pui_topbar_need_separator" format="boolean" />
+        <attr name="android:layout_width" />
+        <attr name="android:background" />
         <attr name="pui_topbar_separator_color" format="color" />
         <attr name="pui_topbar_separator_height" format="dimension" />
-        <attr name="pui_topbar_bg_color" format="color" />
         <!--titile-->
         <attr name="pui_topbar_title_container_padding_hor" format="dimension" />
         <attr name="pui_topbar_title_text_size" format="dimension" />
-        <attr name="pui_topbar_title_with_subtitle_text_size" format="dimension" />
         <attr name="pui_topbar_title_text_color" format="color" />
+        <attr name="pui_topbar_title_text" format="string" />
+        <attr name="pui_topbar_title_with_subtitle_text_size" format="dimension" />
         <attr name="pui_topbar_subtitle_text_size" format="dimension" />
         <attr name="pui_topbar_subtitle_text_color" format="color" />
-        <!-- side -->
         <!--side-->
         <attr name="pui_topbar_left_back_drawable_id" format="reference" />
-        <attr name="pui_topbar_side_container_padding_hor" format="dimension" />
+        <attr name="pui_topbar_left_back_need_show" format="boolean" />
         <attr name="pui_topbar_side_imagebutton_width" format="dimension" />
         <attr name="pui_topbar_side_imagebutton_height" format="dimension" />
-        <attr name="pui_topbar_side_imagebutton_padding_hor" format="dimension" />
+        <attr name="pui_topbar_side_imagebutton_padding" format="dimension" />
         <attr name="pui_topbar_side_imagebutton_margin_hor" format="dimension" />
         <attr name="pui_topbar_side_textview_text_size" format="dimension" />
         <attr name="pui_topbar_side_textview_text_color" format="color" />
         <attr name="pui_topbar_side_textview_padding_hor" format="dimension" />
+        <!--custom-->
+        <attr name="pui_topbar_custom_view_layout_id" format="reference" />
+        <attr name="pui_topbar_custom_view_padding_hor" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="PUIDefaultMultiStatesLayout">
@@ -56,14 +58,14 @@
     <!-- Dialog Action container -->
     <declare-styleable name="PUIDialogActionContainerCustomDef">
         <attr name="pui_dialog_action_container_justify_content" format="enum">
-            <enum name="start" value="0"/>
-            <enum name="end" value="1"/>
-            <enum name="stretch" value="2"/>
-            <enum name="custom" value="3"/>
+            <enum name="start" value="0" />
+            <enum name="end" value="1" />
+            <enum name="stretch" value="2" />
+            <enum name="custom" value="3" />
         </attr>
-        <attr name="pui_dialog_action_container_custom_space_index" format="integer"/>
-        <attr name="pui_dialog_action_height" format="dimension"/>
-        <attr name="pui_dialog_action_space" format="dimension"/>
+        <attr name="pui_dialog_action_container_custom_space_index" format="integer" />
+        <attr name="pui_dialog_action_height" format="dimension" />
+        <attr name="pui_dialog_action_space" format="dimension" />
     </declare-styleable>
 
     <!-- loading widget -->

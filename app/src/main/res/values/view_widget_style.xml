@@ -3,8 +3,6 @@
 
     <!-- topbar -->
     <style name="USelectTopBar.Gradient">
-        <item name="pui_topbar_need_separator">false</item>
-        <item name="pui_topbar_bg_color">@android:color/transparent</item>
         <item name="pui_topbar_title_text_color">#FFFFFF</item>
         <item name="pui_topbar_side_textview_text_color">#FFFFFF</item>
     </style>
@@ -19,7 +17,6 @@
 
     <style name="gradientSubmitStyle" parent="commSubmitBottomStyle">
         <item name="pui_primaryColor">#AA1B00</item>
-        <item name="pui_pressedAlpha">0.85</item>
         <item name="pui_secondaryColor">#E44B00</item>
         <item name="pui_disableColor">#AAAAAA</item>
         <item name="pui_gradientOrientation">leftToRight</item>

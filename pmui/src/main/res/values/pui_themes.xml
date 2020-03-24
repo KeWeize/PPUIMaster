@@ -57,7 +57,7 @@
         <item name="pui_general_shadow_elevation">14dp</item>
         <item name="pui_general_shadow_alpha">0.25</item>
         <!-- topbar -->
-        <item name="pui_topbar_height">44dp</item>
+<!--        <item name="pui_topbar_height">44dp</item>-->
         <item name="pui_topbar_style">@style/PUI.TopBar</item>
         <!-- dialog -->
         <item name="pui_dialog_background_dim_amount">0.6</item>

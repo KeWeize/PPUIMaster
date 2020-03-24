@@ -9,7 +9,6 @@ import com.pilaipiwang.pui.R
 import com.pilaipiwang.pui.utils.PUIAttrsHelper
 import java.lang.ref.WeakReference
 import kotlin.math.floor
-import kotlin.math.max
 
 /**
  * @author:  vitar
@@ -65,20 +64,11 @@ internal class PUILayoutHelper : IPUILayout {
     private var mBorderColor = Color.TRANSPARENT
     private var mBorderWidth = 1
     private var mOuterNormalColor = Color.TRANSPARENT
-    private var mIsOutlineExcludePadding = false
 
     // shadow
-    private var mIsShowBorderOnlyBeforeL = true
     private var mShadowElevation = 0
     private var mShadowAlpha = 0f
     private var mShadowColor = Color.BLACK
-
-    // outline inset
-    private var mOutlineInsetLeft = 0
-    private var mOutlineInsetRight = 0
-    private var mOutlineInsetTop = 0
-    private var mOutlineInsetBottom = 0
-
 
     private constructor(context: Context, builder: Builder, owner: View) {
         mContext = context
@@ -87,7 +77,6 @@ internal class PUILayoutHelper : IPUILayout {
         mClipPaint = Paint()
         mClipPaint.isAntiAlias = true
 
-        mShadowAlpha = PUIAttrsHelper.getAttrFloatValue(context, R.attr.pui_general_shadow_alpha)
         mBorderRect = RectF()
 
         var radius = 0
@@ -119,18 +108,13 @@ internal class PUILayoutHelper : IPUILayout {
         radius = builder.radius
         mOuterNormalColor = builder.mOuterNormalColor
         mHideRadiusSide = builder.mHideRadiusSide
-        mIsShowBorderOnlyBeforeL = builder.mIsShowBorderOnlyBeforeL
         shadow = builder.shadow
         mShadowAlpha = builder.mShadowAlpha
         useThemeGeneralShadowElevation = builder.useThemeGeneralShadowElevation
-        mOutlineInsetLeft = builder.mOutlineInsetLeft
-        mOutlineInsetRight = builder.mOutlineInsetRight
-        mOutlineInsetTop = builder.mOutlineInsetTop
-        mOutlineInsetBottom = builder.mOutlineInsetBottom
-        mIsOutlineExcludePadding = builder.mIsOutlineExcludePadding
 
         if (shadow == 0 && useThemeGeneralShadowElevation) {
             shadow = PUIAttrsHelper.getAttrDimen(context, R.attr.pui_general_shadow_elevation)
+            mShadowAlpha = PUIAttrsHelper.getAttrFloatValue(context, R.attr.pui_general_shadow_alpha)
         }
         setRadiusAndShadow(radius, mHideRadiusSide, shadow, mShadowAlpha)
     }
@@ -156,14 +140,6 @@ internal class PUILayoutHelper : IPUILayout {
         mShadowElevation =
             PUIAttrsHelper.getAttrDimen(mContext, R.attr.pui_general_shadow_elevation)
         setRadiusAndShadow(mRadius, mHideRadiusSide, mShadowElevation, mShadowAlpha)
-    }
-
-    override fun setOutlineExcludePadding(outlineExcludePadding: Boolean) {
-        if (useFeature()) {
-            val owner = mOwner.get() ?: return
-            mIsOutlineExcludePadding = outlineExcludePadding
-            owner.invalidateOutline()
-        }
     }
 
     override fun setShadowElevation(elevation: Int) {
@@ -210,22 +186,6 @@ internal class PUILayoutHelper : IPUILayout {
     }
 
     override fun getRadius(): Int = mRadius
-
-    override fun setOutlineInset(left: Int, top: Int, right: Int, bottom: Int) {
-        if (useFeature()) {
-            val owner = mOwner.get() ?: return
-            mOutlineInsetLeft = left
-            mOutlineInsetRight = right
-            mOutlineInsetTop = top
-            mOutlineInsetBottom = bottom
-            owner.invalidateOutline()
-        }
-    }
-
-    override fun setShowBorderOnlyBeforeL(showBorderOnlyBeforeL: Boolean) {
-        mIsShowBorderOnlyBeforeL = showBorderOnlyBeforeL
-        invalidate()
-    }
 
     override fun setHideRadiusSide(hideRadiusSide: Int) {
         if (mHideRadiusSide == hideRadiusSide) {
@@ -362,16 +322,10 @@ internal class PUILayoutHelper : IPUILayout {
                         return
                     }
 
-                    var top = mOutlineInsetTop
-                    var bottom = Math.max(top + 1, h - mOutlineInsetBottom)
-                    var left = mOutlineInsetLeft
-                    var right = w - mOutlineInsetRight
-                    if (mIsOutlineExcludePadding) {
-                        left += view.paddingLeft
-                        top += view.paddingTop
-                        right = max(left + 1, right - view.paddingRight)
-                        bottom = max(top + 1, bottom - view.paddingBottom)
-                    }
+                    var top = 0
+                    var bottom = Math.max(top + 1, h)
+                    var left = 0
+                    var right = w
 
                     var shadowAlpha = mShadowAlpha
                     if (mShadowElevation == 0) {
@@ -641,23 +595,10 @@ internal class PUILayoutHelper : IPUILayout {
             return
         }
 
-        if (mIsShowBorderOnlyBeforeL && useFeature() && mShadowElevation != 0) {
-            return
-        }
-
         val width = canvas.width
         val height = canvas.height
         // react
-        if (mIsOutlineExcludePadding) {
-            mBorderRect.set(
-                (1 + owner.paddingLeft).toFloat(),
-                (1 + owner.paddingTop).toFloat(),
-                (width - 1 - owner.paddingRight).toFloat(),
-                (height - 1 - owner.paddingBottom).toFloat()
-            )
-        } else {
-            mBorderRect.set(1f, 1f, (width - 1).toFloat(), (height - 1).toFloat())
-        }
+        mBorderRect.set(1f, 1f, (width - 1).toFloat(), (height - 1).toFloat())
 
         if (mRadius == 0 || !useFeature() && mOuterNormalColor == 0) {
             mClipPaint.style = Paint.Style.STROKE
@@ -793,15 +734,9 @@ internal class PUILayoutHelper : IPUILayout {
         internal var radius = 0
         internal var mOuterNormalColor = Color.TRANSPARENT
         internal var mHideRadiusSide = HIDE_RADIUS_SIDE_NONE
-        internal var mIsShowBorderOnlyBeforeL = false
         internal var shadow = 0
         internal var mShadowAlpha = 0f
         internal var useThemeGeneralShadowElevation = false
-        internal var mOutlineInsetLeft = 0
-        internal var mOutlineInsetRight = 0
-        internal var mOutlineInsetTop = 0
-        internal var mOutlineInsetBottom = 0
-        internal var mIsOutlineExcludePadding = false
 
         constructor(context: Context, owner: View) {
             this.context = context
@@ -824,10 +759,8 @@ internal class PUILayoutHelper : IPUILayout {
                     "mRightDividerWidth=$mRightDividerWidth, mRightDividerInsetTop=$mRightDividerInsetTop, " +
                     "mRightDividerInsetBottom=$mRightDividerInsetBottom, mBorderColor=$mBorderColor, " +
                     "mBorderWidth=$mBorderWidth, radius=$radius, mOuterNormalColor=$mOuterNormalColor," +
-                    " mHideRadiusSide=$mHideRadiusSide, mIsShowBorderOnlyBeforeL=$mIsShowBorderOnlyBeforeL, " +
-                    "shadow=$shadow, mShadowAlpha=$mShadowAlpha, useThemeGeneralShadowElevation=$useThemeGeneralShadowElevation, " +
-                    "mOutlineInsetLeft=$mOutlineInsetLeft, mOutlineInsetRight=$mOutlineInsetRight, mOutlineInsetTop=$mOutlineInsetTop," +
-                    " mOutlineInsetBottom=$mOutlineInsetBottom, mIsOutlineExcludePadding=$mIsOutlineExcludePadding)"
+                    " mHideRadiusSide=$mHideRadiusSide," +
+                    "shadow=$shadow, mShadowAlpha=$mShadowAlpha, useThemeGeneralShadowElevation=$useThemeGeneralShadowElevation"
         }
 
     }

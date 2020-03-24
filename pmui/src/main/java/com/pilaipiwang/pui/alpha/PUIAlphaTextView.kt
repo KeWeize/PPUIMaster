@@ -14,7 +14,11 @@ open class PUIAlphaTextView : AppCompatTextView, IPUIAlphaView {
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
+        context,
+        attrs,
+        defStyleAttr
+    )
 
     override fun setPressed(pressed: Boolean) {
         super.setPressed(pressed)
@@ -32,6 +36,14 @@ open class PUIAlphaTextView : AppCompatTextView, IPUIAlphaView {
 
     override fun setChangeAlphaWhenDisable(changeAlphaWhenDisable: Boolean) {
         getAlphaViewHelper()?.setChangeAlphaWhenDisable(changeAlphaWhenDisable)
+    }
+
+    override fun setPressedAlpha(alpha: Float) {
+        getAlphaViewHelper()?.setPressedAlpha(alpha)
+    }
+
+    override fun setDisableAlpha(alpha: Float) {
+        getAlphaViewHelper()?.setDisableAlpha(alpha)
     }
 
     private fun getAlphaViewHelper(): PUIAlphaViewHelper? {

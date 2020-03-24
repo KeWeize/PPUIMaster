@@ -34,6 +34,14 @@ open class PUIAlphaImageView : AppCompatImageView, IPUIAlphaView {
         getAlphaViewHelper()?.setChangeAlphaWhenDisable(changeAlphaWhenDisable)
     }
 
+    override fun setPressedAlpha(alpha: Float) {
+        getAlphaViewHelper()?.setPressedAlpha(alpha)
+    }
+
+    override fun setDisableAlpha(alpha: Float) {
+        getAlphaViewHelper()?.setDisableAlpha(alpha)
+    }
+
     private fun getAlphaViewHelper(): PUIAlphaViewHelper? {
         if (mAlphaViewHelper == null) {
             mAlphaViewHelper = PUIAlphaViewHelper(this)

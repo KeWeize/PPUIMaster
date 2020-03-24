@@ -18,10 +18,66 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
+            <!-- 搜索 -->
+            <com.pilaipiwang.pui.widget.topbar.PUITopBar
+                android:id="@+id/pp_search_topbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                app:pui_topbar_left_back_drawable_id="@drawable/pp_default_back_icon"
+                app:pui_topbar_side_imagebutton_height="36dp"
+                app:pui_topbar_side_imagebutton_margin_hor="0dp"
+                app:pui_topbar_side_imagebutton_padding="8dp"
+                app:pui_topbar_side_imagebutton_width="36dp"
+
+                app:pui_topbar_left_back_need_show="false"
+
+                app:pui_topbar_title_text="个人中心"
+                android:paddingLeft="14dp"
+                app:pui_topbar_custom_view_layout_id="@layout/custom_search"
+                />
+
+
+            <!-- 搜索 -->
+            <com.pilaipiwang.pui.widget.topbar.PUITopBar
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="15dp"
+                app:pui_topbar_left_back_drawable_id="@drawable/pp_default_back_icon"
+                app:pui_topbar_side_imagebutton_height="36dp"
+                app:pui_topbar_side_imagebutton_margin_hor="0dp"
+                app:pui_topbar_side_imagebutton_padding="8dp"
+                app:pui_topbar_side_imagebutton_width="36dp"
+
+                app:pui_topbar_left_back_need_show="true"
+
+                app:pui_topbar_title_text="个人中心"
+                android:paddingRight="14dp"
+                app:pui_topbar_custom_view_layout_id="@layout/custom_search"
+                />
+
+
+            <com.pilaipiwang.pui.widget.topbar.PUITopBar
+                android:id="@+id/pp_default_topbar"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="15dp"
+                android:background="#FFFFFF"
+                app:pui_topbar_left_back_drawable_id="@drawable/pp_default_back_icon"
+                app:pui_topbar_side_imagebutton_height="36dp"
+                app:pui_topbar_side_imagebutton_margin_hor="0dp"
+                app:pui_topbar_side_imagebutton_padding="8dp"
+                app:pui_topbar_side_imagebutton_width="36dp"
+
+                app:pui_topbar_left_back_need_show="true"
+                app:pui_topbar_title_text="个人中心"
+                />
+
             <com.pilaipiwang.pui.widget.topbar.PUITopBar
                 android:id="@+id/topbar"
                 android:layout_width="match_parent"
-                android:layout_height="48dp" />
+                android:layout_height="48dp"
+                android:layout_marginTop="15dp" />
 
             <com.pilaipiwang.pui.widget.topbar.PUITopBar
                 android:id="@+id/topbar2"
@@ -37,6 +93,15 @@
                 android:layout_marginTop="15dp"
                 android:background="@drawable/shape_gradient_ff530a_to_ef0f2b"
                 app:pui_topbar_left_back_drawable_id="@drawable/ic_back_white" />
+
+            <com.pilaipiwang.pui.widget.topbar.PUITopBar
+                android:id="@+id/topbar4"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="15dp"
+                android:background="#FFFFFF"
+                app:pui_topbar_title_gravity="left_center"
+                app:pui_topbar_title_text="专题标题"/>
 
         </LinearLayout>
 

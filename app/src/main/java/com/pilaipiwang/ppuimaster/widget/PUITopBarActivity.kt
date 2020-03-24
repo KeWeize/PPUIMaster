@@ -1,7 +1,10 @@
 package com.pilaipiwang.ppuimaster.widget
 
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
+import android.widget.Toolbar
 import butterknife.BindView
 import com.pilaipiwang.ppuimaster.R
 import com.pilaipiwang.ppuimaster.base.BaseActivity
@@ -22,9 +25,35 @@ class PUITopBarActivity : BaseActivity() {
     @BindView(R.id.topbar3)
     lateinit var mTopBar3: PUITopBar
 
+    @BindView(R.id.pp_default_topbar)
+    lateinit var mPPDefaultTopBar: PUITopBar
+
+    @BindView(R.id.pp_search_topbar)
+    lateinit var mSearchTopBar: PUITopBar
+
+    @BindView(R.id.topbar4)
+    lateinit var mTopBarShare: PUITopBar
+
     override fun attrLayoutId(): Int = R.layout.activity_topbar
 
     override fun initView() {
+
+        mPPDefaultTopBar.addRightImageButton(R.drawable.pp_default_scan_icon)
+            .setOnClickListener {
+                Toast.makeText(this, "点击了扫描二维码", Toast.LENGTH_SHORT).show()
+            }
+        mPPDefaultTopBar.addRightImageButton(R.drawable.pp_default_more_icon)
+            .setOnClickListener {
+                Toast.makeText(this, "点击了查看更多", Toast.LENGTH_SHORT).show()
+            }
+        mPPDefaultTopBar.setTitle("销售订单")
+        mPPDefaultTopBar.setSubTitle("在线人数 58")
+
+
+        mSearchTopBar.addRightTextView("取消").setOnClickListener {
+            finish()
+        }
+
         mTopBar.setTitle("我的订单")
         mTopBar.addLeftBackImageButton().setOnClickListener {
             onBackPressed()
@@ -61,6 +90,11 @@ class PUITopBarActivity : BaseActivity() {
             } else {
                 "编辑"
             }
+        }
+
+
+        mTopBarShare.addRightImageButton(R.drawable.pp_default_share).setOnClickListener{
+            Toast.makeText(this, "点击了分享", Toast.LENGTH_SHORT).show()
         }
 
     }

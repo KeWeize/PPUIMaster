@@ -19,10 +19,8 @@
 
     <!--********************* TopBar *********************-->
     <style name="PUI.TopBar">
-        <item name="pui_topbar_need_separator">false</item>
         <item name="pui_topbar_separator_color">@android:color/transparent</item>
         <item name="pui_topbar_separator_height">0dp</item>
-        <item name="pui_topbar_bg_color">@color/pui_config_color_white</item>
         <!--titile-->
         <item name="pui_topbar_title_container_padding_hor">15dp</item>
         <item name="pui_topbar_title_text_size">38sp</item>
@@ -33,10 +31,11 @@
         <!--side-->
         <item name="pui_topbar_left_back_drawable_id">@drawable/pui_default_left_back_drawable
         </item>
-        <item name="pui_topbar_side_container_padding_hor">10dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
         <item name="pui_topbar_side_imagebutton_width">32dp</item>
         <item name="pui_topbar_side_imagebutton_height">32dp</item>
-        <item name="pui_topbar_side_imagebutton_padding_hor">5dp</item>
+        <item name="pui_topbar_side_imagebutton_padding">5dp</item>
         <item name="pui_topbar_side_imagebutton_margin_hor">10dp</item>
         <item name="pui_topbar_side_textview_text_size">16sp</item>
         <item name="pui_topbar_side_textview_text_color">@color/pui_config_color_gray_4</item>
@@ -91,7 +90,6 @@
         <item name="android:gravity">center</item>
         <item name="android:minHeight">42dp</item>
         <item name="android:minWidth">64dp</item>
-        <item name="pui_pressedAlpha">0.85</item>
     </style>
 
     <style name="PUI.Dialog.Action.Positive">
@@ -106,7 +104,6 @@
         <item name="android:textColor">#FF0000</item>
         <item name="pui_borderColor">#FF0000</item>
         <item name="pui_borderWidth">1dp</item>
-        <item name="pui_pressedAlpha">0.5</item>
     </style>
 
 </resources>

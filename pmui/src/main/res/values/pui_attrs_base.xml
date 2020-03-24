@@ -42,7 +42,7 @@
     <attr name="pui_dialog_action_nevative_style" format="reference" />
 
     <!--topbar-->
-    <attr name="pui_topbar_height" format="dimension" />
+<!--    <attr name="pui_topbar_height" format="dimension" />-->
     <attr name="pui_topbar_style" format="reference" />
 
     <!-- 重写 Button 设置的默认样式 -->

@@ -8,8 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <!-- alpha widget 全局属性 -->
-        <item name="pui_alpha_pressed">0.8</item>
-        <item name="pui_alpha_disabled">0.8</item>
+        <item name="pui_alpha_pressed">0.5</item>
+        <item name="pui_alpha_disabled">0.5</item>
 
         <!-- topbar -->
         <item name="pui_topbar_style">@style/USelectTopBar</item>

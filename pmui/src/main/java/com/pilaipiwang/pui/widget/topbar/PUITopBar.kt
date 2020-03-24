@@ -1,30 +1,32 @@
 package com.pilaipiwang.pui.widget.topbar
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.DrawableRes
 import androidx.annotation.IntDef
+import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
 import com.pilaipiwang.pui.R
 import com.pilaipiwang.pui.alpha.PUIAlphaImageButton
 import com.pilaipiwang.pui.alpha.PUIAlphaTextView
 import com.pilaipiwang.pui.layout.PUIRelativeLayout
-import com.pilaipiwang.pui.utils.PUIAttrsHelper
 import com.pilaipiwang.pui.utils.PUIDisplayHelper
 import com.pilaipiwang.pui.utils.PUIDrawableHelper
 import com.pilaipiwang.pui.utils.PUIViewHelper
+import kotlin.math.max
 
 /**
  * @author: vitar
@@ -43,7 +45,6 @@ class PUITopBar : PUIRelativeLayout {
     private var mTopBarSeparatorColor: Int = Color.TRANSPARENT
     private var mTopBarBgColor: Int = Color.TRANSPARENT
     private var mTopBarSeparatorHeight = 0
-    private var mTopBarNeedSeparator = false
     private var mTopBarBgWidthSeparatorDrawableCache: Drawable? = null
 
     /**
@@ -54,6 +55,7 @@ class PUITopBar : PUIRelativeLayout {
     private var mSubTitleTv: TextView? = null
     private var mTitleGravity: Int = Gravity.CENTER
     private var mTitleContainerPaddingHor = 0
+    private var mTitleDefaultText = ""
     /**
      * title & subtitle property value
      */
@@ -62,7 +64,6 @@ class PUITopBar : PUIRelativeLayout {
     private var mTitleTextColor = Color.TRANSPARENT
     private var mSubTitleTextSize = 0
     private var mSubTitleTextColor = Color.TRANSPARENT
-
     /**
      * left right side
      */
@@ -72,11 +73,11 @@ class PUITopBar : PUIRelativeLayout {
     /**
      * left right side property value
      */
+    private var mLeftBackNeedShow: Boolean = false
     private var mLeftBackDrawableId: Int = 0
-    private var mSideContainerPaddingHor = 0
     private var mSideImageButtonWidth = 0
     private var mSideImageButtonHeight = 0
-    private var mSideImageButtonPaddingHor = 0
+    private var mSideImageButtonPadding = 0
     private var mSideImageButtonMarginHor = 0
     private var mSideTextViewTextSize = 0
     private var mSideTextViewTextColor = 0
@@ -85,36 +86,66 @@ class PUITopBar : PUIRelativeLayout {
     /**
      * custom center view
      */
-    private var mCenterView: View? = null
+    private var mCustomView: View? = null
+    private var mCustomViewContainerFl: FrameLayout? = null
+    @LayoutRes
+    private var mCustomLayoutId: Int = 0
+    private var mCustomPaddingHor: Int = 0
+
+    /**
+     * 默认返回按钮的点击回调
+     */
+    private val mDefaultLeftBackOnClickListener = OnClickListener {
+        if (context is Activity) {
+            (context as Activity).finish()
+        }
+    }
 
     constructor(context: Context?) : this(context, null)
-    constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
+    constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, R.attr.pui_topbar_style)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context!!,
         attrs,
         defStyleAttr
     ) {
         initAttrs(context!!, attrs, R.attr.pui_topbar_style)
-        if (mTopBarBgColor != Color.TRANSPARENT || mTopBarNeedSeparator) {
-            setBackgroundDividerEnable(mTopBarNeedSeparator)
+        // 如果存在背景色，并且存在分割线颜色，则设置设置带分隔线背景
+        if (mTopBarSeparatorColor != Color.TRANSPARENT && mTopBarBgColor != Color.TRANSPARENT && mTopBarSeparatorHeight > 0) {
+            setBackgroundWithDivider(mTopBarBgColor, mTopBarSeparatorHeight, mTopBarSeparatorColor)
+        }
+        // 初始化显示
+        if (mLeftBackNeedShow) {
+            addLeftBackImageButton()
+        }
+        if (mCustomLayoutId != 0) {
+            // 显示自定义布局
+            val view = LayoutInflater.from(context)
+                .inflate(mCustomLayoutId, makeSureRightContainerLl(), false)
+            setCustomView(view)
+        } else if (mTitleDefaultText.isNotBlank()) {
+            // 显示 title
+            setTitle(mTitleDefaultText)
         }
     }
 
     private fun initAttrs(context: Context, attrs: AttributeSet?, defStyleAttrs: Int) {
         val ta = context.obtainStyledAttributes(attrs, R.styleable.PUITopBar, defStyleAttrs, 0)
-        // 背景
-        mTopBarBgColor = ta.getColor(R.styleable.PUITopBar_pui_topbar_bg_color, Color.TRANSPARENT)
+        // 背景色
+        val bgDrawable = ta.getDrawable(R.styleable.PUITopBar_android_background)
+        if (bgDrawable is ColorDrawable) {
+            mTopBarBgColor = bgDrawable.color
+        }
         mTopBarSeparatorColor =
             ta.getColor(R.styleable.PUITopBar_pui_topbar_separator_color, Color.TRANSPARENT)
         mTopBarSeparatorHeight =
             ta.getDimensionPixelSize(R.styleable.PUITopBar_pui_topbar_separator_height, 0)
-        mTopBarNeedSeparator = ta.getBoolean(R.styleable.PUITopBar_pui_topbar_need_separator, false)
         // 标题
         mTitleGravity = ta.getInt(R.styleable.PUITopBar_pui_topbar_title_gravity, Gravity.CENTER)
         mTitleContainerPaddingHor = ta.getDimensionPixelSize(
             R.styleable.PUITopBar_pui_topbar_title_container_padding_hor,
             0
         )
+        mTitleDefaultText = ta.getString(R.styleable.PUITopBar_pui_topbar_title_text) ?: ""
         mTitleTextColor = ta.getColor(
             R.styleable.PUITopBar_pui_topbar_title_text_color,
             ContextCompat.getColor(context, R.color.pui_config_color_gray_1)
@@ -144,17 +175,13 @@ class PUITopBar : PUIRelativeLayout {
             R.styleable.PUITopBar_pui_topbar_side_imagebutton_height,
             PUIDisplayHelper.dp2px(context, 35)
         )
-        mSideImageButtonPaddingHor = ta.getDimensionPixelSize(
-            R.styleable.PUITopBar_pui_topbar_side_imagebutton_padding_hor,
+        mSideImageButtonPadding = ta.getDimensionPixelSize(
+            R.styleable.PUITopBar_pui_topbar_side_imagebutton_padding,
             PUIDisplayHelper.dp2px(context, 5)
         )
         mSideImageButtonMarginHor = ta.getDimensionPixelSize(
             R.styleable.PUITopBar_pui_topbar_side_imagebutton_margin_hor,
             PUIDisplayHelper.dp2px(context, 3)
-        )
-        mSideContainerPaddingHor = ta.getDimensionPixelSize(
-            R.styleable.PUITopBar_pui_topbar_side_container_padding_hor,
-            PUIDisplayHelper.dp2px(context, 5)
         )
         mSideTextViewTextSize = ta.getDimensionPixelSize(
             R.styleable.PUITopBar_pui_topbar_side_textview_text_size,
@@ -172,6 +199,12 @@ class PUITopBar : PUIRelativeLayout {
             R.styleable.PUITopBar_pui_topbar_left_back_drawable_id,
             R.drawable.pui_default_left_back_drawable
         )
+        mLeftBackNeedShow =
+            ta.getBoolean(R.styleable.PUITopBar_pui_topbar_left_back_need_show, false)
+        mCustomLayoutId =
+            ta.getResourceId(R.styleable.PUITopBar_pui_topbar_custom_view_layout_id, 0)
+        mCustomPaddingHor =
+            ta.getDimensionPixelSize(R.styleable.PUITopBar_pui_topbar_custom_view_padding_hor, 0)
         ta.recycle()
     }
 
@@ -179,17 +212,13 @@ class PUITopBar : PUIRelativeLayout {
      * 设置PUITopBar背景
      * @param isNeedSeparator  是否带底部分割线
      */
-    private fun setBackgroundDividerEnable(isNeedSeparator: Boolean) {
-        if (isNeedSeparator) {
-            if (mTopBarBgWidthSeparatorDrawableCache == null) {
-                mTopBarBgWidthSeparatorDrawableCache = PUIDrawableHelper.createItemSeparatorBg(
-                    mTopBarSeparatorColor, mTopBarBgColor, mTopBarSeparatorHeight, false
-                )
-            }
-            PUIViewHelper.setBackgroundKeepingPadding(this, mTopBarBgWidthSeparatorDrawableCache!!)
-        } else {
-            PUIViewHelper.setBackgroundColorKeepPadding(this, mTopBarBgColor)
+    private fun setBackgroundWithDivider(bgColor: Int, separtorHeight: Int, separtorColor: Int) {
+        if (mTopBarBgWidthSeparatorDrawableCache == null) {
+            mTopBarBgWidthSeparatorDrawableCache = PUIDrawableHelper.createItemSeparatorBg(
+                separtorColor, bgColor, separtorHeight, false
+            )
         }
+        PUIViewHelper.setBackgroundKeepingPadding(this, mTopBarBgWidthSeparatorDrawableCache!!)
     }
 
     /******************************** title & subtitle *******************************/
@@ -209,6 +238,7 @@ class PUITopBar : PUIRelativeLayout {
         } else {
             VISIBLE
         }
+        updateCustomViewShowStatus()
         return mTextView
     }
 
@@ -228,6 +258,7 @@ class PUITopBar : PUIRelativeLayout {
             VISIBLE
         }
         updateTitleTvStyle()
+        updateCustomViewShowStatus()
         return mTextView
     }
 
@@ -294,11 +325,10 @@ class PUITopBar : PUIRelativeLayout {
                 mTitleContainerPaddingHor, 0,
                 mTitleContainerPaddingHor, 0
             )
-            var height = PUIAttrsHelper.getAttrDimen(context, R.attr.pui_topbar_height)
-            if (height == 0) {
-                height = LayoutParams.WRAP_CONTENT
-            }
-            addView(mTitleContainerLl, LayoutParams(LayoutParams.MATCH_PARENT, height))
+            addView(
+                mTitleContainerLl,
+                LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+            )
         }
         return mTitleContainerLl!!
     }
@@ -327,6 +357,8 @@ class PUITopBar : PUIRelativeLayout {
     fun addLeftBackImageButton(): ImageButton {
         if (mLeftBackIb == null) {
             mLeftBackIb = generateSideImageButton(mLeftBackDrawableId, SIDE_LEFT)
+            // 设置默认点击回调
+            mLeftBackIb!!.setOnClickListener(mDefaultLeftBackOnClickListener)
         }
         addLeftView(mLeftBackIb!!)
         return mLeftBackIb!!
@@ -407,10 +439,6 @@ class PUITopBar : PUIRelativeLayout {
             mLeftContainerLl = LinearLayout(context)
             mLeftContainerLl!!.gravity = Gravity.CENTER_VERTICAL
             mLeftContainerLl!!.orientation = LinearLayout.HORIZONTAL
-            mLeftContainerLl!!.setPadding(
-                mSideContainerPaddingHor, 0,
-                0, 0
-            )
             val rlp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
             rlp.addRule(ALIGN_PARENT_LEFT)
             rlp.addRule(CENTER_VERTICAL)
@@ -427,7 +455,6 @@ class PUITopBar : PUIRelativeLayout {
             mRightContainerLl = LinearLayout(context)
             mRightContainerLl!!.gravity = Gravity.CENTER_VERTICAL
             mRightContainerLl!!.orientation = LinearLayout.HORIZONTAL
-            mRightContainerLl!!.setPadding(0, 0, mSideContainerPaddingHor, 0)
             val rlp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
             rlp.addRule(ALIGN_PARENT_RIGHT)
             rlp.addRule(CENTER_VERTICAL)
@@ -451,7 +478,10 @@ class PUITopBar : PUIRelativeLayout {
             llp.leftMargin = mSideImageButtonMarginHor
         }
         mImageButton.layoutParams = llp
-        mImageButton.setPadding(mSideImageButtonPaddingHor, 0, mSideImageButtonPaddingHor, 0)
+        mImageButton.setPadding(
+            mSideImageButtonPadding, mSideImageButtonPadding,
+            mSideImageButtonPadding, mSideImageButtonPadding
+        )
         return mImageButton
     }
 
@@ -474,28 +504,63 @@ class PUITopBar : PUIRelativeLayout {
     }
 
     /***************** custom center view ********************/
-    fun setCenterView(view: View?) {
-        if (view == null || mCenterView == view) {
+    fun setCustomView(view: View?) {
+        if (view == null || mCustomView == view) {
             return
         }
-        if (mCenterView != null) {
-            removeView(mCenterView)
+        // 设置自定义View之后，隐藏title
+        if (mCustomView != null) {
+            makeSureCustomViewContainerFl().removeView(mCustomView)
         }
-        mCenterView = view
-        val vlp = mCenterView!!.layoutParams
-        val params: LayoutParams = if (vlp == null) {
-            LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
-        } else if (vlp !is LayoutParams) {
-            LayoutParams(vlp.width, vlp.height)
+        mCustomView = view
+        val vlp = mCustomView!!.layoutParams
+        val params: FrameLayout.LayoutParams = if (vlp == null) {
+            FrameLayout.LayoutParams(
+                LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT,
+                Gravity.CENTER_VERTICAL
+            )
+        } else if (vlp !is FrameLayout.LayoutParams) {
+            FrameLayout.LayoutParams(vlp.width, vlp.height, Gravity.CENTER_VERTICAL)
         } else {
+            vlp.gravity = Gravity.CENTER_VERTICAL
             vlp
         }
-        params.addRule(CENTER_IN_PARENT)
-        addView(mCenterView, params)
+        makeSureCustomViewContainerFl().addView(mCustomView, params)
     }
+
+
+    /**
+     * 获取 right 布局容器
+     */
+    private fun makeSureCustomViewContainerFl(): FrameLayout {
+        if (mCustomViewContainerFl == null) {
+            mCustomViewContainerFl = FrameLayout(context)
+            mCustomViewContainerFl!!.setPadding(mCustomPaddingHor, 0, mCustomPaddingHor, 0)
+            val rlp = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+            rlp.addRule(CENTER_IN_PARENT)
+            addView(mCustomViewContainerFl, rlp)
+        }
+        return mCustomViewContainerFl!!
+    }
+
+    /**
+     * 更新 customView 和 title 的显示状态
+     */
+    private fun updateCustomViewShowStatus() {
+        if (mCustomView != null) {
+            mCustomViewContainerFl?.visibility = View.VISIBLE
+            mTitleContainerLl?.visibility = View.GONE
+        } else {
+            mCustomViewContainerFl?.visibility = View.GONE
+            mTitleContainerLl?.visibility = View.VISIBLE
+        }
+    }
+
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        // 测量title容器布局
         if (mTitleContainerLl != null) {
             val isleftEmpty = mLeftContainerLl == null || mLeftContainerLl!!.childCount == 0
             val isRightEmpty = mRightContainerLl == null || mRightContainerLl!!.childCount == 0
@@ -504,23 +569,42 @@ class PUITopBar : PUIRelativeLayout {
             val rightViewWidth = if (isRightEmpty) 0 else mRightContainerLl!!.measuredWidth
             // 计算 titleContainer 的最大宽度
             val titleContainerWidth: Int
-            // 标题非水平居中，左右两侧的占位按实际计算即可
-            titleContainerWidth = (MeasureSpec.getSize(widthMeasureSpec)
-                    - leftViewWidth - rightViewWidth - paddingLeft - paddingRight)
+            titleContainerWidth = if (mTitleGravity == Gravity.CENTER) {
+                // 标题水平居中
+                MeasureSpec.getSize(widthMeasureSpec) - max(
+                    leftViewWidth,
+                    rightViewWidth
+                ) * 2 - paddingLeft - paddingRight
+            } else {
+                // 标题非水平居中，左右两侧的占位按实际计算即可
+                MeasureSpec.getSize(widthMeasureSpec) - leftViewWidth - rightViewWidth - paddingLeft - paddingRight
+            }
             val titleContainerWidthMeasureSpec =
                 MeasureSpec.makeMeasureSpec(titleContainerWidth, MeasureSpec.EXACTLY)
             mTitleContainerLl!!.measure(titleContainerWidthMeasureSpec, heightMeasureSpec)
+        }
+        // 测量自定义容器布局
+        if (mCustomView != null) {
+            // 当TopBar存在中间自定义视图时，则隐藏掉title内容。所以不需要测量 mTitleContainerLl
+            val isleftEmpty = mLeftContainerLl == null || mLeftContainerLl!!.childCount == 0
+            val isRightEmpty = mRightContainerLl == null || mRightContainerLl!!.childCount == 0
+            // 因为两侧容器有 paddingHor 存在，所以就算不存在子View也会有宽度。
+            val leftViewWidth = if (isleftEmpty) 0 else mLeftContainerLl!!.measuredWidth
+            val rightViewWidth = if (isRightEmpty) 0 else mRightContainerLl!!.measuredWidth
+            val customViewContainerWidth: Int =
+                MeasureSpec.getSize(widthMeasureSpec) - leftViewWidth - rightViewWidth - paddingLeft - paddingRight
+            val titleContainerWidthMeasureSpec =
+                MeasureSpec.makeMeasureSpec(customViewContainerWidth, MeasureSpec.EXACTLY)
+            mCustomViewContainerFl!!.measure(titleContainerWidthMeasureSpec, heightMeasureSpec)
         }
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
         super.onLayout(changed, l, t, r, b)
-        if (mTitleContainerLl != null) {
-            val titleContainerViewWidth = mTitleContainerLl!!.measuredWidth
-            val titleContainerViewHeight = mTitleContainerLl!!.measuredHeight
+        // 布局title容器
+        if (mTitleContainerLl != null && mCustomView == null) {
             val titleContainerViewTop = (b - t - mTitleContainerLl!!.measuredHeight) / 2
             var titleContainerViewLeft = paddingLeft
-
             if (mTitleGravity and Gravity.HORIZONTAL_GRAVITY_MASK == Gravity.CENTER_HORIZONTAL) {
                 // 标题水平居中
                 titleContainerViewLeft = (r - l - mTitleContainerLl!!.measuredWidth) / 2
@@ -533,8 +617,19 @@ class PUITopBar : PUIRelativeLayout {
             }
             mTitleContainerLl!!.layout(
                 titleContainerViewLeft, titleContainerViewTop,
-                titleContainerViewLeft + titleContainerViewWidth,
-                titleContainerViewTop + titleContainerViewHeight
+                titleContainerViewLeft + mTitleContainerLl!!.measuredWidth,
+                titleContainerViewTop + mTitleContainerLl!!.measuredHeight
+            )
+        } else if (mCustomView != null) {
+            val customViewContainerTop = (b - t - mCustomViewContainerFl!!.measuredHeight) / 2
+            var customViewContainerLeft = paddingLeft
+            val isLeftEmpty = mLeftContainerLl == null || mLeftContainerLl!!.childCount == 0
+            val left = if (isLeftEmpty) 0 else mLeftContainerLl!!.measuredWidth
+            customViewContainerLeft += left
+            mCustomViewContainerFl!!.layout(
+                customViewContainerLeft, customViewContainerTop,
+                customViewContainerLeft + mCustomViewContainerFl!!.measuredWidth,
+                customViewContainerTop + mCustomViewContainerFl!!.measuredHeight
             )
         }
     }

@@ -12,7 +12,7 @@ import android.widget.FrameLayout
  * @author: vitar
  * @date:   2019/11/11
  */
-open class PUIMultiStatesLayout : FrameLayout {
+abstract class PUIMultiStatesLayout : FrameLayout {
 
     private val TAG = PUIMultiStatesLayout::class.java.simpleName
 
@@ -84,10 +84,12 @@ open class PUIMultiStatesLayout : FrameLayout {
         context,
         attrs,
         defStyleAttr
-    )
+    ) {
+        init()
+    }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
+    private fun init() {
+        mPUIMultiStatesViewProvider = getMultiStateViewProvider()
         if (mPUIMultiStatesViewProvider == null) {
             throw InflateException(
                 "${PUIMultiStatesLayout::class.java.simpleName}'s mPUIMultiStatesViewProvider " +
@@ -256,6 +258,8 @@ open class PUIMultiStatesLayout : FrameLayout {
         }
         return false
     }
+
+    abstract fun getMultiStateViewProvider(): PUIMultiStatesViewProvider?
 
     /**================== 重写addView方法，控制添加子内容View数量 ======================*/
     override fun addView(child: View?) {

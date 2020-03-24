@@ -16,17 +16,17 @@ import com.pilaipiwang.ppuimaster.base.BaseActivity
 class PUIRoundWidgetActivity : BaseActivity() {
 
     @BindView(R.id.btn_submit)
-    lateinit var mSubmitBtn: Button
-    @BindView(R.id.tv_submit)
-    lateinit var mSubmitTv: TextView
-    @BindView(R.id.fl_container)
-    lateinit var mContainerFl: View
-    @BindView(R.id.ll_container)
-    lateinit var mContainerLl: View
-    @BindView(R.id.rl_container)
-    lateinit var mContainerRl: View
-    @BindView(R.id.tv_setting)
-    lateinit var mSettingTv: TextView
+    lateinit var mSubmitBtn: TextView
+//    @BindView(R.id.tv_submit)
+//    lateinit var mSubmitTv: TextView
+//    @BindView(R.id.fl_container)
+//    lateinit var mContainerFl: View
+//    @BindView(R.id.ll_container)
+//    lateinit var mContainerLl: View
+//    @BindView(R.id.rl_container)
+//    lateinit var mContainerRl: View
+//    @BindView(R.id.tv_setting)
+//    lateinit var mSettingTv: TextView
 
     @BindView(R.id.btn_enable)
     lateinit var mEnableBtn: Button
@@ -50,20 +50,20 @@ class PUIRoundWidgetActivity : BaseActivity() {
                     mEnableBtn.text = "enable"
                     mEnableBtn.tag = false
                     mSubmitBtn.isEnabled = false
-                    mSubmitTv.isEnabled = false
-                    mContainerRl.isEnabled = false
-                    mContainerLl.isEnabled = false
-                    mContainerFl.isEnabled = false
-                    mSettingTv.isEnabled = false
+//                    mSubmitTv.isEnabled = false
+//                    mContainerRl.isEnabled = false
+//                    mContainerLl.isEnabled = false
+//                    mContainerFl.isEnabled = false
+//                    mSettingTv.isEnabled = false
                 } else {
                     mEnableBtn.text = "disable"
                     mEnableBtn.tag = true
                     mSubmitBtn.isEnabled = true
-                    mSubmitTv.isEnabled = true
-                    mContainerRl.isEnabled = true
-                    mContainerLl.isEnabled = true
-                    mContainerFl.isEnabled = true
-                    mSettingTv.isEnabled = true
+//                    mSubmitTv.isEnabled = true
+//                    mContainerRl.isEnabled = true
+//                    mContainerLl.isEnabled = true
+//                    mContainerFl.isEnabled = true
+//                    mSettingTv.isEnabled = true
                 }
             }
 

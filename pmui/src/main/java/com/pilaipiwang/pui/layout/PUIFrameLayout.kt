@@ -107,25 +107,12 @@ open class PUIFrameLayout : PUIAlphaFrameLayout, IPUILayout {
                     mBuilder.mOuterNormalColor = ta.getColor(index, 0)
                 R.styleable.PUIFrameLayout_pui_hideRadiusSide ->
                     mBuilder.mHideRadiusSide = ta.getInteger(index, HIDE_RADIUS_SIDE_NONE)
-                R.styleable.PUIFrameLayout_pui_showBorderOnlyBeforeL ->
-                    mBuilder.mIsShowBorderOnlyBeforeL = ta.getBoolean(index, true)
                 R.styleable.PUIFrameLayout_pui_shadowElevation ->
                     mBuilder.shadow = ta.getDimensionPixelSize(index, 0)
                 R.styleable.PUIFrameLayout_pui_shadowAlpha ->
                     mBuilder.mShadowAlpha = ta.getFloat(index, 0f)
                 R.styleable.PUIFrameLayout_pui_useThemeGeneralShadowElevation ->
                     mBuilder.useThemeGeneralShadowElevation = ta.getBoolean(index, false)
-
-                R.styleable.PUIFrameLayout_pui_outlineInsetLeft ->
-                    mBuilder.mOutlineInsetLeft = ta.getDimensionPixelSize(index, 0)
-                R.styleable.PUIFrameLayout_pui_outlineInsetRight ->
-                    mBuilder.mOutlineInsetRight = ta.getDimensionPixelSize(index, 0)
-                R.styleable.PUIFrameLayout_pui_outlineInsetTop ->
-                    mBuilder.mOutlineInsetTop = ta.getDimensionPixelSize(index, 0)
-                R.styleable.PUIFrameLayout_pui_outlineInsetBottom ->
-                    mBuilder.mOutlineInsetBottom = ta.getDimensionPixelSize(index, 0)
-                R.styleable.PUIFrameLayout_pui_outlineExcludePadding ->
-                    mBuilder.mIsOutlineExcludePadding = ta.getBoolean(index, false)
             }
         }
         ta.recycle()
@@ -139,7 +126,7 @@ open class PUIFrameLayout : PUIAlphaFrameLayout, IPUILayout {
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         var mWidthMeasureSpec = mLayoutHelper.getMeasuredWidthSpec(widthMeasureSpec)
         var mHeightMeasureSpec = mLayoutHelper.getMeasuredHeightSpec(heightMeasureSpec)
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        super.onMeasure(mWidthMeasureSpec, mHeightMeasureSpec)
         val minW = mLayoutHelper.handleMiniWidth(mWidthMeasureSpec, measuredWidth)
         val minH = mLayoutHelper.handleMiniHeight(mHeightMeasureSpec, measuredHeight)
         if (mWidthMeasureSpec != minW || mHeightMeasureSpec != minH) {
@@ -174,9 +161,6 @@ open class PUIFrameLayout : PUIAlphaFrameLayout, IPUILayout {
     override fun setUseThemeGeneralShadowElevation() =
         mLayoutHelper.setUseThemeGeneralShadowElevation()
 
-    override fun setOutlineExcludePadding(outlineExcludePadding: Boolean) =
-        mLayoutHelper.setOutlineExcludePadding(outlineExcludePadding)
-
     override fun setShadowElevation(elevation: Int) =
         mLayoutHelper.setShadowElevation(elevation)
 
@@ -196,14 +180,6 @@ open class PUIFrameLayout : PUIAlphaFrameLayout, IPUILayout {
         mLayoutHelper.setRadius(radius, hideRadiusSide)
 
     override fun getRadius(): Int = mLayoutHelper.getRadius()
-
-    override fun setOutlineInset(left: Int, top: Int, right: Int, bottom: Int) =
-        mLayoutHelper.setOutlineInset(left, top, right, bottom)
-
-    override fun setShowBorderOnlyBeforeL(showBorderOnlyBeforeL: Boolean) {
-        mLayoutHelper.setShowBorderOnlyBeforeL(showBorderOnlyBeforeL)
-        invalidate()
-    }
 
     override fun setHideRadiusSide(hideRadiusSide: Int) =
         mLayoutHelper.setHideRadiusSide(hideRadiusSide)

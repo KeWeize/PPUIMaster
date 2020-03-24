@@ -20,4 +20,14 @@ internal interface IPUIAlphaView {
      */
     fun setChangeAlphaWhenDisable(changeAlphaWhenDisable: Boolean)
 
+    /**
+     * 设置点击时的透明度
+     */
+    fun setPressedAlpha(alpha: Float)
+
+    /**
+     * 设置不可用时的透明度
+     */
+    fun setDisableAlpha(alpha: Float)
+
 }

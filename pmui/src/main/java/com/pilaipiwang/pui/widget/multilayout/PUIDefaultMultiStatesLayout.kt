@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.DrawableRes
@@ -17,34 +16,12 @@ import com.pilaipiwang.pui.widget.loading.PUILoadingView
  */
 class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
 
-    private val mMultiStateViewProvider = object : PUIMultiStatesViewProvider {
-
-        override fun attachedLoadingLayout(context: Context): View? {
-            return makeSureLoadingView(context)
-        }
-
-        override fun attachedEmptyLayout(context: Context): View? {
-            return makeSureExceptionView(context)
-        }
-
-        override fun attachedNetOffLayout(context: Context): View? {
-            return makeSureExceptionView(context)
-        }
-
-        override fun attachedErrorLayout(context: Context): View? {
-            return makeSureExceptionView(context)
-        }
-
-        override fun attachedExceptionLayout(context: Context): View? {
-            return makeSureExceptionView(context)
-        }
-
-    }
+    private var mMultiStateViewProvider: PUIMultiStatesViewProvider? = null
 
     private var mCommExceptionView: View? = null
     private var mExceptionIconIv: ImageView? = null
     private var mExceptionTextTv: TextView? = null
-    private var mExceptionActionBtn: Button? = null
+    private var mExceptionActionBtn: TextView? = null
 
     /**
      * 属性
@@ -70,7 +47,6 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
         attrs,
         defStyleAttr
     ) {
-        setMultiStatesViewProvider(mMultiStateViewProvider)
         initAttrs(context, attrs, defStyleAttr)
     }
 
@@ -172,11 +148,38 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
     override fun showGoalView(view: View?): Boolean {
         val result = super.showGoalView(view)
         if (result && view == mLoadingView) {
-            mLoadingAnimView.start()
+            mLoadingAnimView?.start()
         } else {
-            mLoadingAnimView.stop()
+            mLoadingAnimView?.stop()
         }
         return result
+    }
+
+    override fun getMultiStateViewProvider(): PUIMultiStatesViewProvider? {
+        mMultiStateViewProvider = object : PUIMultiStatesViewProvider {
+
+            override fun attachedLoadingLayout(context: Context): View? {
+                return makeSureLoadingView(context)
+            }
+
+            override fun attachedEmptyLayout(context: Context): View? {
+                return makeSureExceptionView(context)
+            }
+
+            override fun attachedNetOffLayout(context: Context): View? {
+                return makeSureExceptionView(context)
+            }
+
+            override fun attachedErrorLayout(context: Context): View? {
+                return makeSureExceptionView(context)
+            }
+
+            override fun attachedExceptionLayout(context: Context): View? {
+                return makeSureExceptionView(context)
+            }
+
+        }
+        return mMultiStateViewProvider
     }
 
     /**
@@ -238,7 +241,7 @@ class PUIDefaultMultiStatesLayout : PUIMultiStatesLayout {
         return mCommExceptionView!!
     }
 
-    private lateinit var mLoadingAnimView: PUILoadingView
+    private var mLoadingAnimView: PUILoadingView? = null
 
     /**
      * 返回加载视图

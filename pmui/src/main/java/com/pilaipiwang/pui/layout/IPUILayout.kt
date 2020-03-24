@@ -31,13 +31,6 @@ internal interface IPUILayout {
     fun setUseThemeGeneralShadowElevation()
 
     /**
-     * determine if the outline contain the padding area, usually false
-     *
-     * @param outlineExcludePadding
-     */
-    fun setOutlineExcludePadding(outlineExcludePadding: Boolean)
-
-    /**
      * See [android.view.View.setElevation]
      *
      * @param elevation
@@ -97,25 +90,6 @@ internal interface IPUILayout {
      * @return
      */
     fun getRadius(): Int
-
-    /**
-     * inset the outline if needed
-     *
-     * @param left
-     * @param top
-     * @param right
-     * @param bottom
-     */
-    fun setOutlineInset(left: Int, top: Int, right: Int, bottom: Int)
-
-    /**
-     * the shadow elevation only work after L, so we provide a downgrading compatible solutions for android 4.x
-     * usually we use border, but the border may be redundant for android L+. so will not show border default,
-     * if your designer like the border exists with shadow, you can call setShowBorderOnlyBeforeL(false)
-     *
-     * @param showBorderOnlyBeforeL
-     */
-    fun setShowBorderOnlyBeforeL(showBorderOnlyBeforeL: Boolean)
 
     /**
      * in some case, we maybe hope the layout only have radius in one side.

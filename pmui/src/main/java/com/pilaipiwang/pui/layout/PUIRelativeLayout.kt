@@ -107,8 +107,6 @@ open class PUIRelativeLayout : PUIAlphaRelativeLayout, IPUILayout {
                     mBuilder.mOuterNormalColor = ta.getColor(index, 0)
                 R.styleable.PUIRelativeLayout_pui_hideRadiusSide ->
                     mBuilder.mHideRadiusSide = ta.getInteger(index, HIDE_RADIUS_SIDE_NONE)
-                R.styleable.PUIRelativeLayout_pui_showBorderOnlyBeforeL ->
-                    mBuilder.mIsShowBorderOnlyBeforeL = ta.getBoolean(index, true)
                 R.styleable.PUIRelativeLayout_pui_shadowElevation ->
                     mBuilder.shadow = ta.getDimensionPixelSize(index, 0)
                 R.styleable.PUIRelativeLayout_pui_shadowAlpha ->
@@ -116,16 +114,6 @@ open class PUIRelativeLayout : PUIAlphaRelativeLayout, IPUILayout {
                 R.styleable.PUIRelativeLayout_pui_useThemeGeneralShadowElevation ->
                     mBuilder.useThemeGeneralShadowElevation = ta.getBoolean(index, false)
 
-                R.styleable.PUIRelativeLayout_pui_outlineInsetLeft ->
-                    mBuilder.mOutlineInsetLeft = ta.getDimensionPixelSize(index, 0)
-                R.styleable.PUIRelativeLayout_pui_outlineInsetRight ->
-                    mBuilder.mOutlineInsetRight = ta.getDimensionPixelSize(index, 0)
-                R.styleable.PUIRelativeLayout_pui_outlineInsetTop ->
-                    mBuilder.mOutlineInsetTop = ta.getDimensionPixelSize(index, 0)
-                R.styleable.PUIRelativeLayout_pui_outlineInsetBottom ->
-                    mBuilder.mOutlineInsetBottom = ta.getDimensionPixelSize(index, 0)
-                R.styleable.PUIRelativeLayout_pui_outlineExcludePadding ->
-                    mBuilder.mIsOutlineExcludePadding = ta.getBoolean(index, false)
             }
         }
         ta.recycle()
@@ -174,9 +162,6 @@ open class PUIRelativeLayout : PUIAlphaRelativeLayout, IPUILayout {
     override fun setUseThemeGeneralShadowElevation() =
         mLayoutHelper.setUseThemeGeneralShadowElevation()
 
-    override fun setOutlineExcludePadding(outlineExcludePadding: Boolean) =
-        mLayoutHelper.setOutlineExcludePadding(outlineExcludePadding)
-
     override fun setShadowElevation(elevation: Int) =
         mLayoutHelper.setShadowElevation(elevation)
 
@@ -196,14 +181,6 @@ open class PUIRelativeLayout : PUIAlphaRelativeLayout, IPUILayout {
         mLayoutHelper.setRadius(radius, hideRadiusSide)
 
     override fun getRadius(): Int = mLayoutHelper.getRadius()
-
-    override fun setOutlineInset(left: Int, top: Int, right: Int, bottom: Int) =
-        mLayoutHelper.setOutlineInset(left, top, right, bottom)
-
-    override fun setShowBorderOnlyBeforeL(showBorderOnlyBeforeL: Boolean) {
-        mLayoutHelper.setShowBorderOnlyBeforeL(showBorderOnlyBeforeL)
-        invalidate()
-    }
 
     override fun setHideRadiusSide(hideRadiusSide: Int) =
         mLayoutHelper.setHideRadiusSide(hideRadiusSide)

@@ -16,176 +16,195 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton
-                android:id="@+id/btn_submit"
-                style="@style/gradientSubmitStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="25dp"
-                android:text="i am Button" />
 
             <com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView
-                android:id="@+id/tv_submit"
-                style="@style/gradientSubmitStyle"
-                android:layout_width="match_parent"
+                android:id="@+id/btn_submit"
+                style="@style/commSubmitBottomStyle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="25dp"
+                android:paddingLeft="18dp"
+                android:paddingRight="18dp"
+                android:text="权益说明"
                 android:clickable="true"
-                android:text="i am TextView"
-                app:pui_disableColor="#CCCCCC"
-                app:pui_pressedAlpha="0.5"
-                app:pui_primaryColor="#523666" />
+                android:textColor="#000000 "
+                app:pui_radiusBottomLeft="@dimen/dp_10"
+                app:pui_borderColor="#000000 "
+                app:pui_borderWidth="1dp"
+                app:pui_disableAlpha="0.1"
+                app:pui_disableColor="#000000"
+                app:pui_primaryColor="#ffffff" />
 
-            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundFrameLayout
-                android:id="@+id/fl_container"
-                android:layout_width="match_parent"
-                android:layout_height="68dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="25dp"
-                app:pui_disableColor="#999999"
-                app:pui_isRadiusAdjustBounds="false"
-                app:pui_radius="15dp"
-                app:pui_secondaryColor="#333333">
+            <!--            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton-->
+            <!--                android:id="@+id/btn_submit"-->
+            <!--                style="@style/gradientSubmitStyle"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="25dp"-->
+            <!--                android:layout_marginTop="25dp"-->
+            <!--                android:layout_marginRight="25dp"-->
+            <!--                android:text="i am Button" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="i am PUIRoundFrameLayout"
-                    android:textColor="#FFFFFF" />
+            <!--            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView-->
+            <!--                android:id="@+id/tv_submit"-->
+            <!--                style="@style/gradientSubmitStyle"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="25dp"-->
+            <!--                android:layout_marginTop="25dp"-->
+            <!--                android:layout_marginRight="25dp"-->
+            <!--                android:clickable="true"-->
+            <!--                android:text="i am TextView"-->
+            <!--                app:pui_disableColor="#CCCCCC"-->
+            <!--                app:pui_pressedAlpha="0.5"-->
+            <!--                app:pui_primaryColor="#523666" />-->
 
-                <com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView
-                    android:id="@+id/tv_setting"
-                    style="@style/gradientSubmitStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_gravity="right"
-                    android:clickable="true"
-                    android:paddingLeft="25dp"
-                    android:paddingTop="8dp"
-                    android:paddingRight="25dp"
-                    android:paddingBottom="8dp"
-                    android:text="设置"
-                    android:textColor="#FFFFFF"
-                    android:textSize="15dp"
-                    app:pui_disableColor="#66FF0000"
-                    app:pui_pressedAlpha="0.6"
-                    app:pui_radiusBottomLeft="15dp"
-                    app:pui_radiusBottomRight="0dp"
-                    app:pui_radiusTopLeft="0dp"
-                    app:pui_radiusTopRight="15dp" />
+            <!--            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundFrameLayout-->
+            <!--                android:id="@+id/fl_container"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="68dp"-->
+            <!--                android:layout_marginLeft="25dp"-->
+            <!--                android:layout_marginTop="25dp"-->
+            <!--                android:layout_marginRight="25dp"-->
+            <!--                app:pui_disableColor="#999999"-->
+            <!--                app:pui_isRadiusAdjustBounds="false"-->
+            <!--                app:pui_radius="15dp"-->
+            <!--                app:pui_secondaryColor="#333333">-->
 
-            </com.pilaipiwang.pui.widget.roundwidget.PUIRoundFrameLayout>
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_gravity="center"-->
+            <!--                    android:text="i am PUIRoundFrameLayout"-->
+            <!--                    android:textColor="#FFFFFF" />-->
 
-            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundLinearLayout
-                android:id="@+id/ll_container"
-                android:layout_width="match_parent"
-                android:layout_height="68dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="25dp"
-                android:gravity="center"
-                app:pui_disableColor="#999999"
-                app:pui_isRadiusAdjustBounds="false"
-                app:pui_radiusBottomLeft="0dp"
-                app:pui_radiusBottomRight="10dp"
-                app:pui_radiusTopLeft="10dp"
-                app:pui_radiusTopRight="0dp"
-                app:pui_secondaryColor="#333333">
+            <!--                <com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView-->
+            <!--                    android:id="@+id/tv_setting"-->
+            <!--                    style="@style/gradientSubmitStyle"-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="35dp"-->
+            <!--                    android:layout_gravity="right"-->
+            <!--                    android:clickable="true"-->
+            <!--                    android:paddingLeft="25dp"-->
+            <!--                    android:paddingTop="8dp"-->
+            <!--                    android:paddingRight="25dp"-->
+            <!--                    android:paddingBottom="8dp"-->
+            <!--                    android:text="设置"-->
+            <!--                    android:textColor="#FFFFFF"-->
+            <!--                    android:textSize="15dp"-->
+            <!--                    app:pui_disableColor="#66FF0000"-->
+            <!--                    app:pui_pressedAlpha="0.6"-->
+            <!--                    app:pui_radiusBottomLeft="15dp"-->
+            <!--                    app:pui_radiusBottomRight="0dp"-->
+            <!--                    app:pui_radiusTopLeft="0dp"-->
+            <!--                    app:pui_radiusTopRight="15dp" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="i am PUIRoundLinearLayout"
-                    android:textColor="#FFFFFF" />
+            <!--            </com.pilaipiwang.pui.widget.roundwidget.PUIRoundFrameLayout>-->
 
-            </com.pilaipiwang.pui.widget.roundwidget.PUIRoundLinearLayout>
+            <!--            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundLinearLayout-->
+            <!--                android:id="@+id/ll_container"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="68dp"-->
+            <!--                android:layout_marginLeft="25dp"-->
+            <!--                android:layout_marginTop="25dp"-->
+            <!--                android:layout_marginRight="25dp"-->
+            <!--                android:gravity="center"-->
+            <!--                app:pui_disableColor="#999999"-->
+            <!--                app:pui_isRadiusAdjustBounds="false"-->
+            <!--                app:pui_radiusBottomLeft="0dp"-->
+            <!--                app:pui_radiusBottomRight="10dp"-->
+            <!--                app:pui_radiusTopLeft="10dp"-->
+            <!--                app:pui_radiusTopRight="0dp"-->
+            <!--                app:pui_secondaryColor="#333333">-->
 
-            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundRelativeLayout
-                android:id="@+id/rl_container"
-                android:layout_width="match_parent"
-                android:layout_height="68dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="25dp"
-                android:layout_marginRight="25dp"
-                android:gravity="center"
-                app:pui_disableColor="#999999"
-                app:pui_isRadiusAdjustBounds="false"
-                app:pui_radiusBottomLeft="0dp"
-                app:pui_radiusBottomRight="30dp"
-                app:pui_radiusTopLeft="30dp"
-                app:pui_radiusTopRight="0dp"
-                app:pui_secondaryColor="#333333">
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_gravity="center"-->
+            <!--                    android:text="i am PUIRoundLinearLayout"-->
+            <!--                    android:textColor="#FFFFFF" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="i am PUIRoundRelativeLayout"
-                    android:textColor="#FFFFFF" />
+            <!--            </com.pilaipiwang.pui.widget.roundwidget.PUIRoundLinearLayout>-->
 
-            </com.pilaipiwang.pui.widget.roundwidget.PUIRoundRelativeLayout>
+            <!--            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundRelativeLayout-->
+            <!--                android:id="@+id/rl_container"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="68dp"-->
+            <!--                android:layout_marginLeft="25dp"-->
+            <!--                android:layout_marginTop="25dp"-->
+            <!--                android:layout_marginRight="25dp"-->
+            <!--                android:gravity="center"-->
+            <!--                app:pui_disableColor="#999999"-->
+            <!--                app:pui_isRadiusAdjustBounds="false"-->
+            <!--                app:pui_radiusBottomLeft="0dp"-->
+            <!--                app:pui_radiusBottomRight="30dp"-->
+            <!--                app:pui_radiusTopLeft="30dp"-->
+            <!--                app:pui_radiusTopRight="0dp"-->
+            <!--                app:pui_secondaryColor="#333333">-->
 
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <!--                <TextView-->
+            <!--                    android:layout_width="wrap_content"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_gravity="center"-->
+            <!--                    android:text="i am PUIRoundRelativeLayout"-->
+            <!--                    android:textColor="#FFFFFF" />-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginRight="25dp"
-                    android:orientation="horizontal">
+            <!--            </com.pilaipiwang.pui.widget.roundwidget.PUIRoundRelativeLayout>-->
 
-                    <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton
-                        style="@style/commSubmitBottomStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="18dp"
-                        android:paddingRight="18dp"
-                        android:text="取消订单"
-                        android:textColor="#999999"
-                        app:pui_borderColor="#999999"
-                        app:pui_borderWidth="1dp"
-                        app:pui_pressedAlpha="0.5" />
+            <!--            <HorizontalScrollView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content">-->
 
-                    <com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView
-                        style="@style/commSubmitBottomStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:paddingLeft="18dp"
-                        android:paddingRight="18dp"
-                        android:clickable="true"
-                        android:text="立即付款"
-                        android:textColor="#FF0000"
-                        app:pui_borderColor="#FF0000"
-                        app:pui_borderWidth="1dp"
-                        app:pui_pressedAlpha="0.5" />
+            <!--                <LinearLayout-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginLeft="25dp"-->
+            <!--                    android:layout_marginTop="25dp"-->
+            <!--                    android:layout_marginRight="25dp"-->
+            <!--                    android:orientation="horizontal">-->
 
-                    <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton
-                        style="@style/commSubmitBottomStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="25dp"
-                        android:paddingLeft="18dp"
-                        android:paddingRight="18dp"
-                        android:text="权益说明"
-                        android:textColor="#FFD99B "
-                        app:pui_borderColor="#FFD99B "
-                        app:pui_borderWidth="1dp"
-                        app:pui_primaryColor="#333333" />
+            <!--                    <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton-->
+            <!--                        style="@style/commSubmitBottomStyle"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:paddingLeft="18dp"-->
+            <!--                        android:paddingRight="18dp"-->
+            <!--                        android:text="取消订单"-->
+            <!--                        android:textColor="#999999"-->
+            <!--                        app:pui_borderColor="#999999"-->
+            <!--                        app:pui_borderWidth="1dp"-->
+            <!--                        app:pui_pressedAlpha="0.5" />-->
 
-                </LinearLayout>
+            <!--                    <com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView-->
+            <!--                        style="@style/commSubmitBottomStyle"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginLeft="25dp"-->
+            <!--                        android:paddingLeft="18dp"-->
+            <!--                        android:paddingRight="18dp"-->
+            <!--                        android:clickable="true"-->
+            <!--                        android:text="立即付款"-->
+            <!--                        android:textColor="#FF0000"-->
+            <!--                        app:pui_borderColor="#FF0000"-->
+            <!--                        app:pui_borderWidth="1dp"-->
+            <!--                        app:pui_pressedAlpha="0.5" />-->
 
-            </HorizontalScrollView>
+            <!--                    <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton-->
+            <!--                        style="@style/commSubmitBottomStyle"-->
+            <!--                        android:layout_width="wrap_content"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:layout_marginLeft="25dp"-->
+            <!--                        android:paddingLeft="18dp"-->
+            <!--                        android:paddingRight="18dp"-->
+            <!--                        android:text="权益说明"-->
+            <!--                        android:textColor="#FFD99B "-->
+            <!--                        app:pui_borderColor="#FFD99B "-->
+            <!--                        app:pui_borderWidth="1dp"-->
+            <!--                        app:pui_primaryColor="#333333" />-->
+
+            <!--                </LinearLayout>-->
+
+            <!--            </HorizontalScrollView>-->
 
             <Button
                 android:id="@+id/btn_enable"

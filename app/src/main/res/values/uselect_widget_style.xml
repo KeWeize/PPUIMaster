@@ -3,29 +3,25 @@
 
     <!--############# TopBar start #############-->
     <style name="USelectTopBar">
-        <item name="pui_topbar_need_separator">false</item>
-        <item name="pui_topbar_separator_color">@android:color/transparent</item>
-        <item name="pui_topbar_separator_height">0dp</item>
-        <item name="pui_topbar_bg_color">@color/pui_config_color_white</item>
-        <!--titile-->
-        <item name="pui_topbar_title_container_padding_hor">10dp</item>
+        <item name="android:paddingLeft">4dp</item>
+        <item name="android:paddingRight">4dp</item>
+        <item name="pui_topbar_title_container_padding_hor">8dp</item>
         <item name="pui_topbar_title_text_size">18sp</item>
         <item name="pui_topbar_title_with_subtitle_text_size">15sp</item>
         <item name="pui_topbar_title_text_color">#333333</item>
         <item name="pui_topbar_subtitle_text_size">13sp</item>
-        <item name="pui_topbar_subtitle_text_color">@color/pui_config_color_gray_3</item>
+        <item name="pui_topbar_subtitle_text_color">#666666</item>
         <!--side-->
-        <item name="pui_topbar_left_back_drawable_id">@drawable/pui_default_left_back_drawable
+        <item name="pui_topbar_left_back_drawable_id">@drawable/pp_default_back_icon
         </item>
-        <item name="pui_topbar_side_container_padding_hor">8dp</item>
-        <item name="pui_topbar_side_imagebutton_width">32dp</item>
-        <item name="pui_topbar_side_imagebutton_height">32dp</item>
-        <item name="pui_topbar_side_imagebutton_padding_hor">5dp</item>
-        <item name="pui_topbar_side_imagebutton_margin_hor">10dp</item>
+        <item name="pui_topbar_side_imagebutton_width">36dp</item>
+        <item name="pui_topbar_side_imagebutton_height">36dp</item>
+        <item name="pui_topbar_side_imagebutton_padding">8dp</item>
+        <item name="pui_topbar_side_imagebutton_margin_hor">0dp</item>
         <item name="pui_topbar_side_textview_text_size">16sp</item>
-        <item name="pui_topbar_side_textview_text_color">@color/pui_config_color_gray_3</item>
+        <item name="pui_topbar_side_textview_text_color">#666666</item>
         <item name="pui_topbar_side_textview_padding_hor">10dp</item>
-        <item name="pui_topbar_side_textview_padding_hor">10dp</item>
+        <item name="pui_topbar_left_back_need_show">true</item>
     </style>
     <!--#############  TopBar end #############-->
 
@@ -77,7 +73,6 @@
         <item name="android:gravity">center</item>
         <item name="android:minHeight">42dp</item>
         <item name="android:minWidth">64dp</item>
-        <item name="pui_pressedAlpha">0.85</item>
     </style>
 
     <style name="USelectDialog.Action.Positive">
@@ -92,7 +87,6 @@
         <item name="android:textColor">#FF0000</item>
         <item name="pui_borderColor">#FF0000</item>
         <item name="pui_borderWidth">1dp</item>
-        <item name="pui_pressedAlpha">0.5</item>
     </style>
     <!--############# Dialog end #############-->
 

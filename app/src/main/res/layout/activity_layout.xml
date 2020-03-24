@@ -18,64 +18,72 @@
             android:orientation="vertical">
 
             <com.pilaipiwang.pui.layout.PUIFrameLayout
-                android:layout_width="280dp"
+                android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
                 android:background="#526399"
+                android:maxWidth="180dp"
+                app:pui_outerNormalColor="#FFFFFF"
                 android:clickable="true"
-                android:padding="10dp"
-                android:text="i am PUIAlphaTextView"
+                android:text="i am PUIAlphaTextViewi am PUIAlphaTextViewi am PUIAlphaTextViewi am PUIAlphaTextView"
                 android:textColor="#FFF"
-                app:pui_radius="10dp" />
-
-            <com.pilaipiwang.pui.layout.PUILinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:padding="15dp"
-                app:pui_bottomDividerColor="#CCCCCC"
-                app:pui_bottomDividerHeight="1dp"
-                app:pui_bottomDividerInsetLeft="15dp"
-                app:pui_bottomDividerInsetRight="15dp">
+                app:pui_radius="10dp" >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minWidth="100dp"
-                    android:text="手机号码" />
+                    android:text="i am PUIAlphaTextViewi am PUIAlphaTextViewi am PUIAlphaTextViewi am PUIAlphaTextView"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="181****5856" />
+            </com.pilaipiwang.pui.layout.PUIFrameLayout>
 
-            </com.pilaipiwang.pui.layout.PUILinearLayout>
+<!--            <com.pilaipiwang.pui.layout.PUILinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="15dp"-->
+<!--                android:padding="15dp"-->
+<!--                app:pui_bottomDividerColor="#CCCCCC"-->
+<!--                app:pui_bottomDividerHeight="1dp"-->
+<!--                app:pui_bottomDividerInsetLeft="15dp"-->
+<!--                app:pui_bottomDividerInsetRight="15dp">-->
 
-            <com.pilaipiwang.pui.layout.PUILinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                app:pui_bottomDividerColor="#CCCCCC"
-                app:pui_bottomDividerHeight="1dp"
-                app:pui_bottomDividerInsetLeft="15dp"
-                app:pui_bottomDividerInsetRight="15dp">
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:minWidth="100dp"-->
+<!--                    android:text="手机号码" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:minWidth="100dp"
-                    android:text="昵称" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="181****5856" />-->
 
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="38dp"
-                    android:background="@null"
-                    android:hint="请输入昵称"
-                    android:textSize="14sp" />
+<!--            </com.pilaipiwang.pui.layout.PUILinearLayout>-->
 
-            </com.pilaipiwang.pui.layout.PUILinearLayout>
+<!--            <com.pilaipiwang.pui.layout.PUILinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_margin="15dp"-->
+<!--                android:paddingLeft="15dp"-->
+<!--                android:paddingRight="15dp"-->
+<!--                app:pui_bottomDividerColor="#CCCCCC"-->
+<!--                app:pui_bottomDividerHeight="1dp"-->
+<!--                app:pui_bottomDividerInsetLeft="15dp"-->
+<!--                app:pui_bottomDividerInsetRight="15dp">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:minWidth="100dp"-->
+<!--                    android:text="昵称" />-->
+
+<!--                <EditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="38dp"-->
+<!--                    android:background="@null"-->
+<!--                    android:hint="请输入昵称"-->
+<!--                    android:textSize="14sp" />-->
+
+<!--            </com.pilaipiwang.pui.layout.PUILinearLayout>-->
 
         </LinearLayout>
 

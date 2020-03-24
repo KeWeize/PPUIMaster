@@ -82,4 +82,12 @@ internal class PUIAlphaViewHelper {
         onEnabledChanged(target, target.isEnabled)
     }
 
+    fun setPressedAlpha(alpha: Float) {
+        this.mPressedAlpha = alpha
+    }
+
+    fun setDisableAlpha(alpha: Float) {
+        this.mDisabledAlpha = alpha
+    }
+
 }

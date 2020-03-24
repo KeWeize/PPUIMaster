@@ -55,15 +55,9 @@
     <attr name="pui_borderWidth" format="dimension" />
     <attr name="pui_outerNormalColor" format="color|reference" />
     <!--阴影-->
-    <attr name="pui_showBorderOnlyBeforeL" format="boolean" />
     <attr name="pui_shadowElevation" format="dimension" />
     <attr name="pui_useThemeGeneralShadowElevation" format="boolean" />
     <attr name="pui_shadowAlpha" format="float" />
-    <attr name="pui_outlineInsetTop" format="dimension" />
-    <attr name="pui_outlineInsetLeft" format="dimension" />
-    <attr name="pui_outlineInsetRight" format="dimension" />
-    <attr name="pui_outlineInsetBottom" format="dimension" />
-    <attr name="pui_outlineExcludePadding" format="boolean" />
 
     <!--layout FrameLayout-->
     <declare-styleable name="PUIFrameLayout">
@@ -92,15 +86,9 @@
         <attr name="pui_borderWidth" />
         <attr name="pui_outerNormalColor" />
         <attr name="pui_hideRadiusSide" />
-        <attr name="pui_showBorderOnlyBeforeL" />
         <attr name="pui_shadowElevation" />
         <attr name="pui_useThemeGeneralShadowElevation" />
         <attr name="pui_shadowAlpha" />
-        <attr name="pui_outlineInsetTop" />
-        <attr name="pui_outlineInsetLeft" />
-        <attr name="pui_outlineInsetRight" />
-        <attr name="pui_outlineInsetBottom" />
-        <attr name="pui_outlineExcludePadding" />
     </declare-styleable>
 
     <!--layout LinearLayout-->
@@ -130,15 +118,9 @@
         <attr name="pui_borderWidth" />
         <attr name="pui_outerNormalColor" />
         <attr name="pui_hideRadiusSide" />
-        <attr name="pui_showBorderOnlyBeforeL" />
         <attr name="pui_shadowElevation" />
         <attr name="pui_useThemeGeneralShadowElevation" />
         <attr name="pui_shadowAlpha" />
-        <attr name="pui_outlineInsetTop" />
-        <attr name="pui_outlineInsetLeft" />
-        <attr name="pui_outlineInsetRight" />
-        <attr name="pui_outlineInsetBottom" />
-        <attr name="pui_outlineExcludePadding" />
     </declare-styleable>
 
     <!--layout LinearLayout-->
@@ -168,15 +150,9 @@
         <attr name="pui_borderWidth" />
         <attr name="pui_outerNormalColor" />
         <attr name="pui_hideRadiusSide" />
-        <attr name="pui_showBorderOnlyBeforeL" />
         <attr name="pui_shadowElevation" />
         <attr name="pui_useThemeGeneralShadowElevation" />
         <attr name="pui_shadowAlpha" />
-        <attr name="pui_outlineInsetTop" />
-        <attr name="pui_outlineInsetLeft" />
-        <attr name="pui_outlineInsetRight" />
-        <attr name="pui_outlineInsetBottom" />
-        <attr name="pui_outlineExcludePadding" />
     </declare-styleable>
 
     <!--round widget comm attr-->
@@ -194,7 +170,7 @@
     <attr name="pui_primaryColor" format="color" />
     <attr name="pui_secondaryColor" format="color" />
     <attr name="pui_disableColor" format="color" />
-    <attr name="pui_pressedAlpha" format="float" />
+    <attr name="pui_disableAlpha" format="float" />
 
     <!-- round widget -->
     <declare-styleable name="PUIRoundButton">
@@ -210,7 +186,7 @@
         <attr name="pui_primaryColor" />
         <attr name="pui_secondaryColor" />
         <attr name="pui_disableColor" />
-        <attr name="pui_pressedAlpha" />
+        <attr name="pui_disableAlpha" />
     </declare-styleable>
 
     <declare-styleable name="PUIRoundTextView">
@@ -226,7 +202,7 @@
         <attr name="pui_primaryColor" />
         <attr name="pui_secondaryColor" />
         <attr name="pui_disableColor" />
-        <attr name="pui_pressedAlpha" />
+        <attr name="pui_disableAlpha" />
     </declare-styleable>
 
     <declare-styleable name="PUIRoundFrameLayout">
@@ -242,7 +218,7 @@
         <attr name="pui_primaryColor" />
         <attr name="pui_secondaryColor" />
         <attr name="pui_disableColor" />
-        <attr name="pui_pressedAlpha" />
+        <attr name="pui_disableAlpha" />
     </declare-styleable>
 
     <declare-styleable name="PUIRoundLinearLayout">
@@ -258,7 +234,7 @@
         <attr name="pui_primaryColor" />
         <attr name="pui_secondaryColor" />
         <attr name="pui_disableColor" />
-        <attr name="pui_pressedAlpha" />
+        <attr name="pui_disableAlpha" />
     </declare-styleable>
 
     <declare-styleable name="PUIRoundRelativeLayout">
@@ -274,7 +250,7 @@
         <attr name="pui_primaryColor" />
         <attr name="pui_secondaryColor" />
         <attr name="pui_disableColor" />
-        <attr name="pui_pressedAlpha" />
+        <attr name="pui_disableAlpha" />
     </declare-styleable>
 
 </resources>

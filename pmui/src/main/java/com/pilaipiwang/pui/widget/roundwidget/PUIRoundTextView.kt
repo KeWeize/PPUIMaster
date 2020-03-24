@@ -7,7 +7,6 @@ import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.StateListDrawable
 import android.util.AttributeSet
 import com.pilaipiwang.pui.R
-import com.pilaipiwang.pui.alpha.PUIAlphaButton
 import com.pilaipiwang.pui.alpha.PUIAlphaTextView
 import com.pilaipiwang.pui.utils.PUIViewHelper
 
@@ -30,10 +29,13 @@ open class PUIRoundTextView : PUIAlphaTextView {
     }
 
     private fun init(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
+
         var mDisableColor: Int
-        var mPressedAlpha: Float
+        var mDisableAlpha: Float
+
         var mOrientationFlag: Int
-        val ta = context.obtainStyledAttributes(attrs, R.styleable.PUIRoundTextView, defStyleAttr, 0)
+        val ta =
+            context.obtainStyledAttributes(attrs, R.styleable.PUIRoundTextView, defStyleAttr, 0)
         val mBuilder = PUIRoundDrawable.Builder()
 
         mBuilder.primaryColor =
@@ -44,10 +46,7 @@ open class PUIRoundTextView : PUIAlphaTextView {
             ta.getColor(R.styleable.PUIRoundTextView_pui_borderColor, Color.TRANSPARENT)
         mBuilder.borderWidth =
             ta.getDimensionPixelSize(R.styleable.PUIRoundTextView_pui_borderWidth, 0)
-        mDisableColor = ta.getColor(R.styleable.PUIRoundTextView_pui_disableColor, Color.TRANSPARENT)
-        mPressedAlpha = ta.getFloat(R.styleable.PUIRoundTextView_pui_pressedAlpha, 1f)
         mOrientationFlag = ta.getInt(R.styleable.PUIRoundTextView_pui_gradientOrientation, 0)
-
         mBuilder.radius = ta.getDimensionPixelSize(R.styleable.PUIRoundTextView_pui_radius, 0)
         mBuilder.radiusTopLeft =
             ta.getDimensionPixelSize(R.styleable.PUIRoundTextView_pui_radiusTopLeft, 0)
@@ -59,6 +58,10 @@ open class PUIRoundTextView : PUIAlphaTextView {
             ta.getDimensionPixelSize(R.styleable.PUIRoundTextView_pui_radiusBottomRight, 0)
         mBuilder.isRadiusAdjustBounds =
             ta.getBoolean(R.styleable.PUIRoundTextView_pui_isRadiusAdjustBounds, true)
+
+        mDisableColor =
+            ta.getColor(R.styleable.PUIRoundTextView_pui_disableColor, 0)
+        mDisableAlpha = ta.getFloat(R.styleable.PUIRoundTextView_pui_disableAlpha, -1f)
 
         ta.recycle()
         mBuilder.gradientOrientation = when (mOrientationFlag) {
@@ -73,44 +76,52 @@ open class PUIRoundTextView : PUIAlphaTextView {
             else ->
                 GradientDrawable.Orientation.LEFT_RIGHT
         }
-        mPressedAlpha = if (mPressedAlpha < 0) {
-            0f
-        } else if (mPressedAlpha > 1) {
-            1f
-        } else {
-            mPressedAlpha
-        }
-
-        val drawable = generateDrawable(mBuilder, mPressedAlpha, mDisableColor)
+        val drawable = generateDrawable(mBuilder, mDisableAlpha, mDisableColor)
         PUIViewHelper.setBackgroundKeepingPadding(this, drawable)
-        setChangeAlphaWhenDisable(false)
-        setChangeAlphaWhenPress(false)
     }
 
     private fun generateDrawable(
-        builder: PUIRoundDrawable.Builder, pressedAlpha: Float, disabledColor: Int
+        builder: PUIRoundDrawable.Builder, disableAlpha: Float, disabledColor: Int
     ): Drawable {
 
         val mStateListDrawable = StateListDrawable()
 
+        // 生成正常背景
         val normalDrawable = builder.build()
         mStateListDrawable.addState(
             intArrayOf(android.R.attr.state_enabled, -android.R.attr.state_pressed),
             normalDrawable
         )
 
-        builder.pressedAlpha = pressedAlpha
-        val pressedDrawable = builder.build()
-        mStateListDrawable.addState(
-            intArrayOf(android.R.attr.state_pressed), pressedDrawable
-        )
+        // 组件不可用时（enable = false）
+        if (disabledColor != 0) {
+            builder.primaryColor = disabledColor
+            builder.secondaryColor = Color.TRANSPARENT
+            val disabledDrawable = builder.build()
+            mStateListDrawable.addState(
+                intArrayOf(-android.R.attr.state_enabled), disabledDrawable
+            )
+            // 如果传入了disable的背景色，则取消掉原来半透明的效果
+            setChangeAlphaWhenDisable(false)
+        } else if (disableAlpha in 0f..1f) {
+            setDisableAlpha(disableAlpha)
+        }
 
-        builder.primaryColor = disabledColor
-        builder.secondaryColor = Color.TRANSPARENT
-        val disabledDrawable = builder.build()
-        mStateListDrawable.addState(
-            intArrayOf(-android.R.attr.state_enabled), disabledDrawable
-        )
+        // 点击
+//        builder.pressedAlpha = pressedAlpha
+//        val pressedDrawable = builder.build()
+//        mStateListDrawable.addState(
+//            intArrayOf(android.R.attr.state_pressed), pressedDrawable
+//        )
+
+        // 不可用
+//        builder.primaryColor = disabledColor
+//        builder.secondaryColor = Color.TRANSPARENT
+//        val disabledDrawable = builder.build()
+//        mStateListDrawable.addState(
+//            intArrayOf(-android.R.attr.state_enabled), disabledDrawable
+//        )
+
         return mStateListDrawable
     }
 
