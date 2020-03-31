@@ -42,6 +42,32 @@
         <item name="pui_topbar_side_textview_padding_hor">5dp</item>
     </style>
 
+    <style name="PUI.MultiStatesLayout">
+        <item name="pui_multistates_icon_width">140dp</item>
+        <item name="pui_multistates_icon_height">140dp</item>
+        <item name="pui_multistates_text_color">#666666</item>
+        <item name="pui_multistates_text_size">16sp</item>
+        <item name="pui_multistates_subtext_color">#999999</item>
+        <item name="pui_multistates_subtext_size">14sp</item>
+        <item name="pui_multistates_empty_resId">@drawable/pui_default_ic_multi_states_empty</item>
+        <item name="pui_multistates_empty_text">@string/pui_default_multi_states_empty_text</item>
+        <item name="pui_multistates_empty_is_action_show">false</item>
+        <item name="pui_multistates_error_resId">@drawable/pui_default_ic_multi_states_error</item>
+        <item name="pui_multistates_error_text">@string/pui_default_multi_states_error_text</item>
+        <item name="pui_multistates_error_is_action_show">false</item>
+        <item name="pui_multistates_netoff_resId">@drawable/pui_default_ic_multi_states_netoff
+        </item>
+        <item name="pui_multistates_netoff_text">@string/pui_default_multi_states_netoff_text</item>
+        <item name="pui_multistates_netoff_subtext">
+            @string/pui_default_multi_states_netoff_subtext
+        </item>
+        <item name="pui_multistates_netoff_is_action_show">false</item>
+        <item name="pui_multistates_action_text">@string/pui_default_multi_states_action_text</item>
+        <item name="pui_multistates_loading_view_layoutId">
+            @layout/pui_include_default_multistates_loading_layout
+        </item>
+    </style>
+
     <style name="PUI.Dialog" parent="android:Theme.Dialog">
         <item name="android:backgroundDimAmount">?attr/pui_dialog_background_dim_amount</item>
         <item name="android:windowBackground">@color/pui_config_color_transparent</item>
@@ -88,7 +114,7 @@
         <item name="android:textColor">@color/pui_config_color_blue</item>
         <item name="android:textSize">14sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:minHeight">42dp</item>
+        <item name="android:minHeight">82dp</item>
         <item name="android:minWidth">64dp</item>
     </style>
 

@@ -22,8 +22,7 @@
     </style>
 
     <!-- 默认5.0+属性， 可复写覆盖 -->
-    <style name="AppConfigTheme" parent="AppBaseTheme">
-    </style>
+    <style name="AppConfigTheme" parent="AppBaseTheme"></style>
 
     <style name="PUI" parent="AppConfigTheme">
         <!-- 添加 mui widget 默认样式 -->
@@ -50,20 +49,27 @@
         <item name="pui_config_color_gray_7">@color/pui_config_color_gray_7</item>
         <item name="pui_config_color_gray_8">@color/pui_config_color_gray_8</item>
         <item name="pui_config_color_gray_9">@color/pui_config_color_gray_9</item>
+
         <!-- alpha -->
         <item name="pui_alpha_pressed">0.5</item>
         <item name="pui_alpha_disabled">0.5</item>
-        <!-- layout -->
+
+        <!-- layout，默认的阴影和半透明 -->
         <item name="pui_general_shadow_elevation">14dp</item>
         <item name="pui_general_shadow_alpha">0.25</item>
+
         <!-- topbar -->
-<!--        <item name="pui_topbar_height">44dp</item>-->
         <item name="pui_topbar_style">@style/PUI.TopBar</item>
+
+        <!-- PUIMultiStatesLayout -->
+        <item name="pui_multistateslayout_style">@style/PUI.MultiStatesLayout</item>
+
         <!-- dialog -->
         <item name="pui_dialog_background_dim_amount">0.6</item>
         <item name="pui_dialog_min_width">260dp</item>
-        <item name="pui_dialog_max_width">304dp</item>
+        <item name="pui_dialog_max_width">312dp</item>
         <item name="pui_dialog_title_style">@style/PUI.Dialog.Title</item>
+
         <item name="pui_dialog_message_content_style">@style/PUI.Dialog.MessageContent</item>
         <item name="pui_dialog_action_container_style">@style/PUI.Dialog.ActionContainer</item>
         <item name="pui_dialog_action_style">@style/PUI.Dialog.Action</item>

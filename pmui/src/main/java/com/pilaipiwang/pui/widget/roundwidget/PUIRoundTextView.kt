@@ -92,6 +92,11 @@ open class PUIRoundTextView : PUIAlphaTextView {
             intArrayOf(android.R.attr.state_enabled, -android.R.attr.state_pressed),
             normalDrawable
         )
+        mStateListDrawable.addState(
+            intArrayOf(android.R.attr.state_enabled, android.R.attr.state_pressed),
+            normalDrawable
+        )
+
 
         // 组件不可用时（enable = false）
         if (disabledColor != 0) {
@@ -105,6 +110,10 @@ open class PUIRoundTextView : PUIAlphaTextView {
             setChangeAlphaWhenDisable(false)
         } else if (disableAlpha in 0f..1f) {
             setDisableAlpha(disableAlpha)
+        } else {
+            mStateListDrawable.addState(
+                intArrayOf(-android.R.attr.state_enabled), normalDrawable
+            )
         }
 
         // 点击

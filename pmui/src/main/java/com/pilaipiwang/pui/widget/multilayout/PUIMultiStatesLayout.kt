@@ -2,289 +2,316 @@ package com.pilaipiwang.pui.widget.multilayout
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.InflateException
+import android.util.TypedValue
+import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.animation.AlphaAnimation
-import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.annotation.LayoutRes
+import com.pilaipiwang.pui.R
+import com.pilaipiwang.pui.widget.loading.PUILoadingView
 
 /**
  * @author: vitar
- * @date:   2019/11/11
+ * @date:   2020/3/25
+ *
+ * 拓展自 PUIMultiStatesAbstract，提供了具体的多状态布局和拓展的api方法
  */
-abstract class PUIMultiStatesLayout : FrameLayout {
-
-    private val TAG = PUIMultiStatesLayout::class.java.simpleName
-
-    companion object {
-        /**
-         * 切换动画状态
-         */
-        private const val ANIM_TIME_DELAYED: Long = 300
-        /**
-         * 内容布局状态
-         */
-        internal const val STATES_CONTENT = 0x01
-        /**
-         * 加载中状态
-         */
-        internal const val STATES_LOADING = 0x02
-        /**
-         * 空状态
-         */
-        internal const val STATES_EMPTY = 0x03
-        /**
-         * 网络异常
-         */
-        internal const val STATES_NETOFF = 0x04
-        /**
-         * 错误状态
-         */
-        internal const val STATES_ERROR = 0x05
-        /**
-         * 其他自定义状态
-         */
-        internal const val STATES_CUSTOM_EXCEPTION = 0x06
-    }
+class PUIMultiStatesLayout : PUIMultiStatesAbstract {
 
     /**
-     * 内容视图
+     * 加载状态视图
      */
-    protected var mContentView: View? = null
+    private var mLoadingView: View? = null
+    private var mLoadingAnimView: PUILoadingView? = null
     /**
-     * 加载视图
+     * 异常状态视图
      */
-    protected var mLoadingView: View? = null
+    private var mExceptionView: View? = null
+    private var mExceptionIconIv: ImageView? = null
+    private var mExceptionTextTv: TextView? = null
+    private var mExceptionSubTextTv: TextView? = null
+    private var mExceptionActionBtn: TextView? = null
     /**
-     * 空视图
+     * 属性
      */
-    protected var mEmptyView: View? = null
-    /**
-     * 异常视图
-     */
-    protected var mNetOffView: View? = null
-    /**
-     * 错误视图
-     */
-    protected var mErrorView: View? = null
-    /**
-     * 自定义异常视图
-     */
-    protected var mCustomExceptionView: View? = null
+    private var mIconWidth: Int = 0
+    private var mIconHeight: Int = 0
+    private var mEmptyResId = 0
+    private var mNetOffResId = 0
+    private var mErrorResId = 0
 
-    protected var mCurStates = -1
-    private val DEFAULT_LAYOUT_PARAMS =
-        LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+    private var mTextColor: Int = 0
+    private var mTextSize: Int = 0
+    private var mEmptyText: String? = null
+    private var mNetOffText: String? = null
+    private var mErrorText: String? = null
 
-    private var mPUIMultiStatesViewProvider: PUIMultiStatesViewProvider? = null
+    private var mSubTextColor: Int = 0
+    private var mSubTextSize: Int = 0
+    private var mEmptySubText: String? = null
+    private var mNetOffSubText: String? = null
+    private var mErrorSubText: String? = null
+
+    private var mEmptyIsActionBtnShow = false
+    private var mErrorIsActionBtnShow = false
+    private var mNetoffIsActionBtnShow = false
+    private var mActionBtnText = ""
+
+    @LayoutRes
+    private var mLoadingViewLayoutId: Int? = 0
+
+    /**
+     * 底部按钮点击回调
+     */
+    private var mOnMultiStatesActionListener: OnMultiStatesActionListener? = null
+
+    /**
+     * 记录当前异常布局类型
+     */
+    private var mExceptionType: MultiStatesType? = null
 
     constructor(context: Context) : this(context, null)
-    constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
+    constructor(context: Context, attrs: AttributeSet?) : this(
+        context,
+        attrs,
+        R.attr.pui_multistateslayout_style
+    )
+
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,
         defStyleAttr
     ) {
-        init()
+        initAttrs(context, attrs, defStyleAttr)
     }
 
-    private fun init() {
-        mPUIMultiStatesViewProvider = getMultiStateViewProvider()
-        if (mPUIMultiStatesViewProvider == null) {
-            throw InflateException(
-                "${PUIMultiStatesLayout::class.java.simpleName}'s mPUIMultiStatesViewProvider " +
-                        "should be assign value before onAttachedToWindow"
+    fun setOnMultiStatesActionListener(listener: OnMultiStatesActionListener) {
+        this.mOnMultiStatesActionListener = listener
+    }
+
+    /**
+     * 初始化属性
+     */
+    private fun initAttrs(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
+        val ta = context.obtainStyledAttributes(
+            attrs, R.styleable.PUIMultiStatesLayout, defStyleAttr, 0
+        )
+        // 异常状态 icon
+        mIconWidth =
+            ta.getDimensionPixelSize(R.styleable.PUIMultiStatesLayout_pui_multistates_icon_width, 0)
+        mIconHeight = ta.getDimensionPixelSize(
+            R.styleable.PUIMultiStatesLayout_pui_multistates_icon_height,
+            0
+        )
+        mEmptyResId = ta.getResourceId(
+            R.styleable.PUIMultiStatesLayout_pui_multistates_empty_resId,
+            R.drawable.pui_default_ic_multi_states_empty
+        )
+        mNetOffResId = ta.getResourceId(
+            R.styleable.PUIMultiStatesLayout_pui_multistates_netoff_resId,
+            R.drawable.pui_default_ic_multi_states_netoff
+        )
+        mErrorResId = ta.getResourceId(
+            R.styleable.PUIMultiStatesLayout_pui_multistates_error_resId,
+            R.drawable.pui_default_ic_multi_states_error
+        )
+        // 异常状态主文本
+        mTextColor = ta.getColor(R.styleable.PUIMultiStatesLayout_pui_multistates_text_color, 0)
+        mTextSize =
+            ta.getDimensionPixelSize(R.styleable.PUIMultiStatesLayout_pui_multistates_text_size, 0)
+        mEmptyText =
+            ta.getString(R.styleable.PUIMultiStatesLayout_pui_multistates_empty_text)
+                ?: context.getString(R.string.pui_default_multi_states_empty_text)
+        mErrorText =
+            ta.getString(R.styleable.PUIMultiStatesLayout_pui_multistates_error_text)
+                ?: context.getString(R.string.pui_default_multi_states_error_text)
+        mNetOffText =
+            ta.getString(R.styleable.PUIMultiStatesLayout_pui_multistates_netoff_text)
+                ?: context.getString(R.string.pui_default_multi_states_netoff_text)
+        // 异常状态副文本
+        mSubTextColor =
+            ta.getColor(R.styleable.PUIMultiStatesLayout_pui_multistates_subtext_color, 0)
+        mSubTextSize = ta.getDimensionPixelSize(
+            R.styleable.PUIMultiStatesLayout_pui_multistates_subtext_size,
+            0
+        )
+        mEmptySubText = ta.getString(R.styleable.PUIMultiStatesLayout_pui_multistates_empty_subtext)
+        mErrorSubText = ta.getString(R.styleable.PUIMultiStatesLayout_pui_multistates_error_subtext)
+        mNetOffSubText =
+            ta.getString(R.styleable.PUIMultiStatesLayout_pui_multistates_netoff_subtext)
+
+        mActionBtnText =
+            ta.getString(R.styleable.PUIMultiStatesLayout_pui_multistates_action_text)
+                ?: context.getString(R.string.pui_default_multi_states_action_text)
+        mEmptyIsActionBtnShow =
+            ta.getBoolean(
+                R.styleable.PUIMultiStatesLayout_pui_multistates_empty_is_action_show,
+                false
             )
-        }
-        mLoadingView = mPUIMultiStatesViewProvider!!.attachedLoadingLayout(context)
-        mEmptyView = mPUIMultiStatesViewProvider!!.attachedEmptyLayout(context)
-        mNetOffView = mPUIMultiStatesViewProvider!!.attachedNetOffLayout(context)
-        mErrorView = mPUIMultiStatesViewProvider!!.attachedErrorLayout(context)
-        mCustomExceptionView = mPUIMultiStatesViewProvider!!.attachedExceptionLayout(context)
-        addViewByCheckLegal(mLoadingView)
-        addViewByCheckLegal(mEmptyView)
-        addViewByCheckLegal(mNetOffView)
-        addViewByCheckLegal(mErrorView)
-        addViewByCheckLegal(mCustomExceptionView)
+        mErrorIsActionBtnShow =
+            ta.getBoolean(
+                R.styleable.PUIMultiStatesLayout_pui_multistates_error_is_action_show,
+                false
+            )
+        mNetoffIsActionBtnShow =
+            ta.getBoolean(
+                R.styleable.PUIMultiStatesLayout_pui_multistates_netoff_is_action_show,
+                false
+            )
+        mLoadingViewLayoutId = ta.getResourceId(
+            R.styleable.PUIMultiStatesLayout_pui_multistates_loading_view_layoutId,
+            R.layout.pui_include_default_multistates_loading_layout
+        )
+        ta.recycle()
+    }
 
-        // 初始化显示内容视图
-        showContentLayout()
+
+    /**
+     * 显示空状态
+     */
+    override fun showEmptyLayout() {
+        super.showExceptionLayout()
+        mExceptionType = MultiStatesType.STATES_EMPTY
+        updateExceptionLayout(
+            mEmptyResId,
+            mEmptyText,
+            mEmptySubText,
+            mActionBtnText,
+            mEmptyIsActionBtnShow
+        )
     }
 
     /**
-     * 注入 PUIMultiStatesViewProvider
+     * 显示网络异常布局
      */
-    fun setMultiStatesViewProvider(provider: PUIMultiStatesViewProvider) {
-        this.mPUIMultiStatesViewProvider = provider
+    fun showNetOffLayout() {
+        super.showExceptionLayout()
+        mExceptionType = MultiStatesType.STATES_NETOFF
+        updateExceptionLayout(
+            mNetOffResId,
+            mNetOffText,
+            mNetOffSubText,
+            mActionBtnText,
+            mNetoffIsActionBtnShow
+        )
     }
 
     /**
-     * 显示内容视图
+     * 显示服务器错误布局
      */
-    open fun showContentLayout() {
-        if (mCurStates == STATES_CONTENT) {
-            return
-        }
-        if (showGoalView(mContentView)) {
-            mCurStates = STATES_CONTENT
-        }
+    fun showErrorLayout() {
+        super.showExceptionLayout()
+        mExceptionType = MultiStatesType.STATES_ERROR
+        updateExceptionLayout(
+            mErrorResId,
+            mErrorText,
+            mErrorSubText,
+            mActionBtnText,
+            mErrorIsActionBtnShow
+        )
     }
 
     /**
-     * 显示正在加载中视图
+     * 显示异常界面
      */
-    open fun showLoadingLayout() {
-        if (mCurStates == STATES_LOADING) {
-            return
-        }
-        if (showGoalView(mLoadingView)) {
-            mCurStates = STATES_LOADING
-        }
+    private fun updateExceptionLayout(
+        resId: Int, text: CharSequence?, subText: CharSequence?,
+        actionText: CharSequence, showActionBtn: Boolean
+    ) {
+        resetAllExceptionViews()
+        mExceptionIconIv?.setImageResource(resId)
+        mExceptionTextTv?.text = text
+        mExceptionTextTv?.visibility = if (mExceptionTextTv?.text.isNullOrBlank()) GONE else VISIBLE
+        mExceptionSubTextTv?.text = subText
+        mExceptionSubTextTv?.visibility =
+            if (mExceptionSubTextTv?.text.isNullOrBlank()) GONE else VISIBLE
+        mExceptionActionBtn?.text = actionText
+        mExceptionActionBtn?.visibility = if (showActionBtn) VISIBLE else GONE
     }
 
     /**
-     * 显示空状态视图
+     * 提供默认的多状态视图提供者
      */
-    open fun showEmptyLayout() {
-        if (mCurStates == STATES_EMPTY) {
-            return
+    override fun attachMultiStatesViewProvider(): IMultiStatesViewProvider =
+        object : IMultiStatesViewProvider {
+
+            override fun attachedLoadingLayout(): View? = makeSureLoadingView()
+
+            /**
+             * 空状态跟异常状态公用一套布局
+             */
+            override fun attachedEmptyLayout(): View? = makeSureExceptionView()
+
+            override fun attachedExceptionLayout(): View? = makeSureExceptionView()
         }
-        if (showGoalView(mEmptyView)) {
-            mCurStates = STATES_EMPTY
-        }
-    }
 
     /**
-     * 显示网络异常视图
+     * 返回异常视图
      */
-    open fun showNetOffLayout() {
-        if (mCurStates == STATES_NETOFF) {
-            return
-        }
-        if (showGoalView(mNetOffView)) {
-            mCurStates = STATES_NETOFF
-        }
-
-    }
-
-    open fun showErrorLayout() {
-        if (mCurStates == STATES_ERROR) {
-            return
-        }
-        if (showGoalView(mErrorView)) {
-            mCurStates = STATES_ERROR
-        }
-    }
-
-    open fun showCustomExceptionLayout() {
-        if (mCurStates == STATES_CUSTOM_EXCEPTION) {
-            return
-        }
-        if (showGoalView(mCustomExceptionView)) {
-            mCurStates = STATES_CUSTOM_EXCEPTION
-        }
-    }
-
-    /**
-     * 显示当前层级下指定的子 View，并且隐藏其他子 View
-     * @return 切换显示是否成功，如果目标 view 为 null，或者目标 view 不存在与当前视图中返回 false
-     */
-    protected open fun showGoalView(view: View?): Boolean {
-        if (view == null || !checkIsInContainer(view)) {
-            return false
-        }
-        val count = childCount
-        for (i in 0 until count) {
-            val child = getChildAt(i)
-            if (child === view) {
-                child.visibility = View.VISIBLE
-                showDisplayAnimation(view)
-            } else {
-                child.visibility = View.GONE
+    private fun makeSureExceptionView(): View {
+        if (mExceptionView == null) {
+            mExceptionView = LayoutInflater.from(context)
+                .inflate(R.layout.pui_include_default_multistates_exception_layout, null)
+            mExceptionIconIv = mExceptionView!!.findViewById(R.id.iv_exception_icon)
+            mExceptionTextTv = mExceptionView!!.findViewById(R.id.tv_exception_text)
+            mExceptionSubTextTv = mExceptionView!!.findViewById(R.id.tv_exception_subtext)
+            mExceptionActionBtn = mExceptionView!!.findViewById(R.id.btn_exception_action)
+            // 根据属性动态设置 icon 宽高
+            if (mIconWidth > 0 && mIconHeight > 0) {
+                val vlp = mExceptionIconIv!!.layoutParams
+                vlp.width = mIconWidth
+                vlp.height = mIconHeight
+            }
+            mExceptionTextTv!!.setTextColor(mTextColor)
+            mExceptionTextTv!!.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTextSize.toFloat())
+            mExceptionSubTextTv!!.setTextColor(mSubTextColor)
+            mExceptionSubTextTv!!.setTextSize(TypedValue.COMPLEX_UNIT_PX, mSubTextSize.toFloat())
+            mExceptionActionBtn!!.setOnClickListener {
+                if (mCurStates == STATES_EXCEPTION) {
+                    mOnMultiStatesActionListener?.onClick(mExceptionActionBtn!!, mExceptionType!!)
+                }
             }
         }
-        return true
+        return mExceptionView!!
     }
 
     /**
-     * 执行View动画
+     * 返回加载视图
      */
-    private fun showDisplayAnimation(inView: View?) {
-        if (inView == mLoadingView) {
-            // 过滤 LoadingView 的进场动画，避免加载时间过短，导致进场动画还没开始执行就被切换掉
-            return
+    private fun makeSureLoadingView(): View {
+        if (mLoadingView == null) {
+            mLoadingView = LayoutInflater.from(context)
+                .inflate(mLoadingViewLayoutId!!, null)
+            mLoadingAnimView =
+                mLoadingView!!.findViewById(R.id.v_pui_default_multistates_loading_view)
         }
-        val alpha = AlphaAnimation(0f, 1f)
-        alpha.duration = ANIM_TIME_DELAYED
-        inView?.startAnimation(alpha)
+        return mLoadingView!!
     }
 
     /**
-     * 用于检查添加的视图是否是内容视图
+     * 重置异常布局控件
      */
-    private fun checkContentView(view: View?) {
-        // 添加的是加载视图或内部异常视图
-        if (view === mLoadingView || view === mEmptyView || view === mNetOffView || view === mErrorView) {
-            return
-        }
-        if (mContentView != null && view !== mContentView) {
-            // 多布局控件只允许包裹一个子View内容
-            throw InflateException("${PUIMultiStatesLayout::class.java.simpleName} only one child view is allowed")
-        }
-        mContentView = view
+    private fun resetAllExceptionViews() {
+        mExceptionIconIv?.setImageBitmap(null)
+        mExceptionTextTv?.text = ""
+        mExceptionSubTextTv?.text = ""
+        mExceptionActionBtn?.text = ""
+        mExceptionActionBtn?.visibility = GONE
     }
 
     /**
-     * 检查目标 view 是否存在于当前布局中
-     * 如果不存在则添加
+     * 底部行为按钮点击回调
      */
-    private fun addViewByCheckLegal(view: View?) {
-        for (i in 0 until childCount) {
-            if (view == null || view === getChildAt(i)) {
-                return
-            }
-        }
-        addView(view, DEFAULT_LAYOUT_PARAMS)
+    interface OnMultiStatesActionListener {
+        fun onClick(view: View, type: MultiStatesType)
     }
 
     /**
-     * 检查目标 view 是否存在于当前布局中
+     * 枚举类型，用于点击回调时返回当前的异常类型
      */
-    private fun checkIsInContainer(view: View?): Boolean {
-        for (i in 0 until childCount) {
-            if (view === getChildAt(i)) {
-                return true
-            }
-        }
-        return false
-    }
-
-    abstract fun getMultiStateViewProvider(): PUIMultiStatesViewProvider?
-
-    /**================== 重写addView方法，控制添加子内容View数量 ======================*/
-    override fun addView(child: View?) {
-        checkContentView(child)
-        super.addView(child)
-    }
-
-    override fun addView(child: View?, index: Int) {
-        checkContentView(child)
-        super.addView(child, index)
-    }
-
-    override fun addView(child: View?, width: Int, height: Int) {
-        checkContentView(child)
-        super.addView(child, width, height)
-    }
-
-    override fun addView(child: View?, params: ViewGroup.LayoutParams?) {
-        checkContentView(child)
-        super.addView(child, params)
-    }
-
-    override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
-        checkContentView(child)
-        super.addView(child, index, params)
+    enum class MultiStatesType {
+        STATES_EMPTY, STATES_ERROR, STATES_NETOFF
     }
 
 }

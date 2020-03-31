@@ -2,12 +2,11 @@ package com.pilaipiwang.ppuimaster.widget
 
 import android.os.Handler
 import android.view.View
-import android.widget.Toast
 import butterknife.BindView
 import butterknife.OnClick
 import com.pilaipiwang.ppuimaster.R
 import com.pilaipiwang.ppuimaster.base.BaseActivity
-import com.pilaipiwang.pui.widget.multilayout.PUIDefaultMultiStatesLayout
+import com.pilaipiwang.pui.widget.multilayout.PUIMultiStatesLayout
 
 /**
  * @author: vitar
@@ -16,46 +15,49 @@ import com.pilaipiwang.pui.widget.multilayout.PUIDefaultMultiStatesLayout
 class PUIMultiStatesLayoutActivity : BaseActivity() {
 
     @BindView(R.id.stateslayout)
-    lateinit var mStatesLayout: PUIDefaultMultiStatesLayout
+    lateinit var mStatesLayout: PUIMultiStatesLayout
 
     override fun initView() {
-
-        mStatesLayout.setDefaultMultiStatesActionListener(object :
-            PUIDefaultMultiStatesLayout.OnDefaultMultiStatesActionListener {
-            override fun onClick(view: View, type: PUIDefaultMultiStatesLayout.MultiStatesType) {
-                when (type) {
-                    PUIDefaultMultiStatesLayout.MultiStatesType.STATES_EMPTY ->
-                        Toast.makeText(
-                            this@PUIMultiStatesLayoutActivity,
-                            "空状态请重试",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                    PUIDefaultMultiStatesLayout.MultiStatesType.STATES_ERROR ->
-                        Toast.makeText(
-                            this@PUIMultiStatesLayoutActivity,
-                            "错误状态请重试",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                    PUIDefaultMultiStatesLayout.MultiStatesType.STATES_NETOFF ->
-                        Toast.makeText(
-                            this@PUIMultiStatesLayoutActivity,
-                            "网络异常请重试",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    else ->
-                        Toast.makeText(
-                            this@PUIMultiStatesLayoutActivity,
-                            "其他异常请重试",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                }
-            }
-        })
+//
+//        mStatesLayout.setDefaultMultiStatesActionListener(object :
+//            PUIDefaultMultiStatesLayout.OnDefaultMultiStatesActionListener {
+//            override fun onClick(view: View, type: PUIDefaultMultiStatesLayout.MultiStatesType) {
+//                when (type) {
+//                    PUIDefaultMultiStatesLayout.MultiStatesType.STATES_EMPTY ->
+//                        Toast.makeText(
+//                            this@PUIMultiStatesLayoutActivity,
+//                            "空状态请重试",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//
+//                    PUIDefaultMultiStatesLayout.MultiStatesType.STATES_ERROR ->
+//                        Toast.makeText(
+//                            this@PUIMultiStatesLayoutActivity,
+//                            "错误状态请重试",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//
+//                    PUIDefaultMultiStatesLayout.MultiStatesType.STATES_NETOFF ->
+//                        Toast.makeText(
+//                            this@PUIMultiStatesLayoutActivity,
+//                            "网络异常请重试",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                    else ->
+//                        Toast.makeText(
+//                            this@PUIMultiStatesLayoutActivity,
+//                            "其他异常请重试",
+//                            Toast.LENGTH_SHORT
+//                        ).show()
+//                }
+//            }
+//        })
 
         mStatesLayout.showLoadingLayout()
 
+        Handler().postDelayed({
+            mStatesLayout.showContentLayout()
+        }, 3000)
     }
 
     override fun attrLayoutId(): Int = R.layout.activity_multistates
@@ -65,8 +67,7 @@ class PUIMultiStatesLayoutActivity : BaseActivity() {
         R.id.btn_content,
         R.id.btn_empty,
         R.id.btn_netoff,
-        R.id.btn_error,
-        R.id.btn_custom
+        R.id.btn_error
     )
     fun onViewClick(view: View) {
         when (view.id) {
@@ -80,13 +81,6 @@ class PUIMultiStatesLayoutActivity : BaseActivity() {
                 mStatesLayout.showNetOffLayout()
             R.id.btn_error ->
                 mStatesLayout.showErrorLayout()
-            R.id.btn_custom ->
-                mStatesLayout.showCustomExceptionLayout(
-                    R.drawable.pui_default_ic_multi_states_empty,
-                    "自定义异常",
-                    "返回",
-                    true
-                )
         }
     }
 

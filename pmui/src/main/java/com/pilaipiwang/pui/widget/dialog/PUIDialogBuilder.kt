@@ -200,9 +200,8 @@ abstract class PUIDialogBuilder<T : PUIDialogBuilder<T>> {
      */
     protected fun onCreateTitle(dialog: PUIDialog, parent: ViewGroup, context: Context) {
         if (hasTitle()) {
-            mTitleView = TextView(context)
+            mTitleView = TextView(context, null, R.attr.pui_dialog_title_style)
             mTitleView!!.text = mTitle
-            PUIAttrsHelper.assignTextViewWithAttr(mTitleView!!, R.attr.pui_dialog_title_style)
             onConfigTitleView(mTitleView!!)
             mTitleView!!.layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,

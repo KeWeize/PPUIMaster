@@ -25,6 +25,32 @@
     </style>
     <!--#############  TopBar end #############-->
 
+    <style name="MultiStatesLayout">
+        <item name="pui_multistates_icon_width">140dp</item>
+        <item name="pui_multistates_icon_height">140dp</item>
+        <item name="pui_multistates_text_color">#666666</item>
+        <item name="pui_multistates_text_size">16sp</item>
+        <item name="pui_multistates_subtext_color">#999999</item>
+        <item name="pui_multistates_subtext_size">14sp</item>
+        <item name="pui_multistates_empty_resId">@drawable/pui_default_ic_multi_states_empty</item>
+        <item name="pui_multistates_empty_text">@string/pui_default_multi_states_empty_text</item>
+        <item name="pui_multistates_empty_is_action_show">false</item>
+        <item name="pui_multistates_error_resId">@drawable/pui_default_ic_multi_states_error</item>
+        <item name="pui_multistates_error_text">@string/pui_default_multi_states_error_text</item>
+        <item name="pui_multistates_error_is_action_show">false</item>
+        <item name="pui_multistates_netoff_resId">@drawable/pui_default_ic_multi_states_netoff
+        </item>
+        <item name="pui_multistates_netoff_text">@string/pui_default_multi_states_netoff_text</item>
+        <item name="pui_multistates_netoff_subtext">
+            @string/pui_default_multi_states_netoff_subtext
+        </item>
+        <item name="pui_multistates_netoff_is_action_show">false</item>
+        <item name="pui_multistates_action_text">@string/pui_default_multi_states_action_text</item>
+        <item name="pui_multistates_loading_view_layoutId">
+            @layout/include_multistates_layout
+        </item>
+    </style>
+
     <!--############# Dialog start #############-->
     <style name="USelectDialog" parent="android:Theme.Dialog">
         <item name="android:backgroundDimAmount">0.6</item>
@@ -36,7 +62,7 @@
     <style name="USelectDialog.Title">
         <item name="android:textColor">#222222</item>
         <item name="android:textSize">17sp</item>
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">left</item>
         <item name="android:paddingTop">24dp</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:ellipsize">end</item>

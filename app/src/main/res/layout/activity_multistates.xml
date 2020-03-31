@@ -45,23 +45,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="服务器错误" />
-
-            <Button
-                android:id="@+id/btn_custom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="自定义错误" />
-
         </LinearLayout>
 
     </HorizontalScrollView>
 
-    <com.pilaipiwang.pui.widget.multilayout.PUIDefaultMultiStatesLayout
+    <com.pilaipiwang.pui.widget.multilayout.PUIMultiStatesLayout
         android:id="@+id/stateslayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:pui_default_multistates_empty_text="暂无订单数据"
-        app:pui_default_multistates_is_action_show="true">
+        android:layout_height="match_parent">
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,6 +61,6 @@
             android:text="我是内容"
             android:textSize="36sp" />
 
-    </com.pilaipiwang.pui.widget.multilayout.PUIDefaultMultiStatesLayout>
+    </com.pilaipiwang.pui.widget.multilayout.PUIMultiStatesLayout>
 
 </LinearLayout>

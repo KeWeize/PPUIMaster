@@ -4,12 +4,12 @@ import android.content.Intent
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
+import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieComposition
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.pilaipiwang.ppuimaster.base.BaseActivity
 import com.pilaipiwang.ppuimaster.widget.*
-import com.pilaipiwang.pui.widget.dialog.PUIDialog
-import com.pilaipiwang.pui.widget.topbar.PUITopBar
 
 class MainActivity : BaseActivity() {
 
@@ -18,11 +18,19 @@ class MainActivity : BaseActivity() {
 
     private val mAdapter = MainAdapter()
     private val mDataList =
-        arrayListOf("Layout", "Round Widget", "PUITopBar", "PUIMultiStateLayout", "PUIDialog")
+        arrayListOf(
+            "Layout",
+            "Round Widget",
+            "PUITopBar",
+            "PUIMultiStateLayout",
+            "PUIOrderMultiStateLayout",
+            "PUIDialog"
+        )
 
     override fun attrLayoutId(): Int = R.layout.activity_main
 
     override fun initView() {
+
         mRecyclerView.adapter = mAdapter
         mRecyclerView.layoutManager = LinearLayoutManager(this)
         mAdapter.setOnItemChildClickListener { adapter, view, position ->
@@ -39,6 +47,13 @@ class MainActivity : BaseActivity() {
                         Intent(
                             this@MainActivity,
                             PUIMultiStatesLayoutActivity::class.java
+                        )
+                    )
+                "PUIOrderMultiStateLayout" ->
+                    startActivity(
+                        Intent(
+                            this@MainActivity,
+                            PPOrderMultiActivity::class.java
                         )
                     )
                 "PUIDialog" ->

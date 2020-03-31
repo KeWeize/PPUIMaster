@@ -5,19 +5,22 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.RectF
+import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.LinearInterpolator
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import com.pilaipiwang.pui.R
 import com.pilaipiwang.pui.utils.PUIDisplayHelper
+import com.pilaipiwang.pui.widget.multilayout.IPUIMultiStatesLoadAnim
 
 /**
  * 加载控件
  * @author  vitar
  * @date    2019/11/15
  */
-class PUILoadingView : View {
+class PUILoadingView : View, IPUIMultiStatesLoadAnim {
 
     private val TAG: String = "PUILoadingView"
 
@@ -131,6 +134,7 @@ class PUILoadingView : View {
         setMeasuredDimension(mSize, mSize)
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         val saveCount = canvas.saveLayer(RectF(0f, 0f, width.toFloat(), height.toFloat()), null)
@@ -146,6 +150,14 @@ class PUILoadingView : View {
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
+        stop()
+    }
+
+    override fun startLoadingAnim() {
+        start()
+    }
+
+    override fun stopLoadingAnim() {
         stop()
     }
 

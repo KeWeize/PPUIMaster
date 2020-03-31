@@ -6,38 +6,57 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingBottom="70dp">
 
     <ImageView
         android:id="@+id/iv_exception_icon"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/pui_default_ic_multi_states_empty" />
+        tools:src="@drawable/pui_default_ic_multi_states_empty" />
 
     <TextView
         android:id="@+id/tv_exception_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
         android:paddingLeft="25dp"
         android:paddingRight="25dp"
-        android:text="@string/pui_default_multi_states_empty_text"
-        android:textSize="14sp" />
+        android:textColor="#666666"
+        android:textSize="16sp"
+        tools:text="这是异常状态主标题" />
+
+    <TextView
+        android:id="@+id/tv_exception_subtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp"
+        android:textColor="#999999"
+        android:textSize="14sp"
+        android:visibility="gone"
+        tools:text="这是异常状态副标题这是异常状态副标题这是异常状态副标题这是异常状态副标题"
+        tools:visibility="visible" />
 
     <com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView
         android:id="@+id/btn_exception_action"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:paddingLeft="15dp"
-        android:paddingTop="10dp"
-        android:paddingRight="15dp"
-        android:paddingBottom="10dp"
+        android:gravity="center"
+        android:minWidth="120dp"
+        android:minHeight="42dp"
+        android:padding="10dp"
+        android:text="点击重试"
         android:textColor="#FFFFFF"
-        app:pui_primaryColor="#EF0F2B"
-        app:pui_secondaryColor="#FF530A"
-        android:text="点击重试" />
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:pui_primaryColor="#FF6301"
+        app:pui_secondaryColor="#FF4800"
+        tools:visibility="visible" />
 
 </LinearLayout>

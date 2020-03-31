@@ -14,13 +14,15 @@
         <!-- topbar -->
         <item name="pui_topbar_style">@style/USelectTopBar</item>
 
+        <item name="pui_multistateslayout_style">@style/MultiStatesLayout</item>
+
         <!-- 定制 dialog 样式 -->
-        <item name="pui_dialog_title_style">@style/USelectDialog.Title</item>
-        <item name="pui_dialog_message_content_style">@style/USelectDialog.MessageContent</item>
-        <item name="pui_dialog_action_container_style">@style/USelectDialog.ActionContainer</item>
-        <item name="pui_dialog_action_style">@style/USelectDialog.Action</item>
-        <item name="pui_dialog_action_position_style">@style/USelectDialog.Action.Positive</item>
-        <item name="pui_dialog_action_nevative_style">@style/USelectDialog.Action.Negative</item>
+<!--        <item name="pui_dialog_title_style">@style/USelectDialog.Title</item>-->
+<!--        <item name="pui_dialog_message_content_style">@style/USelectDialog.MessageContent</item>-->
+<!--        <item name="pui_dialog_action_container_style">@style/USelectDialog.ActionContainer</item>-->
+<!--        <item name="pui_dialog_action_style">@style/USelectDialog.Action</item>-->
+<!--        <item name="pui_dialog_action_position_style">@style/USelectDialog.Action.Positive</item>-->
+<!--        <item name="pui_dialog_action_nevative_style">@style/USelectDialog.Action.Negative</item>-->
 
     </style>
 
