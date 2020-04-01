@@ -4,21 +4,21 @@
     <style name="AppRootTheme" parent="Theme.AppCompat.Light" />
 
     <style name="AppBaseTheme" parent="AppRootTheme">
-        <item name="android:listDivider">@drawable/pui_divider</item>
-        <item name="android:listViewStyle">@style/ListView.Compat</item>
-        <item name="android:gridViewStyle">@style/GridView.Compat</item>
-        <item name="android:imageButtonStyle">@style/ImageButton.Compat</item>
-        <item name="android:buttonStyle">@style/Button.Compat</item>
-        <item name="android:editTextStyle">@style/EditText.Compat</item>
-        <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextView.Compat</item>
-        <item name="android:dropDownListViewStyle">@style/DropDownListView.Compat</item>
-        <item name="android:textViewStyle">@style/TextView.Compat</item>
+<!--        <item name="android:listDivider">@drawable/pui_divider</item>-->
+<!--        <item name="android:listViewStyle">@style/ListView.Compat</item>-->
+<!--        <item name="android:gridViewStyle">@style/GridView.Compat</item>-->
+<!--        <item name="android:imageButtonStyle">@style/ImageButton.Compat</item>-->
+<!--        <item name="android:buttonStyle">@style/Button.Compat</item>-->
+<!--        <item name="android:editTextStyle">@style/EditText.Compat</item>-->
+<!--        <item name="android:autoCompleteTextViewStyle">@style/AutoCompleteTextView.Compat</item>-->
+<!--        <item name="android:dropDownListViewStyle">@style/DropDownListView.Compat</item>-->
+<!--        <item name="android:textViewStyle">@style/TextView.Compat</item>-->
 
-        <item name="imageButtonStyle">@style/ImageButton.Compat</item>
-        <item name="buttonStyle">@style/Button.Compat</item>
-        <item name="editTextStyle">@style/EditText.Compat</item>
-        <item name="autoCompleteTextViewStyle">@style/AutoCompleteTextView.Compat</item>
-        <item name="dropDownListViewStyle">@style/DropDownListView.Compat</item>
+<!--        <item name="imageButtonStyle">@style/ImageButton.Compat</item>-->
+<!--        <item name="buttonStyle">@style/Button.Compat</item>-->
+<!--        <item name="editTextStyle">@style/EditText.Compat</item>-->
+<!--        <item name="autoCompleteTextViewStyle">@style/AutoCompleteTextView.Compat</item>-->
+<!--        <item name="dropDownListViewStyle">@style/DropDownListView.Compat</item>-->
     </style>
 
     <!-- 默认5.0+属性， 可复写覆盖 -->

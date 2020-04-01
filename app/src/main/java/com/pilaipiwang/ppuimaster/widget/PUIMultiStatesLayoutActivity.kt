@@ -1,6 +1,7 @@
 package com.pilaipiwang.ppuimaster.widget
 
 import android.os.Handler
+import android.util.Log
 import android.view.View
 import butterknife.BindView
 import butterknife.OnClick
@@ -18,7 +19,8 @@ class PUIMultiStatesLayoutActivity : BaseActivity() {
     lateinit var mStatesLayout: PUIMultiStatesLayout
 
     override fun initView() {
-//
+//        mStatesLayout = findViewById(R.id.stateslayout)
+
 //        mStatesLayout.setDefaultMultiStatesActionListener(object :
 //            PUIDefaultMultiStatesLayout.OnDefaultMultiStatesActionListener {
 //            override fun onClick(view: View, type: PUIDefaultMultiStatesLayout.MultiStatesType) {
@@ -56,7 +58,11 @@ class PUIMultiStatesLayoutActivity : BaseActivity() {
         mStatesLayout.showLoadingLayout()
 
         Handler().postDelayed({
-            mStatesLayout.showContentLayout()
+            if (this@PUIMultiStatesLayoutActivity == null) {
+                Log.d("", "")
+            } else {
+                mStatesLayout.showContentLayout()
+            }
         }, 3000)
     }
 
