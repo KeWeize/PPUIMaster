@@ -1,6 +1,9 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'com.novoda.bintray-release' // 添加bintray插件
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -29,8 +32,21 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.core:core-ktx:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
+
+
+// 配置2
+publish {
+    userOrg = 'ppwang' //bintray注册的用户名（不是邮箱）
+    groupId = 'com.pilaipiwang'
+    artifactId = 'pui' //项目名称
+    publishVersion = '1.0.3' //版本号
+    desc = '' //项目描述。可空。
+    website = '' //项目地址，一般填github地址。可空。
+}
+
+// gradlew clean build bintrayUpload -PbintrayUser=ppwang -PbintrayKey=ac6ac648e9afca61a44ba7457225e446b31749a5 -PdryRun=false

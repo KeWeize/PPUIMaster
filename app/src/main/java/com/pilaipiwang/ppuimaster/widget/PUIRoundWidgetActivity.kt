@@ -1,5 +1,6 @@
 package com.pilaipiwang.ppuimaster.widget
 
+import android.graphics.Color
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -8,6 +9,7 @@ import butterknife.BindView
 import butterknife.OnClick
 import com.pilaipiwang.ppuimaster.R
 import com.pilaipiwang.ppuimaster.base.BaseActivity
+import com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView
 
 /**
  * @author: vitar
@@ -17,6 +19,10 @@ class PUIRoundWidgetActivity : BaseActivity() {
 
     @BindView(R.id.btn_submit)
     lateinit var mSubmitBtn: TextView
+
+    @BindView(R.id.pui_tv_commit)
+    lateinit var mSubmitBtn2: PUIRoundTextView;
+
 //    @BindView(R.id.tv_submit)
 //    lateinit var mSubmitTv: TextView
 //    @BindView(R.id.fl_container)
@@ -42,6 +48,11 @@ class PUIRoundWidgetActivity : BaseActivity() {
         when (view.id) {
             R.id.btn_submit -> {
                 Toast.makeText(this, "点击了确定", Toast.LENGTH_SHORT).show()
+
+
+                mSubmitBtn2.setBorderWidth(10)
+                mSubmitBtn2.setBorderColor(Color.BLACK)
+
 //            }
             }
 
@@ -50,6 +61,7 @@ class PUIRoundWidgetActivity : BaseActivity() {
                     mEnableBtn.text = "enable"
                     mEnableBtn.tag = false
                     mSubmitBtn.isEnabled = false
+                    mSubmitBtn2.isEnabled=false
 //                    mSubmitTv.isEnabled = false
 //                    mContainerRl.isEnabled = false
 //                    mContainerLl.isEnabled = false
@@ -59,6 +71,7 @@ class PUIRoundWidgetActivity : BaseActivity() {
                     mEnableBtn.text = "disable"
                     mEnableBtn.tag = true
                     mSubmitBtn.isEnabled = true
+                    mSubmitBtn2.isEnabled = true
 //                    mSubmitTv.isEnabled = true
 //                    mContainerRl.isEnabled = true
 //                    mContainerLl.isEnabled = true

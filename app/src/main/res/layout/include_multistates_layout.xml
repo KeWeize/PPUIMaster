@@ -9,8 +9,8 @@
     <com.pilaipiwang.ppuimaster.multi.PPMultiLoadAnimView
         android:layout_width="75dp"
         android:layout_height="75dp"
-        app:lottie_fileName="data.json"
-        app:lottie_imageAssetsFolder="imagesss"
+        app:lottie_fileName="load/data.json"
+        app:lottie_imageAssetsFolder="load/images"
         app:lottie_loop="true" />
 
 </LinearLayout>

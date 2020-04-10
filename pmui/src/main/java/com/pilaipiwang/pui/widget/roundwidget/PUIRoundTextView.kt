@@ -6,8 +6,10 @@ import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.StateListDrawable
 import android.util.AttributeSet
+import androidx.annotation.ColorInt
 import com.pilaipiwang.pui.R
 import com.pilaipiwang.pui.alpha.PUIAlphaTextView
+import com.pilaipiwang.pui.utils.PUIDrawableHelper
 import com.pilaipiwang.pui.utils.PUIViewHelper
 
 /**
@@ -15,6 +17,11 @@ import com.pilaipiwang.pui.utils.PUIViewHelper
  * @date:   2019/11/5
  */
 open class PUIRoundTextView : PUIAlphaTextView {
+
+    private val mBuilder = PUIRoundDrawable.Builder()
+
+    private var mDisableColor: Int = 0
+    private var mDisableAlpha: Float = -1f
 
     constructor(context: Context?) : this(context, null)
 
@@ -30,13 +37,9 @@ open class PUIRoundTextView : PUIAlphaTextView {
 
     private fun init(context: Context, attrs: AttributeSet?, defStyleAttr: Int) {
 
-        var mDisableColor: Int
-        var mDisableAlpha: Float
-
         var mOrientationFlag: Int
         val ta =
             context.obtainStyledAttributes(attrs, R.styleable.PUIRoundTextView, defStyleAttr, 0)
-        val mBuilder = PUIRoundDrawable.Builder()
 
         mBuilder.primaryColor =
             ta.getColor(R.styleable.PUIRoundTextView_pui_primaryColor, Color.TRANSPARENT)
@@ -81,8 +84,10 @@ open class PUIRoundTextView : PUIAlphaTextView {
     }
 
     private fun generateDrawable(
-        builder: PUIRoundDrawable.Builder, disableAlpha: Float, disabledColor: Int
+        sourceBuilder: PUIRoundDrawable.Builder, disableAlpha: Float, disabledColor: Int
     ): Drawable {
+
+        val builder = sourceBuilder.copy()
 
         val mStateListDrawable = StateListDrawable()
 
@@ -92,46 +97,93 @@ open class PUIRoundTextView : PUIAlphaTextView {
             intArrayOf(android.R.attr.state_enabled, -android.R.attr.state_pressed),
             normalDrawable
         )
-        mStateListDrawable.addState(
-            intArrayOf(android.R.attr.state_enabled, android.R.attr.state_pressed),
-            normalDrawable
-        )
 
-
+        var disabledDrawable = normalDrawable
+        var pressedDrawable = normalDrawable
         // 组件不可用时（enable = false）
         if (disabledColor != 0) {
             builder.primaryColor = disabledColor
             builder.secondaryColor = Color.TRANSPARENT
-            val disabledDrawable = builder.build()
-            mStateListDrawable.addState(
-                intArrayOf(-android.R.attr.state_enabled), disabledDrawable
-            )
+            disabledDrawable = builder.build()
             // 如果传入了disable的背景色，则取消掉原来半透明的效果
             setChangeAlphaWhenDisable(false)
         } else if (disableAlpha in 0f..1f) {
             setDisableAlpha(disableAlpha)
-        } else {
-            mStateListDrawable.addState(
-                intArrayOf(-android.R.attr.state_enabled), normalDrawable
-            )
         }
-
-        // 点击
-//        builder.pressedAlpha = pressedAlpha
-//        val pressedDrawable = builder.build()
-//        mStateListDrawable.addState(
-//            intArrayOf(android.R.attr.state_pressed), pressedDrawable
-//        )
-
-        // 不可用
-//        builder.primaryColor = disabledColor
-//        builder.secondaryColor = Color.TRANSPARENT
-//        val disabledDrawable = builder.build()
-//        mStateListDrawable.addState(
-//            intArrayOf(-android.R.attr.state_enabled), disabledDrawable
-//        )
-
+        mStateListDrawable.addState(
+            intArrayOf(android.R.attr.state_enabled, android.R.attr.state_pressed),
+            pressedDrawable
+        )
+        mStateListDrawable.addState(
+            intArrayOf(-android.R.attr.state_enabled),
+            disabledDrawable
+        )
+        isEnabled = isEnabled
         return mStateListDrawable
+    }
+
+
+    /**
+     * 设置描边颜色
+     */
+    fun setBorderColor(@ColorInt borderColor: Int) {
+        mBuilder.borderColor = borderColor
+        val drawable = generateDrawable(mBuilder, mDisableAlpha, mDisableColor)
+        PUIViewHelper.setBackgroundKeepingPadding(this, drawable)
+    }
+
+    /**
+     * 设置描边宽度
+     */
+    fun setBorderWidth(borderWidth: Int) {
+        mBuilder.borderWidth = borderWidth
+        val drawable = generateDrawable(mBuilder, mDisableAlpha, mDisableColor)
+        PUIViewHelper.setBackgroundKeepingPadding(this, drawable)
+    }
+
+    /**
+     * 设置是否自适应圆角
+     */
+    fun setIsRadiusAdjustBounds(isRadiusAdjustBounds: Boolean) {
+        mBuilder.isRadiusAdjustBounds = isRadiusAdjustBounds
+        val drawable = generateDrawable(mBuilder, mDisableAlpha, mDisableColor)
+        PUIViewHelper.setBackgroundKeepingPadding(this, drawable)
+    }
+
+    /**
+     * 圆角大小
+     */
+    fun setRadius(radius: Int) {
+        mBuilder.radius = radius
+        val drawable = generateDrawable(mBuilder, mDisableAlpha, mDisableColor)
+        PUIViewHelper.setBackgroundKeepingPadding(this, drawable)
+    }
+
+    fun setGradientOrientation(gradientOrientation: GradientDrawable.Orientation) {
+        mBuilder.gradientOrientation = gradientOrientation
+        val drawable = generateDrawable(mBuilder, mDisableAlpha, mDisableColor)
+        PUIViewHelper.setBackgroundKeepingPadding(this, drawable)
+    }
+
+    /**
+     * 设置背景主色
+     */
+    fun setPrimaryColor(@ColorInt primaryColor: Int) {
+        mBuilder.primaryColor = primaryColor
+        val drawable = generateDrawable(mBuilder, mDisableAlpha, mDisableColor)
+        PUIViewHelper.setBackgroundKeepingPadding(this, drawable)
+    }
+
+    fun setSecondaryColor(@ColorInt secondaryColor: Int) {
+        mBuilder.secondaryColor = secondaryColor
+        val drawable = generateDrawable(mBuilder, mDisableAlpha, mDisableColor)
+        PUIViewHelper.setBackgroundKeepingPadding(this, drawable)
+    }
+
+    fun setDisableColor(disableAlpha: Int) {
+        mDisableColor = disableAlpha
+        val drawable = generateDrawable(mBuilder, mDisableAlpha, mDisableColor)
+        PUIViewHelper.setBackgroundKeepingPadding(this, drawable)
     }
 
 }

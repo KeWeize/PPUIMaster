@@ -16,7 +16,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
             <com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView
                 android:id="@+id/btn_submit"
                 style="@style/commSubmitBottomStyle"
@@ -24,30 +23,45 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:clickable="true"
+                android:enabled="false"
                 android:paddingLeft="18dp"
                 android:paddingRight="18dp"
                 android:text="权益说明"
                 android:textColor="#000000 "
                 app:pui_borderColor="#000000 "
                 app:pui_borderWidth="1dp"
-                app:pui_disableAlpha="0.1"
-                app:pui_disableColor="#000000"
-                app:pui_primaryColor="#ffffff"
-                app:pui_radiusBottomLeft="@dimen/dp_10" />
+                app:pui_disableAlpha="0.5"
+                app:pui_primaryColor="#999969"
+                app:pui_radiusBottomLeft="@dimen/dp_10"
+                app:pui_secondaryColor="#223633" />
 
             <com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView
-                style="@style/commSubmitBottomStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="10dp"
-                android:clickable="true"
-                android:paddingLeft="18dp"
-                android:paddingRight="18dp"
-                android:text="权益说明"
-                android:textColor="#000000 "
-                app:pui_borderColor="#000000 "
-                app:pui_borderWidth="1dp" />
+                android:id="@+id/pui_tv_commit"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginLeft="14dp"
+                android:layout_marginRight="14dp"
+                android:gravity="center"
+                android:text="提交"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/sp_14"
+                app:pui_disableColor="#333333"
+                app:pui_primaryColor="#FF6301"
+                app:pui_secondaryColor="#FF8500"/>
+
+<!--            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundTextView-->
+<!--                style="@style/commSubmitBottomStyle"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="25dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:clickable="true"-->
+<!--                android:paddingLeft="18dp"-->
+<!--                android:paddingRight="18dp"-->
+<!--                android:text="权益说明"-->
+<!--                android:textColor="#000000 "-->
+<!--                app:pui_borderColor="#000000 "-->
+<!--                app:pui_borderWidth="1dp" />-->
 
             <!--            <com.pilaipiwang.pui.widget.roundwidget.PUIRoundButton-->
             <!--                android:id="@+id/btn_submit"-->

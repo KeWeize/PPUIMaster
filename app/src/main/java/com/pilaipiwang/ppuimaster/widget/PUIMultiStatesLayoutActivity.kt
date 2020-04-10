@@ -58,11 +58,7 @@ class PUIMultiStatesLayoutActivity : BaseActivity() {
         mStatesLayout.showLoadingLayout()
 
         Handler().postDelayed({
-            if (this@PUIMultiStatesLayoutActivity == null) {
-                Log.d("", "")
-            } else {
-                mStatesLayout.showContentLayout()
-            }
+            mStatesLayout.showContentLayout()
         }, 3000)
     }
 

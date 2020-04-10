@@ -71,7 +71,7 @@ internal class PUIRoundDrawable : GradientDrawable {
     /**
      * 用于构建 PUIRoundDrawable
      */
-    internal class Builder {
+    internal class Builder : Cloneable {
 
         var radius = 0
         var radiusTopLeft = 0
@@ -83,7 +83,6 @@ internal class PUIRoundDrawable : GradientDrawable {
         var gradientOrientation = Orientation.LEFT_RIGHT
         var primaryColor = Color.TRANSPARENT
         var secondaryColor = Color.TRANSPARENT
-        var disableColor = Color.TRANSPARENT
         var pressedAlpha = 1f
 
         var borderColor = Color.TRANSPARENT
@@ -92,6 +91,9 @@ internal class PUIRoundDrawable : GradientDrawable {
         fun build(): GradientDrawable {
             return PUIRoundDrawable(this)
         }
+
+        fun copy() : Builder = this.clone() as Builder
+
     }
 
 }
